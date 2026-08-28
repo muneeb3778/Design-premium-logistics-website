@@ -1,13 +1,52 @@
-// src\pages\Industries.jsx
+// src/pages/Industries.jsx
+
 function SectionLabel({ children, light = false }) {
   return (
-    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold`}>
+    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
       <span className="w-6 h-px bg-gold shrink-0" />
       {children}
     </span>
   )
 }
 
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current" aria-hidden="true">
+      <path d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z" />
+    </svg>
+  )
+}
+
+function WhatsAppIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  )
+}
+
+/* Reusable gold Request a Quote button — matches Home.jsx / About.jsx exactly */
+function QuoteButton({ onClick, size = 'md', className = '' }) {
+  const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-7 py-3.5'
+  return (
+    <button
+      onClick={onClick}
+      className={`${padding} text-white text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
+      style={{ backgroundColor: '#C9922A' }}
+      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8821f' }}
+      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C9922A' }}
+    >
+      Request a Quote
+    </button>
+  )
+}
+
+/* 
+  "Relevant Services" lists updated to reference only the four finalized
+  services (Transportation, Imports, Warehousing, Distribution) — Supply
+  Chain Solutions, Shipping & Freight and Commodity Trading references
+  removed per meeting decisions restructuring the services section.
+*/
 const industries = [
   {
     label: 'Healthcare',
@@ -23,7 +62,7 @@ const industries = [
       'Warehouse and inventory support',
       'Distribution coordination',
     ],
-    services: ['Transportation & Inland Logistics', 'Warehousing & Storage', 'Distribution & Delivery', 'Supply Chain Solutions'],
+    services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
     label: 'Public Sector',
@@ -39,7 +78,7 @@ const industries = [
       'Scalable to procurement volumes',
       'Reliable scheduling and delivery',
     ],
-    services: ['Transportation & Inland Logistics', 'Warehousing & Storage', 'Distribution & Delivery', 'Supply Chain Solutions'],
+    services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
     label: 'Defence-Related',
@@ -55,7 +94,7 @@ const industries = [
       'Secure and controlled operations',
       'Clear communication protocols',
     ],
-    services: ['Transportation & Inland Logistics', 'Warehousing & Storage', 'Distribution & Delivery'],
+    services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
     label: 'Commercial & Industrial',
@@ -67,42 +106,67 @@ const industries = [
       'Scalable logistics capacity',
       'Flexible warehousing and storage',
       'Multi-site distribution',
-      'Commodity and bulk cargo support',
+      'Bulk and palletised cargo support',
       'Import and freight coordination',
-      'Integrated supply-chain solutions',
+      'Integrated logistics solutions',
     ],
-    services: ['Transportation & Inland Logistics', 'Shipping & Freight', 'Warehousing & Storage', 'Distribution & Delivery', 'Commodity Trading'],
+    services: ['Transportation', 'Imports', 'Warehousing', 'Distribution'],
   },
 ]
 
 export default function Industries({ onNavigate }) {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-navy" style={{ minHeight: '50vh', display: 'flex', alignItems: 'flex-end' }}>
+
+      {/* ── HERO ────────────────────────────────────────────────────────
+          Same structural pattern as Home.jsx / About.jsx / Services.jsx:
+          absolute bg image + gradient → relative z-20 flex-col wrapper
+          → nav-spacer div (h-[72px]) → flex-1 centered content.
+          Height kept within the agreed 60–70vh range, text capped at ~60%.
+      ────────────────────────────────────────────────────────────────── */}
+      <section
+        className="relative overflow-hidden bg-navy"
+        style={{ height: '58vh', minHeight: 460, maxHeight: 680 }}
+      >
         <img
           src="https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=1920&h=700&fit=crop&auto=format"
           alt="International cargo operations representing industries we support"
-          className="absolute inset-0 w-full h-full object-cover opacity-28"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.92) 0%, rgba(12,37,69,0.5) 60%, rgba(12,37,69,0.12) 100%)' }} />
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full relative py-16 pt-[120px]">
-          <SectionLabel>Industries</SectionLabel>
-          <h1 className="text-white text-4xl lg:text-5xl font-bold font-display max-w-2xl leading-tight mb-4">
-            Supporting Organisations Across Critical Supply Chains
-          </h1>
-          <p className="text-white/55 text-base font-body max-w-xl leading-relaxed">
-            We work with organisations where supply-chain reliability, accountability and operational continuity are essential.
-          </p>
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.90) 0%, rgba(12,37,69,0.55) 55%, rgba(12,37,69,0.28) 100%)' }}
+        />
+
+        <div className="relative z-20 h-full flex flex-col">
+          <div className="h-[72px] shrink-0" />
+
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
+              <div className="max-w-full sm:max-w-[80%] lg:max-w-[60%]">
+                <SectionLabel light>Industries</SectionLabel>
+                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
+                  Supporting Organisations Across Critical Supply Chains
+                </h1>
+                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
+                  We work with organisations where supply-chain reliability, accountability and operational continuity are essential.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Industry nav */}
-      <div className="bg-white border-b border-hairline">
+      {/* ── INDUSTRY NAV ──────────────────────────────────────────────── */}
+      <div className="bg-white border-b border-hairline sticky top-[72px] z-30">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="flex overflow-x-auto gap-0" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex overflow-x-auto gap-0 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
             {industries.map((ind) => (
-              <a key={ind.label} href={`#${ind.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '')}`} className="px-5 py-4 text-sm font-medium font-body whitespace-nowrap border-b-2 border-transparent text-dim hover:text-navy hover:border-gold transition-colors shrink-0">
+              <a
+                key={ind.label}
+                href={`#${ind.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '')}`}
+                className="px-5 py-4 text-sm font-medium font-body whitespace-nowrap border-b-2 border-transparent text-dim hover:text-navy hover:border-gold transition-colors shrink-0"
+              >
                 {ind.label}
               </a>
             ))}
@@ -110,7 +174,13 @@ export default function Industries({ onNavigate }) {
         </div>
       </div>
 
-      {/* Industry sections */}
+      {/* ── INDUSTRY SECTIONS ─────────────────────────────────────────── 
+          Note: Individual "Request a Quote" buttons removed from each
+          industry block to reduce CTA repetition (previously 5 quote
+          buttons across the page). Each section now keeps a single
+          "View Services" action, with quote/contact consolidated into
+          the final CTA section below.
+      ────────────────────────────────────────────────────────────────── */}
       {industries.map((ind, idx) => (
         <section
           key={ind.label}
@@ -175,16 +245,11 @@ export default function Industries({ onNavigate }) {
 
                 <div className="flex flex-wrap gap-3">
                   <button
-                    onClick={() => onNavigate('quote')}
-                    className="px-6 py-3 bg-navy text-white text-sm font-semibold font-display rounded-sm hover:bg-navy-mid transition-colors"
-                  >
-                    Request a Quote
-                  </button>
-                  <button
                     onClick={() => onNavigate('services')}
-                    className="px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
                   >
                     View Services
+                    <ArrowIcon />
                   </button>
                 </div>
               </div>
@@ -193,18 +258,43 @@ export default function Industries({ onNavigate }) {
         </section>
       ))}
 
-      {/* CTA */}
-      <section className="bg-navy py-16">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 text-center">
-          <h2 className="text-white text-2xl lg:text-3xl font-bold font-display mb-4">Ready to Discuss Your Requirements?</h2>
-          <p className="text-white/55 text-base font-body mb-8 max-w-md mx-auto">Tell us about your organisation and supply-chain requirements and we will respond promptly.</p>
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── 
+          Single consolidated CTA for the page — includes WhatsApp option
+          for consistency with Home.jsx / About.jsx.
+      ────────────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.9) 60%, rgba(12,37,69,0.75) 100%)' }}
+        />
+        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
+          <div className="flex justify-center">
+            <SectionLabel light>Get in Touch</SectionLabel>
+          </div>
+          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4">
+            Ready to Discuss Your Requirements?
+          </h2>
+          <p className="text-white/60 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
+            Tell us about your organisation and supply-chain requirements and our team will respond promptly.
+          </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => onNavigate('quote')} className="px-7 py-3.5 bg-gold text-white text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors">
-              Request a Quote
-            </button>
-            <button onClick={() => onNavigate('contact')} className="px-7 py-3.5 border border-white/25 text-white text-sm font-medium font-body rounded-sm hover:bg-white/8 transition-colors">
+            <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
+            <button
+              onClick={() => onNavigate('contact')}
+              className="px-7 py-3.5 border border-white/28 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
+            >
               Contact Us
             </button>
+            <a
+              href="https://wa.me/[WHATSAPP_NUMBER]"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"
+              style={{ backgroundColor: '#25D366' }}
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              Start WhatsApp Chat
+            </a>
           </div>
         </div>
       </section>

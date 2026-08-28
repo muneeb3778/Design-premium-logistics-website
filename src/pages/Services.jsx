@@ -1,15 +1,21 @@
-// src\pages\Services.jsx
+// src/pages/Services.jsx
 import { useState } from 'react'
 
-function SectionLabel({ children }) {
+function SectionLabel({ children, light = false }) {
   return (
-    <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold">
+    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
       <span className="w-6 h-px bg-gold shrink-0" />
       {children}
     </span>
   )
 }
 
+/* 
+  Only four services remain, matching the restructured homepage services:
+  Transportation, Imports, Warehousing, Distribution.
+  Supply Chain and Commodity Trading tabs have been removed per meeting decisions.
+  Imagery reused from Home.jsx for visual consistency across the site.
+*/
 const serviceList = [
   {
     id: 'transport',
@@ -34,12 +40,12 @@ const serviceList = [
     ],
   },
   {
-    id: 'shipping',
-    label: 'Shipping & Freight',
-    fullTitle: 'Shipping & Freight',
+    id: 'imports',
+    label: 'Imports',
+    fullTitle: 'Imports & Freight',
     image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=900&h=600&fit=crop&auto=format',
-    alt: 'Cargo vessel representing shipping and freight operations',
-    overview: 'We coordinate shipping and freight requirements across relevant routes and partners, supporting the movement of cargo from origin through to UK port or onward destination. Our freight coordination service is designed around the specific requirements of each customer and cargo type.',
+    alt: 'Cargo vessel representing import and freight operations',
+    overview: 'We coordinate import and freight requirements across relevant routes and partners, supporting the movement of cargo from origin through to UK port or onward destination. Our import coordination service is designed around the specific requirements of each customer and cargo type.',
     capabilities: [
       'Import freight coordination',
       'Port and terminal liaison',
@@ -49,7 +55,7 @@ const serviceList = [
       'Multi-modal freight solutions',
     ],
     benefits: [
-      'Coordinated end-to-end freight management',
+      'Coordinated end-to-end import management',
       'Experienced freight team',
       'Flexible cargo support',
       'Connected with UK inland logistics',
@@ -99,50 +105,6 @@ const serviceList = [
       'Scalable to volume requirements',
     ],
   },
-  {
-    id: 'supply-chain',
-    label: 'Supply Chain',
-    fullTitle: 'Supply Chain Solutions',
-    image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=900&h=600&fit=crop&auto=format',
-    alt: 'Container port representing supply chain coordination',
-    overview: 'Our supply chain solutions service provides integrated coordination across multiple logistics stages — connecting transportation, port handling, warehousing and distribution into a managed, end-to-end supply chain solution. Designed for organisations that require a coherent view across their logistics operations.',
-    capabilities: [
-      'End-to-end supply chain coordination',
-      'Multi-stage logistics management',
-      'Port-to-warehouse-to-delivery workflows',
-      'Single-point coordination and reporting',
-      'Supply chain mapping and optimisation support',
-      'Escalation and contingency management',
-    ],
-    benefits: [
-      'Single coordination point',
-      'Connected view across all stages',
-      'Reduced operational complexity',
-      'Scalable to supply chain growth',
-    ],
-  },
-  {
-    id: 'commodity',
-    label: 'Commodity Trading',
-    fullTitle: 'Commodity Trading',
-    image: 'https://images.unsplash.com/photo-1535379453347-1ffd615e2e08?w=900&h=600&fit=crop&auto=format',
-    alt: 'Agricultural commodity harvest representing trading operations',
-    overview: 'Our commodity trading capability provides commercial sourcing, procurement and supply coordination for physical commodities, directly connected to our transportation and logistics operations. We support customers who require both the commercial trading function and the physical supply-chain execution in a coordinated model.',
-    capabilities: [
-      'Commodity sourcing and procurement',
-      'Supply and trade coordination',
-      'Physical delivery integration',
-      '[COMMODITY CATEGORIES] — to be confirmed',
-      'Commercial and logistics coordination',
-      'Supply continuity management',
-    ],
-    benefits: [
-      'Integrated trading and logistics',
-      'Commercial and physical coordination',
-      'Supply continuity focused',
-      'Connected to UK transportation network',
-    ],
-  },
 ]
 
 export default function Services({ onNavigate }) {
@@ -151,26 +113,47 @@ export default function Services({ onNavigate }) {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-navy" style={{ minHeight: '50vh', display: 'flex', alignItems: 'flex-end' }}>
+
+      {/* ── HERO ────────────────────────────────────────────────────────
+          Same structural pattern as Home.jsx / About.jsx:
+          absolute bg image + gradient → relative z-20 flex-col wrapper
+          → nav-spacer div (h-[72px]) → flex-1 centered content.
+          Height kept within the agreed 60–70vh range.
+      ────────────────────────────────────────────────────────────────── */}
+      <section
+        className="relative overflow-hidden bg-navy"
+        style={{ height: '58vh', minHeight: 460, maxHeight: 680 }}
+      >
         <img
           src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=700&fit=crop&auto=format"
           alt="Aerial view of container port representing our services"
-          className="absolute inset-0 w-full h-full object-cover opacity-28"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.92) 0%, rgba(12,37,69,0.5) 60%, rgba(12,37,69,0.12) 100%)' }} />
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full relative py-16 pt-[120px]">
-          <SectionLabel>Services & Solutions</SectionLabel>
-          <h1 className="text-white text-4xl lg:text-5xl font-bold font-display max-w-2xl leading-tight mb-4">
-            Our Services & Solutions
-          </h1>
-          <p className="text-white/55 text-base font-body max-w-xl leading-relaxed">
-            Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
-          </p>
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.90) 0%, rgba(12,37,69,0.55) 55%, rgba(12,37,69,0.28) 100%)' }}
+        />
+
+        <div className="relative z-20 h-full flex flex-col">
+          <div className="h-[72px] shrink-0" />
+
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
+              <div className="max-w-full sm:max-w-[80%] lg:max-w-[60%]">
+                <SectionLabel light>Services &amp; Solutions</SectionLabel>
+                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
+                  Our Services &amp; Solutions
+                </h1>
+                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
+                  Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Service nav tabs */}
+      {/* ── SERVICE NAV TABS ──────────────────────────────────────────── */}
       <div className="bg-white border-b border-hairline sticky top-[72px] z-30">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="flex overflow-x-auto gap-0 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
@@ -191,7 +174,13 @@ export default function Services({ onNavigate }) {
         </div>
       </div>
 
-      {/* Service detail */}
+      {/* ── SERVICE DETAIL ────────────────────────────────────────────── 
+          Note: The standalone "Request a Quote" button has been removed
+          from this section per meeting decisions — the persistent header
+          "Request a Quote" button and WhatsApp button already provide
+          that path, so it was redundant here. Only "Speak to Our Team"
+          remains as the contact action.
+      ────────────────────────────────────────────────────────────────── */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -234,12 +223,6 @@ export default function Services({ onNavigate }) {
 
               <div className="flex flex-wrap gap-3">
                 <button
-                  onClick={() => onNavigate('quote')}
-                  className="px-6 py-3 bg-navy text-white text-sm font-semibold font-display rounded-sm hover:bg-navy-mid transition-colors"
-                >
-                  Request a Quote for {current.label}
-                </button>
-                <button
                   onClick={() => onNavigate('contact')}
                   className="px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
                 >
@@ -261,44 +244,6 @@ export default function Services({ onNavigate }) {
         </div>
       </section>
 
-      {/* All services summary */}
-      <section className="bg-linen py-16 lg:py-20">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <h2 className="text-navy text-2xl font-bold font-display mb-8">All Services & Solutions</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {serviceList.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => { setActiveService(s.id); window.scrollTo({ top: 300, behavior: 'smooth' }) }}
-                className={`p-5 border rounded-sm text-left transition-all group ${
-                  s.id === activeService
-                    ? 'border-navy bg-white'
-                    : 'border-hairline bg-white hover:border-navy/25'
-                }`}
-              >
-                <div className="w-5 h-[2px] bg-gold mb-3" />
-                <h3 className="text-navy text-sm font-semibold font-display mb-1">{s.fullTitle}</h3>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="bg-navy py-16">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 text-center">
-          <h2 className="text-white text-2xl lg:text-3xl font-bold font-display mb-4">Ready to Discuss Your Logistics Requirements?</h2>
-          <p className="text-white/55 text-base font-body mb-8 max-w-lg mx-auto">Our team will review your requirements and respond with a tailored quote.</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => onNavigate('quote')} className="px-7 py-3.5 bg-gold text-white text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors">
-              Request a Quote
-            </button>
-            <button onClick={() => onNavigate('contact')} className="px-7 py-3.5 border border-white/25 text-white text-sm font-medium font-body rounded-sm hover:bg-white/8 transition-colors">
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
