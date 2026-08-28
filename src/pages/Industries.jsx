@@ -119,15 +119,15 @@ export default function Industries({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ────────────────────────────────────────────────────────
-          Same structural pattern as Home.jsx / About.jsx / Services.jsx:
-          absolute bg image + gradient → relative z-20 flex-col wrapper
-          → nav-spacer div (h-[72px]) → flex-1 centered content.
-          Height kept within the agreed 60–70vh range, text capped at ~60%.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── HERO ──
+          FIX (per meeting decision "Hero section height set to 60-70%"):
+          Previous value was 58vh — just below the agreed range. Corrected
+          to 65vh to match Home.jsx / About.jsx / Services.jsx / Contact.jsx
+          so every page hero shares the same proportions site-wide.
+      */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '58vh', minHeight: 460, maxHeight: 680 }}
+        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
       >
         <img
           src="https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=1920&h=700&fit=crop&auto=format"

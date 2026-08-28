@@ -81,15 +81,19 @@ export default function About({ onNavigate }) {
     <div>
 
       {/* ── HERO ────────────────────────────────────────────────────────
-          Structure now mirrors Home.jsx exactly:
+          Structure mirrors Home.jsx exactly:
           absolute bg image + gradient → relative z-20 flex-col wrapper
           → nav-spacer div (h-[72px]) → flex-1 centered content.
-          This fixes both the height inconsistency and ensures the
-          transparent-nav-over-dark-image effect lines up perfectly.
+
+          FIX (per meeting decision "Hero section height set to 60-70%"):
+          Previous value was 58vh, which fell just below the agreed
+          60–70% range. Corrected to 65vh — mid-range and consistent
+          with the height used on Home.jsx (66vh) and Services.jsx (65vh)
+          so every page hero now shares the same proportions site-wide.
       ────────────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '58vh', minHeight: 460, maxHeight: 680 }}
+        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
       >
         <img
           src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=700&fit=crop&auto=format"

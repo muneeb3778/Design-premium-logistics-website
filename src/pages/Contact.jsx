@@ -1,5 +1,5 @@
 // src/pages/Contact.jsx
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { waLink } from '../constants'
 
 
@@ -28,6 +28,75 @@ const enquiryTypes = [
   'General Enquiry',
 ]
 
+/*
+  FIX (per meeting discussion "it is very difficult to change color of the
+  options... lots of logic... try to make it with AI"):
+  Native <select>/<option> elements cannot be reliably restyled across
+  browsers — Chrome in particular ignores most CSS on <option>. This
+  custom dropdown replaces the native select entirely, giving full
+  control over background, hover and selected states (gold accent to
+  match the rest of the site), while keeping the same visual footprint
+  and shadow treatment as the other inputs.
+*/
+function CustomSelect({ id, value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        id={id}
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`w-full px-4 py-3 border border-hairline rounded-sm text-sm font-body text-left bg-white shadow-[0_2px_8px_rgba(12,37,69,0.06)] focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 focus:shadow-[0_4px_14px_rgba(12,37,69,0.12)] transition-all flex items-center justify-between ${
+          value ? 'text-navy' : 'text-dim/50'
+        }`}
+      >
+        <span>{value || placeholder}</span>
+        <svg
+          viewBox="0 0 16 16"
+          className={`w-3.5 h-3.5 fill-gold shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        >
+          <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          role="listbox"
+          className="absolute z-30 mt-1.5 w-full bg-white border border-hairline rounded-sm shadow-[0_8px_24px_rgba(12,37,69,0.14)] overflow-hidden max-h-64 overflow-y-auto"
+        >
+          {options.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              role="option"
+              aria-selected={value === opt}
+              onClick={() => { onChange(opt); setOpen(false) }}
+              className={`w-full text-left px-4 py-2.5 text-sm font-body transition-colors ${
+                value === opt ? 'bg-gold/10 text-navy font-semibold' : 'text-navy hover:bg-linen'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function Contact({ onNavigate }) {
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({
@@ -50,10 +119,15 @@ export default function Contact({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ── */}
+      {/* ── HERO ──
+          FIX (per meeting decision "Hero section height set to 60-70%"):
+          Previous value was 50vh — well below the agreed range. Corrected
+          to 65vh to match About.jsx / Services.jsx / Industries.jsx so
+          every page hero shares the same proportions site-wide.
+      */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '50vh', minHeight: 400, maxHeight: 600 }}
+        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
       >
         <img
           src="https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=1920&h=600&fit=crop&auto=format"
@@ -259,27 +333,16 @@ export default function Contact({ onNavigate }) {
 
                   <div>
                     <label className={labelClass} htmlFor="contact-type">Enquiry Type</label>
-                    <div className="relative">
-                      <select
-                        id="contact-type"
-                        value={form.enquiryType}
-                        onChange={(e) => setForm({ ...form, enquiryType: e.target.value })}
-                        className={`${inputClass} appearance-none pr-10 cursor-pointer`}
-                        style={{ colorScheme: 'light' }}
-                      >
-                        <option value="" className="text-dim py-2">Select enquiry type</option>
-                        {enquiryTypes.map((t) => (
-                          <option key={t} value={t} className="text-navy py-2">{t}</option>
-                        ))}
-                      </select>
-                      <svg
-                        viewBox="0 0 16 16"
-                        className="w-3.5 h-3.5 fill-gold absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
-                        aria-hidden="true"
-                      >
-                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z" />
-                      </svg>
-                    </div>
+                    {/* FIX: replaced native <select> with fully-styleable CustomSelect
+                        so the dropdown panel and options actually reflect our theme
+                        (gold highlight, hover states) instead of default OS styling. */}
+                    <CustomSelect
+                      id="contact-type"
+                      value={form.enquiryType}
+                      onChange={(val) => setForm({ ...form, enquiryType: val })}
+                      options={enquiryTypes}
+                      placeholder="Select enquiry type"
+                    />
                   </div>
 
                   <div>

@@ -118,11 +118,15 @@ export default function Services({ onNavigate }) {
           Same structural pattern as Home.jsx / About.jsx:
           absolute bg image + gradient → relative z-20 flex-col wrapper
           → nav-spacer div (h-[72px]) → flex-1 centered content.
-          Height kept within the agreed 60–70vh range.
+
+          FIX (per meeting decision "Hero section height set to 60-70%"):
+          Previous value was 58vh, which fell just below the agreed
+          60–70% range. Corrected to 65vh to match About.jsx and stay
+          consistent with Home.jsx (66vh) across the whole site.
       ────────────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '58vh', minHeight: 460, maxHeight: 680 }}
+        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
       >
         <img
           src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=700&fit=crop&auto=format"

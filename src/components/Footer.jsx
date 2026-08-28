@@ -1,13 +1,18 @@
-// src\components\Footer.jsx
+// src/components/Footer.jsx
 import { waLink } from '../constants'
 
+/*
+  FIX (per decision "Update Service Tabs: Remove the commodity trading
+  and supply chain tabs from the services navigation menu"):
+  Footer service list now matches the finalized 4-service structure
+  used on the Home page (Transportation, Imports, Warehousing, Distribution).
+  "Supply Chain Solutions" and "Commodity Trading" removed completely.
+*/
 const services = [
-  { label: 'Transportation & Inland Logistics' },
-  { label: 'Shipping & Freight' },
-  { label: 'Warehousing & Storage' },
-  { label: 'Distribution & Delivery' },
-  { label: 'Supply Chain Solutions' },
-  { label: 'Commodity Trading' },
+  { label: 'Transportation' },
+  { label: 'Imports' },
+  { label: 'Warehousing' },
+  { label: 'Distribution' },
 ]
 
 const company = [
@@ -48,7 +53,7 @@ export default function Footer({ onNavigate }) {
               </div>
             </button>
             <p className="text-sm leading-relaxed text-white/45 font-body mb-6 max-w-[280px]">
-              Transportation, logistics, warehousing, distribution and commodity solutions for UK and international supply chains.
+              Transportation, logistics, warehousing, distribution and import solutions for UK and international supply chains.
             </p>
             <div className="flex gap-2.5">
               <a

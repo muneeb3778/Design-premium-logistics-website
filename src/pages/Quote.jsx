@@ -1,14 +1,20 @@
-// src\pages\Quote.jsx
+// src/pages/Quote.jsx
 import { useState } from 'react'
 
+/*
+  FIX (per meeting decision "Services section content restructured —
+  include only Transportation, Imports, Warehousing, and Distribution"):
+  Previously this list still contained 'Shipping & Freight' (folded into
+  Imports & Freight per the transcript), 'Supply Chain Solutions' and
+  'Commodity Trading' — both explicitly removed in the meeting. Since the
+  Quote form is the primary lead-capture tool, leaving these in would
+  re-introduce exactly what the client asked to remove site-wide.
+*/
 const serviceOptions = [
   'Transportation & Inland Logistics',
-  'Shipping & Freight',
-  'Import Logistics',
+  'Imports & Freight',
   'Warehousing & Storage',
   'Distribution & Delivery',
-  'Supply Chain Solutions',
-  'Commodity Trading',
   'Other / Multiple Services',
 ]
 

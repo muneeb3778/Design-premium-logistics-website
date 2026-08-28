@@ -141,11 +141,6 @@ function ArrowIcon() {
   )
 }
 
-/* 
-  Reusable gold "Request a Quote" button — consistent gold across the entire page.
-  Uses inline style so Tailwind's bg-navy class on the scrolled Nav never 
-  interferes. Hover darkens slightly to #b8821f (a 12% darker shade of gold).
-*/
 function QuoteButton({ onClick, size = 'md', className = '' }) {
   const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-6 py-3'
   return (
@@ -179,9 +174,16 @@ export default function Home({ onNavigate }) {
     <div>
 
       {/* ── HERO ────────────────────────────────────────────────────── */}
+      {/*
+        FIX (per meeting decision "Hero section height set to 60-70%"):
+        Previous value was 74vh (slightly over spec). Changed to 66vh
+        so it sits comfortably inside the agreed 60–70% range, while
+        keeping a sane min/max so it doesn't collapse/balloon on
+        very short or very tall viewports.
+      */}
       <section
         className="relative overflow-hidden"
-        style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
+        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
         onMouseEnter={() => { pausedRef.current = true }}
         onMouseLeave={() => { pausedRef.current = false }}
         aria-label="Homepage feature slideshow"
@@ -222,7 +224,6 @@ export default function Home({ onNavigate }) {
                 </p>
 
                 <div className="flex flex-wrap gap-3">
-                  {/* Gold quote button — uses QuoteButton component */}
                   <QuoteButton onClick={() => onNavigate('quote')} size="md" />
 
                   <button
@@ -358,7 +359,6 @@ export default function Home({ onNavigate }) {
               </div>
 
               <div className="mt-10 flex flex-wrap gap-3">
-                {/* Gold quote button */}
                 <QuoteButton onClick={() => onNavigate('quote')} />
                 <button
                   onClick={() => onNavigate('about')}
@@ -547,7 +547,6 @@ export default function Home({ onNavigate }) {
               Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
             </p>
             <div className="flex flex-wrap gap-3">
-              {/* Gold quote button — large size */}
               <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
 
               <button
