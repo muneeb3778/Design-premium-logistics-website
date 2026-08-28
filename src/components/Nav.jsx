@@ -1,5 +1,6 @@
 // src/components/Nav.jsx
 import { useState, useEffect } from 'react'
+import { waLink } from '../constants'
 
 const navLinks = [
   { id: 'home', label: 'Home' },
@@ -113,7 +114,7 @@ export default function Nav({ currentPage, onNavigate }) {
 
             {/* WhatsApp button */}
             <a
-              href="https://wa.me/[WHATSAPP_NUMBER]"
+              href={waLink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Start WhatsApp Chat"
@@ -190,7 +191,7 @@ export default function Nav({ currentPage, onNavigate }) {
                 Request a Quote
               </button>
               <a
-                href="https://wa.me/[WHATSAPP_NUMBER]"
+                href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex w-full items-center justify-center gap-2 py-3 rounded-sm text-sm font-semibold font-display text-white transition-colors"

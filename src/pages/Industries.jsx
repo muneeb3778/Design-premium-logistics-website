@@ -1,4 +1,5 @@
 // src/pages/Industries.jsx
+import { waLink } from '../constants'
 
 function SectionLabel({ children, light = false }) {
   return (
@@ -286,7 +287,7 @@ export default function Industries({ onNavigate }) {
               Contact Us
             </button>
             <a
-              href="https://wa.me/[WHATSAPP_NUMBER]"
+              href={waLink}
               target="_blank"
               rel="noopener noreferrer"
               className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"

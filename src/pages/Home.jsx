@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import { useState, useEffect, useRef } from 'react'
+import { waLink } from '../constants'
 
 const heroSlides = [
   {
@@ -557,7 +558,7 @@ export default function Home({ onNavigate }) {
               </button>
 
               <a
-                href="https://wa.me/[WHATSAPP_NUMBER]"
+                href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"

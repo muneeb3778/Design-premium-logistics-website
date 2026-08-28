@@ -1,5 +1,7 @@
 // src/pages/Contact.jsx
 import { useState } from 'react'
+import { waLink } from '../constants'
+
 
 function SectionLabel({ children, light = false }) {
   return (
@@ -18,12 +20,6 @@ function WhatsAppIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-/* 
-  Enquiry types restricted to the four finalized services 
-  (Transportation, Imports, Warehousing, Distribution) plus a General 
-  Enquiry option. Supply Chain Solutions, Shipping & Freight and 
-  Commodity Trading removed per meeting decisions.
-*/
 const enquiryTypes = [
   'Transportation',
   'Imports',
@@ -48,23 +44,13 @@ export default function Contact({ onNavigate }) {
     setSubmitted(true)
   }
 
-  /* 
-    Input styling updated with a soft outer shadow for a "popup" feel,
-    matching the discretionary UI enhancement discussed in the meeting.
-    Shadow deepens slightly on focus for tactile feedback.
-  */
   const inputClass = "w-full px-4 py-3 border border-hairline rounded-sm text-sm font-body text-navy placeholder:text-dim/50 bg-white shadow-[0_2px_8px_rgba(12,37,69,0.06)] focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 focus:shadow-[0_4px_14px_rgba(12,37,69,0.12)] transition-all"
   const labelClass = "block text-navy text-xs font-semibold font-display tracking-wide uppercase mb-2"
 
   return (
     <div>
 
-      {/* ── HERO ────────────────────────────────────────────────────────
-          Same structural pattern as Home.jsx / About.jsx / Services.jsx /
-          Industries.jsx: absolute bg image + gradient → relative z-20
-          flex-col wrapper → nav-spacer div (h-[72px]) → flex-1 centered
-          content. Height kept within the agreed 60–70vh range.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── HERO ── */}
       <section
         className="relative overflow-hidden bg-navy"
         style={{ height: '50vh', minHeight: 400, maxHeight: 600 }}
@@ -98,7 +84,7 @@ export default function Contact({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── MAIN CONTACT SECTION ──────────────────────────────────────── */}
+      {/* ── MAIN CONTACT SECTION ── */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-12 lg:gap-16">
@@ -136,13 +122,21 @@ export default function Contact({ onNavigate }) {
                   </div>
                 </div>
 
+                {/* WhatsApp contact row — uses waLink so the number is managed
+                    from the single WHATSAPP_NUMBER constant at the top of
+                    this file. Pre-filled text gives the agent instant context. */}
                 <div className="flex items-start gap-3.5">
                   <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
                     <WhatsAppIcon className="w-4 h-4 text-navy/60" />
                   </div>
                   <div>
                     <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">WhatsApp</p>
-                    <a href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" rel="noopener noreferrer" className="text-navy text-sm font-body hover:text-gold transition-colors">
+                    <a
+                      href={waLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-navy text-sm font-body hover:text-gold transition-colors"
+                    >
                       Start a WhatsApp Conversation
                     </a>
                   </div>
@@ -174,12 +168,12 @@ export default function Contact({ onNavigate }) {
                 </div>
               </div>
 
-              {/* WhatsApp CTA card */}
+              {/* WhatsApp CTA card — same waLink constant */}
               <div className="p-5 bg-linen border border-hairline rounded-sm shadow-[0_2px_10px_rgba(12,37,69,0.05)]">
                 <p className="text-navy text-sm font-semibold font-display mb-1.5">Quick questions?</p>
                 <p className="text-dim text-xs font-body mb-3">Use WhatsApp for immediate responses to quick questions about our services.</p>
                 <a
-                  href="https://wa.me/[WHATSAPP_NUMBER]"
+                  href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm font-semibold font-display text-white transition-colors"
@@ -263,15 +257,6 @@ export default function Contact({ onNavigate }) {
                     </div>
                   </div>
 
-                  {/* 
-                    Enquiry Type — custom-styled dropdown.
-                    appearance-none removes the native browser arrow so we
-                    can apply consistent shadow/border styling and a custom
-                    gold-accented chevron icon, matching the site's premium
-                    aesthetic. Option elements are styled with padding and
-                    font to keep the inner dropdown list clean where the
-                    browser allows it (Chrome/Firefox support this).
-                  */}
                   <div>
                     <label className={labelClass} htmlFor="contact-type">Enquiry Type</label>
                     <div className="relative">

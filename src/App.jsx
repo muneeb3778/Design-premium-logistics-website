@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import { waLink } from './constants'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -32,7 +33,7 @@ export default function App() {
 
       {/* WhatsApp floating button */}
       <a
-        href="https://wa.me/[WHATSAPP_NUMBER]"
+        href={waLink}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all hover:scale-105"
