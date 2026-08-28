@@ -1,3 +1,4 @@
+// src\pages\Industries.jsx
 function SectionLabel({ children, light = false }) {
   return (
     <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold`}>

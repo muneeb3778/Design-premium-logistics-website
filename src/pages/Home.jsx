@@ -1,3 +1,4 @@
+// src\pages\Home.jsx
 import { useState, useEffect, useRef } from 'react'
 
 const heroSlides = [

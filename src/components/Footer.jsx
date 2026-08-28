@@ -1,3 +1,4 @@
+// src\components\Footer.jsx
 const services = [
   { label: 'Transportation & Inland Logistics' },
   { label: 'Shipping & Freight' },

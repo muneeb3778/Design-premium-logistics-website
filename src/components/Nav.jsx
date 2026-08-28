@@ -1,3 +1,4 @@
+// src\components\Nav.jsx
 import { useState, useEffect } from 'react'
 
 const navLinks = [
