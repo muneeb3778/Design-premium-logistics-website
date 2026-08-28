@@ -1,10 +1,4 @@
-import type { Page } from '../types'
-
-interface AboutProps {
-  onNavigate: (page: Page) => void
-}
-
-function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+function SectionLabel({ children, light = false }) {
   return (
     <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
       <span className="w-6 h-px bg-gold shrink-0" />
@@ -27,7 +21,7 @@ const values = [
   { label: 'Integrity', desc: 'Honest, transparent engagement with every customer and partner.' },
 ]
 
-export default function About({ onNavigate }: AboutProps) {
+export default function About({ onNavigate }) {
   return (
     <div>
       {/* Hero */}

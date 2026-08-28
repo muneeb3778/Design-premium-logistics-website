@@ -1,11 +1,6 @@
 import { useState } from 'react'
-import type { Page } from '../types'
 
-interface ContactProps {
-  onNavigate: (page: Page) => void
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }) {
   return (
     <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold">
       <span className="w-6 h-px bg-gold shrink-0" />
@@ -24,7 +19,7 @@ const enquiryTypes = [
   'General Enquiry',
 ]
 
-export default function Contact({ onNavigate }: ContactProps) {
+export default function Contact({ onNavigate }) {
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({
     name: '',
@@ -35,7 +30,7 @@ export default function Contact({ onNavigate }: ContactProps) {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
   }

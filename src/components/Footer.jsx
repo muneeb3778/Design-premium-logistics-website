@@ -1,10 +1,4 @@
-import type { Page } from '../types'
-
-interface FooterProps {
-  onNavigate: (page: Page) => void
-}
-
-const services: { label: string }[] = [
+const services = [
   { label: 'Transportation & Inland Logistics' },
   { label: 'Shipping & Freight' },
   { label: 'Warehousing & Storage' },
@@ -13,7 +7,7 @@ const services: { label: string }[] = [
   { label: 'Commodity Trading' },
 ]
 
-const company: { label: string; page: Page }[] = [
+const company = [
   { label: 'About Us', page: 'about' },
   { label: 'Services & Solutions', page: 'services' },
   { label: 'Industries', page: 'industries' },
@@ -21,7 +15,7 @@ const company: { label: string; page: Page }[] = [
   { label: 'Request a Quote', page: 'quote' },
 ]
 
-export default function Footer({ onNavigate }: FooterProps) {
+export default function Footer({ onNavigate }) {
   return (
     <footer className="bg-navy">
       <div className="max-w-[1320px] mx-auto px-5 lg:px-10">

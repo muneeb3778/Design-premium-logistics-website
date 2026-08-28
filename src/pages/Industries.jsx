@@ -1,10 +1,4 @@
-import type { Page } from '../types'
-
-interface IndustriesProps {
-  onNavigate: (page: Page) => void
-}
-
-function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+function SectionLabel({ children, light = false }) {
   return (
     <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold`}>
       <span className="w-6 h-px bg-gold shrink-0" />
@@ -80,7 +74,7 @@ const industries = [
   },
 ]
 
-export default function Industries({ onNavigate }: IndustriesProps) {
+export default function Industries({ onNavigate }) {
   return (
     <div>
       {/* Hero */}
@@ -202,7 +196,7 @@ export default function Industries({ onNavigate }: IndustriesProps) {
       <section className="bg-navy py-16">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 text-center">
           <h2 className="text-white text-2xl lg:text-3xl font-bold font-display mb-4">Ready to Discuss Your Requirements?</h2>
-          <p className="text-white/50 text-base font-body mb-8 max-w-md mx-auto">Tell us about your organisation and supply-chain requirements and we will respond promptly.</p>
+          <p className="text-white/55 text-base font-body mb-8 max-w-md mx-auto">Tell us about your organisation and supply-chain requirements and we will respond promptly.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <button onClick={() => onNavigate('quote')} className="px-7 py-3.5 bg-gold text-white text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors">
               Request a Quote

@@ -1,9 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import type { Page } from '../types'
-
-interface HomeProps {
-  onNavigate: (page: Page) => void
-}
 
 const heroSlides = [
   {
@@ -70,7 +65,7 @@ const services = [
   {
     title: 'Commodity Trading',
     desc: 'Trade and supply capabilities connected to transportation and logistics for physical commodity movement.',
-    image: 'https://images.unsplash.com/photo-1535379453347-1ffd615e2e08?w=800&h=600&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1535379453347-1ffd615e2e8e?w=800&h=600&fit=crop&auto=format',
     alt: 'Agricultural harvest and bulk commodity operations',
   },
 ]
@@ -147,7 +142,7 @@ const faqs = [
   },
 ]
 
-function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+function SectionLabel({ children, light = false }) {
   return (
     <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
       <span className="w-6 h-px bg-gold shrink-0" />
@@ -164,9 +159,9 @@ function ArrowIcon() {
   )
 }
 
-export default function Home({ onNavigate }: HomeProps) {
+export default function Home({ onNavigate }) {
   const [slide, setSlide] = useState(0)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [openFaq, setOpenFaq] = useState(null)
   const pausedRef = useRef(false)
 
   useEffect(() => {
@@ -465,7 +460,7 @@ export default function Home({ onNavigate }: HomeProps) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <SectionLabel>Industries</SectionLabel>
+            <SectionLabel>Campanies</SectionLabel>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
               Supporting Organisations Across Critical Supply Chains
             </h2>

@@ -1,9 +1,4 @@
 import { useState } from 'react'
-import type { Page } from '../types'
-
-interface QuoteProps {
-  onNavigate: (page: Page) => void
-}
 
 const serviceOptions = [
   'Transportation & Inland Logistics',
@@ -18,7 +13,7 @@ const serviceOptions = [
 
 const steps = ['Contact Details', 'Requirement', 'Cargo & Shipment', 'Additional Info']
 
-export default function Quote({ onNavigate }: QuoteProps) {
+export default function Quote({ onNavigate }) {
   const [step, setStep] = useState(0)
   const [submitted, setSubmitted] = useState(false)
 
@@ -28,7 +23,7 @@ export default function Quote({ onNavigate }: QuoteProps) {
     email: '',
     phone: '',
     country: 'United Kingdom',
-    services: [] as string[],
+    services: [],
     origin: '',
     destination: '',
     goodsDescription: '',
@@ -44,7 +39,7 @@ export default function Quote({ onNavigate }: QuoteProps) {
   const inputClass = "w-full px-4 py-3 border border-hairline rounded-sm text-sm font-body text-navy placeholder:text-dim/45 bg-white focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/15 transition-colors"
   const labelClass = "block text-navy text-xs font-semibold font-display tracking-wide uppercase mb-1.5"
 
-  const toggleService = (s: string) => {
+  const toggleService = (s) => {
     setForm((f) => ({
       ...f,
       services: f.services.includes(s) ? f.services.filter((x) => x !== s) : [...f.services, s],

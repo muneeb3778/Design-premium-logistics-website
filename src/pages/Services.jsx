@@ -1,11 +1,6 @@
 import { useState } from 'react'
-import type { Page } from '../types'
 
-interface ServicesProps {
-  onNavigate: (page: Page) => void
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }) {
   return (
     <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 text-gold">
       <span className="w-6 h-px bg-gold shrink-0" />
@@ -149,7 +144,7 @@ const serviceList = [
   },
 ]
 
-export default function Services({ onNavigate }: ServicesProps) {
+export default function Services({ onNavigate }) {
   const [activeService, setActiveService] = useState(serviceList[0].id)
   const current = serviceList.find((s) => s.id === activeService) ?? serviceList[0]
 
@@ -292,7 +287,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       <section className="bg-navy py-16">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 text-center">
           <h2 className="text-white text-2xl lg:text-3xl font-bold font-display mb-4">Ready to Discuss Your Logistics Requirements?</h2>
-          <p className="text-white/50 text-base font-body mb-8 max-w-lg mx-auto">Our team will review your requirements and respond with a tailored quote.</p>
+          <p className="text-white/55 text-base font-body mb-8 max-w-lg mx-auto">Our team will review your requirements and respond with a tailored quote.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <button onClick={() => onNavigate('quote')} className="px-7 py-3.5 bg-gold text-white text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors">
               Request a Quote

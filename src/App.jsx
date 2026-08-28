@@ -7,14 +7,13 @@ import Services from './pages/Services'
 import Industries from './pages/Industries'
 import Contact from './pages/Contact'
 import Quote from './pages/Quote'
-import type { Page } from './types'
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home')
+  const [currentPage, setCurrentPage] = useState('home')
 
-  const navigate = (page: Page) => {
+  const navigate = (page) => {
     setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   return (

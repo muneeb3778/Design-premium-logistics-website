@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react'
-import type { Page } from '../types'
 
-interface NavProps {
-  currentPage: Page
-  onNavigate: (page: Page) => void
-}
-
-const navLinks: { id: Page; label: string }[] = [
+const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'services', label: 'Services & Solutions' },
@@ -14,7 +8,7 @@ const navLinks: { id: Page; label: string }[] = [
   { id: 'contact', label: 'Contact' },
 ]
 
-export default function Nav({ currentPage, onNavigate }: NavProps) {
+export default function Nav({ currentPage, onNavigate }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
