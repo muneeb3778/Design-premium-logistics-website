@@ -18,8 +18,8 @@
   --color-linen-dark: #E4E3DC;
 
   /* Gold accent */
-  --color-gold: #C9922A;
-  --color-gold-light: #E0A83A;
+  --color-gold: #eed484;
+  --color-gold-light: #eed484;
   --color-gold-pale: #F5E6C8;
 
   /* Text / structure */
@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :focus-visible {
-  outline: 2px solid #C9922A;
+  outline: 2px solid #eed484;
   outline-offset: 3px;
   border-radius: 2px;
 }

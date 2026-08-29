@@ -132,10 +132,10 @@ export default function Nav({ currentPage, onNavigate }) {
             {/* Request a Quote — always gold, never flips dark */}
             <button
               onClick={() => onNavigate('quote')}
-              className="hidden sm:flex items-center px-5 py-2.5 text-sm font-semibold font-display rounded-sm transition-all whitespace-nowrap text-white shadow-md hover:shadow-lg"
-              style={{ backgroundColor: '#C9922A' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8821f' }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C9922A' }}
+              className="hidden sm:flex items-center px-5 py-2.5 text-sm font-semibold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg"
+              style={{ backgroundColor: '#eed484' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
             >
               Request a Quote
             </button>
@@ -183,10 +183,10 @@ export default function Nav({ currentPage, onNavigate }) {
             <div className="mt-4 pt-4 border-t border-hairline space-y-2">
               <button
                 onClick={() => { onNavigate('quote'); setMenuOpen(false) }}
-                className="flex w-full justify-center py-3 text-white text-sm font-semibold font-display rounded-sm transition-all"
-                style={{ backgroundColor: '#C9922A' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8821f' }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C9922A' }}
+                className="flex w-full justify-center py-3 text-navy text-sm font-semibold font-display rounded-sm transition-all"
+                style={{ backgroundColor: '#eed484' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
               >
                 Request a Quote
               </button>

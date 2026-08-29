@@ -39,10 +39,10 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
   return (
     <button
       onClick={onClick}
-      className={`${padding} text-white text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
-      style={{ backgroundColor: '#C9922A' }}
-      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8821f' }}
-      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C9922A' }}
+      className={`${padding} text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
+      style={{ backgroundColor: '#eed484' }}
+      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
+      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
     >
       Request a Quote
     </button>
@@ -253,7 +253,7 @@ export default function Services({ onNavigate }) {
                 <QuoteButton onClick={() => onNavigate('quote')} />
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
+                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
                 >
                   Speak to Our Team
                 </button>

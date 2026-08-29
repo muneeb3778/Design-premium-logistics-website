@@ -385,10 +385,10 @@ export default function Quote({ onNavigate }) {
                 <button
                   type="button"
                   onClick={handleFinalSubmit}
-                  className="px-8 py-3.5 text-white text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg"
-                  style={{ backgroundColor: '#C9922A' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8821f' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C9922A' }}
+                  className="px-8 py-3.5 text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg"
+                  style={{ backgroundColor: '#eed484' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
                 >
                   Submit Quote Request
                 </button>
