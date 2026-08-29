@@ -10,6 +10,23 @@ function SectionLabel({ children, light = false }) {
   )
 }
 
+/*
+  HeroLabel — used ONLY inside the About page hero (mirrors Home.jsx).
+  Kept separate from SectionLabel: SectionLabel is reused further down
+  this same page (Our Story, What We Do, Our Approach, Markets We Serve,
+  CTA) — editing it directly would have removed the dash / resized text
+  across the entire page instead of just the hero tag. This component
+  has no leading dash and a larger font size, exactly as requested for
+  the hero tag only.
+*/
+function HeroLabel({ children }) {
+  return (
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+      {children}
+    </span>
+  )
+}
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -90,6 +107,13 @@ export default function About({ onNavigate }) {
           60–70% range. Corrected to 65vh — mid-range and consistent
           with the height used on Home.jsx (66vh) and Services.jsx (65vh)
           so every page hero now shares the same proportions site-wide.
+
+          FIX (hero text truncating with "..."):
+          Headline and subtext both shortened so each reliably fits on
+          one line at the reduced hero font size, instead of relying on
+          text-ellipsis to silently hide the overflow. Safety-net classes
+          (whitespace-nowrap etc.) retained in case future copy edits
+          run long again.
       ────────────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
@@ -112,15 +136,15 @@ export default function About({ onNavigate }) {
           <div className="h-[72px] shrink-0" />
 
           {/* Centered hero text */}
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[80%] lg:max-w-[65%]">
-                <SectionLabel light>About Us</SectionLabel>
-                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
-                  A Reliable Partner for Transportation &amp; Logistics
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[70%] xl:max-w-[65%]">
+                <HeroLabel>About Us</HeroLabel>
+                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  A Reliable Partner in Logistics
                 </h1>
-                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
-                  Connecting transportation, warehousing, imports and distribution into one accountable, responsive service.
+                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  Transportation, warehousing and distribution — connected.
                 </p>
               </div>
             </div>

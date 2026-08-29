@@ -10,6 +10,14 @@ function SectionLabel({ children, light = false }) {
   )
 }
 
+function HeroLabel({ children }) {
+  return (
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+      {children}
+    </span>
+  )
+}
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -26,7 +34,6 @@ function WhatsAppIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-/* Reusable gold Request a Quote button — matches Home.jsx / About.jsx exactly */
 function QuoteButton({ onClick, size = 'md', className = '' }) {
   const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-7 py-3.5'
   return (
@@ -42,12 +49,6 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
   )
 }
 
-/* 
-  "Relevant Services" lists updated to reference only the four finalized
-  services (Transportation, Imports, Warehousing, Distribution) — Supply
-  Chain Solutions, Shipping & Freight and Commodity Trading references
-  removed per meeting decisions restructuring the services section.
-*/
 const industries = [
   {
     label: 'Healthcare',
@@ -120,10 +121,12 @@ export default function Industries({ onNavigate }) {
     <div>
 
       {/* ── HERO ──
-          FIX (per meeting decision "Hero section height set to 60-70%"):
-          Previous value was 58vh — just below the agreed range. Corrected
-          to 65vh to match Home.jsx / About.jsx / Services.jsx / Contact.jsx
-          so every page hero shares the same proportions site-wide.
+          FIX (hero text truncating with "..."):
+          Headline and subtext both shortened so each reliably fits on
+          one line at the reduced hero font size, instead of relying on
+          text-ellipsis to silently hide the overflow. Safety-net classes
+          (whitespace-nowrap etc.) retained in case future copy edits
+          run long again.
       */}
       <section
         className="relative overflow-hidden bg-navy"
@@ -142,15 +145,15 @@ export default function Industries({ onNavigate }) {
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[80%] lg:max-w-[60%]">
-                <SectionLabel light>Industries</SectionLabel>
-                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
-                  Supporting Organisations Across Critical Supply Chains
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+                <HeroLabel>Industries</HeroLabel>
+                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  Supporting Critical Supply Chains
                 </h1>
-                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
-                  We work with organisations where supply-chain reliability, accountability and operational continuity are essential.
+                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  Reliable, accountable logistics for critical sectors.
                 </p>
               </div>
             </div>
@@ -175,13 +178,7 @@ export default function Industries({ onNavigate }) {
         </div>
       </div>
 
-      {/* ── INDUSTRY SECTIONS ─────────────────────────────────────────── 
-          Note: Individual "Request a Quote" buttons removed from each
-          industry block to reduce CTA repetition (previously 5 quote
-          buttons across the page). Each section now keeps a single
-          "View Services" action, with quote/contact consolidated into
-          the final CTA section below.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── INDUSTRY SECTIONS ─────────────────────────────────────────── */}
       {industries.map((ind, idx) => (
         <section
           key={ind.label}
@@ -259,10 +256,7 @@ export default function Industries({ onNavigate }) {
         </section>
       ))}
 
-      {/* ── FINAL CTA ─────────────────────────────────────────────────── 
-          Single consolidated CTA for the page — includes WhatsApp option
-          for consistency with Home.jsx / About.jsx.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
         <div
           className="absolute inset-0"

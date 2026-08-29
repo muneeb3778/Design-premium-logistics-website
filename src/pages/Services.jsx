@@ -10,12 +10,14 @@ function SectionLabel({ children, light = false }) {
   )
 }
 
-/* 
-  Only four services remain, matching the restructured homepage services:
-  Transportation, Imports, Warehousing, Distribution.
-  Supply Chain and Commodity Trading tabs have been removed per meeting decisions.
-  Imagery reused from Home.jsx for visual consistency across the site.
-*/
+function HeroLabel({ children }) {
+  return (
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+      {children}
+    </span>
+  )
+}
+
 const serviceList = [
   {
     id: 'transport',
@@ -115,14 +117,11 @@ export default function Services({ onNavigate }) {
     <div>
 
       {/* ── HERO ────────────────────────────────────────────────────────
-          Same structural pattern as Home.jsx / About.jsx:
-          absolute bg image + gradient → relative z-20 flex-col wrapper
-          → nav-spacer div (h-[72px]) → flex-1 centered content.
-
-          FIX (per meeting decision "Hero section height set to 60-70%"):
-          Previous value was 58vh, which fell just below the agreed
-          60–70% range. Corrected to 65vh to match About.jsx and stay
-          consistent with Home.jsx (66vh) across the whole site.
+          FIX (hero text truncating with "..."):
+          Subtext shortened so it reliably fits on one line at the reduced
+          hero font size, instead of relying on text-ellipsis to hide the
+          overflow. Safety-net classes (whitespace-nowrap etc.) retained
+          in case future copy edits run long again.
       ────────────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
@@ -141,15 +140,15 @@ export default function Services({ onNavigate }) {
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[80%] lg:max-w-[60%]">
-                <SectionLabel light>Services &amp; Solutions</SectionLabel>
-                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+                <HeroLabel>Services &amp; Solutions</HeroLabel>
+                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Our Services &amp; Solutions
                 </h1>
-                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
-                  Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
+                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  Movement, storage and distribution, connected.
                 </p>
               </div>
             </div>
@@ -178,13 +177,7 @@ export default function Services({ onNavigate }) {
         </div>
       </div>
 
-      {/* ── SERVICE DETAIL ────────────────────────────────────────────── 
-          Note: The standalone "Request a Quote" button has been removed
-          from this section per meeting decisions — the persistent header
-          "Request a Quote" button and WhatsApp button already provide
-          that path, so it was redundant here. Only "Speak to Our Team"
-          remains as the contact action.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── SERVICE DETAIL ────────────────────────────────────────────── */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">

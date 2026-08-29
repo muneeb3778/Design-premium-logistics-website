@@ -12,6 +12,23 @@ function SectionLabel({ children, light = false }) {
   )
 }
 
+/*
+  HeroLabel — used ONLY inside the Contact page hero (mirrors Home.jsx,
+  About.jsx, Services.jsx and Industries.jsx). Kept separate from
+  SectionLabel: SectionLabel is reused further down this same page
+  (Contact Details, Quick Enquiry section labels) — editing it directly
+  would have removed the dash / resized text there too instead of just
+  the hero tag. This component has no leading dash and a larger font
+  size, exactly as requested for the hero tag only.
+*/
+function HeroLabel({ children }) {
+  return (
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+      {children}
+    </span>
+  )
+}
+
 function WhatsAppIcon({ className = 'w-4 h-4' }) {
   return (
     <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">
@@ -124,6 +141,13 @@ export default function Contact({ onNavigate }) {
           Previous value was 50vh — well below the agreed range. Corrected
           to 65vh to match About.jsx / Services.jsx / Industries.jsx so
           every page hero shares the same proportions site-wide.
+
+          FIX (hero text truncating with "..."):
+          Headline and subtext both shortened so each reliably fits on
+          one line at the reduced hero font size, instead of relying on
+          text-ellipsis to silently hide the overflow. Safety-net classes
+          (whitespace-nowrap etc.) retained in case future copy edits
+          run long again.
       */}
       <section
         className="relative overflow-hidden bg-navy"
@@ -142,15 +166,15 @@ export default function Contact({ onNavigate }) {
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[80%] lg:max-w-[60%]">
-                <SectionLabel light>Contact</SectionLabel>
-                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-display leading-[1.15] mb-5">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+                <HeroLabel>Contact</HeroLabel>
+                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Get in Touch With Our Team
                 </h1>
-                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed">
-                  Reach out to discuss your transportation, warehousing, import or distribution requirements.
+                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                  Let's discuss your logistics requirements today.
                 </p>
               </div>
             </div>

@@ -1,33 +1,43 @@
 // src/pages/Home.jsx
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 
+/*
+  FIX (hero text truncating with "..."):
+  Previous headline/subtext copy was too long to fit on a single line at
+  the reduced hero font sizes within the available width, so the
+  text-ellipsis safety net was actively truncating it. Copy shortened
+  below so each line fits naturally without truncation. The
+  whitespace-nowrap/overflow-hidden/text-ellipsis classes remain in the
+  markup purely as a safety net for future copy edits — they should no
+  longer trigger with this shorter copy.
+*/
 const heroSlides = [
   {
     tag: 'Global Operations',
     headline: 'Moving Goods. Supporting Supply Chains.',
-    subtext: 'Transportation, warehousing, distribution and import logistics for organisations connected to UK and international supply chains.',
+    subtext: 'Transportation, warehousing and import logistics — connected.',
     image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=1920&h=1080&fit=crop&auto=format',
     alt: 'Aerial view of a large cargo vessel at sea',
   },
   {
     tag: 'Transportation',
     headline: 'Reliable Transportation Across the UK.',
-    subtext: 'Dependable movement of goods between ports, warehouses, facilities and destinations nationwide.',
+    subtext: 'Dependable goods movement, nationwide.',
     image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=1080&fit=crop&auto=format',
     alt: 'Fleet of logistics trucks prepared for transportation',
   },
   {
     tag: 'Warehousing',
     headline: 'Storage That Keeps Operations Moving.',
-    subtext: 'Flexible warehousing solutions designed to support supply chain continuity and operational needs.',
+    subtext: 'Flexible warehousing for supply chain continuity.',
     image: 'https://images.unsplash.com/photo-1766021736631-d2f15082aa59?w=1920&h=1080&fit=crop&auto=format',
     alt: 'Spacious modern industrial warehouse interior',
   },
   {
     tag: 'Imports & Freight',
     headline: 'Seamless Import Logistics, Simplified.',
-    subtext: 'Coordinated import and freight handling from port arrival through to final delivery.',
+    subtext: 'Coordinated freight handling, port to delivery.',
     image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
     alt: 'International shipyard with cranes and vessels at port',
   },
@@ -133,6 +143,23 @@ function SectionLabel({ children, light = false }) {
   )
 }
 
+/*
+  HeroLabel — used ONLY inside the hero slideshow (fix #3).
+  Deliberately kept separate from SectionLabel above: SectionLabel is
+  reused further down this same page (Services & Solutions, Why Choose
+  Us, Industries, Stats, FAQ, Final CTA) — editing it directly would
+  have removed the dash / resized text across the entire homepage
+  instead of just the hero tag. This component has no leading dash and
+  a larger font size, exactly as requested for the hero slide tags only.
+*/
+function HeroLabel({ children }) {
+  return (
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+      {children}
+    </span>
+  )
+}
+
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -161,8 +188,8 @@ export default function Home({ onNavigate }) {
   const [openFaq, setOpenFaq] = useState(null)
 
   useEffect(() => {
-    const timer = setInterval(() => {  
-        setSlide((s) => (s + 1) % heroSlides.length)
+    const timer = setInterval(() => {
+      setSlide((s) => (s + 1) % heroSlides.length)
     }, 5000)
     return () => clearInterval(timer)
   }, [])
@@ -171,13 +198,6 @@ export default function Home({ onNavigate }) {
     <div>
 
       {/* ── HERO ────────────────────────────────────────────────────── */}
-      {/*
-        FIX (per meeting decision "Hero section height set to 60-70%"):
-        Previous value was 74vh (slightly over spec). Changed to 66vh
-        so it sits comfortably inside the agreed 60–70% range, while
-        keeping a sane min/max so it doesn't collapse/balloon on
-        very short or very tall viewports.
-      */}
       <section
         className="relative overflow-hidden"
         style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
@@ -205,22 +225,20 @@ export default function Home({ onNavigate }) {
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 flex flex-col justify-center">
+          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[75%] lg:max-w-[60%]">
-                <SectionLabel light>{heroSlides[slide].tag}</SectionLabel>
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[62%] pt-8 sm:pt-10 lg:pt-24">
+                <HeroLabel>{heroSlides[slide].tag}</HeroLabel>
 
-                <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-bold font-display leading-[1.15] mb-5">
+                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   {heroSlides[slide].headline}
                 </h1>
 
-                <p className="text-white/72 text-base sm:text-lg font-body leading-relaxed mb-8">
+                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed mb-6 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   {heroSlides[slide].subtext}
                 </p>
 
                 <div className="flex flex-wrap gap-3">
-                  <QuoteButton onClick={() => onNavigate('quote')} size="md" />
-
                   <button
                     onClick={() => onNavigate('services')}
                     className="px-7 py-3.5 border border-white/20 bg-white/15 text-white text-sm font-medium font-body rounded-sm hover:bg-white/25 transition-colors"
@@ -233,7 +251,7 @@ export default function Home({ onNavigate }) {
           </div>
 
           {/* Bottom overlay bar */}
-          <div className="shrink-0 bg-gradient-to-t from-navy via-navy/85 to-navy/0 pt-14 pb-6">
+          <div className="shrink-0 bg-gradient-to-t from-navy via-navy/85 to-navy/0 pt-10 pb-6">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center mb-6" role="tablist" aria-label="Slideshow navigation">
                 <div className="flex items-center gap-2.5">
