@@ -1,27 +1,17 @@
 // src/pages/About.jsx
 import { waLink } from '../constants'
 
-function SectionLabel({ children, light = false }) {
+function HeroLabel({ children }) {
   return (
-    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
-      <span className="w-6 h-px bg-gold shrink-0" />
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-/*
-  HeroLabel — used ONLY inside the About page hero (mirrors Home.jsx).
-  Kept separate from SectionLabel: SectionLabel is reused further down
-  this same page (Our Story, What We Do, Our Approach, Markets We Serve,
-  CTA) — editing it directly would have removed the dash / resized text
-  across the entire page instead of just the hero tag. This component
-  has no leading dash and a larger font size, exactly as requested for
-  the hero tag only.
-*/
-function HeroLabel({ children }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -43,9 +33,8 @@ function WhatsAppIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-/* Reusable gold Request a Quote button — matches Home.jsx exactly */
 function QuoteButton({ onClick, size = 'md', className = '' }) {
-  const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-7 py-3.5'
+  const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-6 py-3'
   return (
     <button
       onClick={onClick}
@@ -59,7 +48,6 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
   )
 }
 
-/* Core services — matches homepage's 4 restructured services (Transportation, Imports, Warehousing, Distribution) */
 const coreServices = [
   {
     title: 'Transportation',
@@ -97,24 +85,7 @@ export default function About({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ────────────────────────────────────────────────────────
-          Structure mirrors Home.jsx exactly:
-          absolute bg image + gradient → relative z-20 flex-col wrapper
-          → nav-spacer div (h-[72px]) → flex-1 centered content.
-
-          FIX (per meeting decision "Hero section height set to 60-70%"):
-          Previous value was 58vh, which fell just below the agreed
-          60–70% range. Corrected to 65vh — mid-range and consistent
-          with the height used on Home.jsx (66vh) and Services.jsx (65vh)
-          so every page hero now shares the same proportions site-wide.
-
-          FIX (hero text truncating with "..."):
-          Headline and subtext both shortened so each reliably fits on
-          one line at the reduced hero font size, instead of relying on
-          text-ellipsis to silently hide the overflow. Safety-net classes
-          (whitespace-nowrap etc.) retained in case future copy edits
-          run long again.
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
         style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
@@ -129,13 +100,9 @@ export default function About({ onNavigate }) {
           style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.88) 0%, rgba(12,37,69,0.55) 55%, rgba(12,37,69,0.30) 100%)' }}
         />
 
-        {/* Foreground content — full height flex column, same pattern as Home hero */}
         <div className="relative z-20 h-full flex flex-col">
-
-          {/* Nav spacer — reserves space for the fixed transparent header */}
           <div className="h-[72px] shrink-0" />
 
-          {/* Centered hero text */}
           <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
               <div className="max-w-full sm:max-w-[82%] lg:max-w-[70%] xl:max-w-[65%]">
@@ -157,7 +124,7 @@ export default function About({ onNavigate }) {
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <SectionLabel>Our Story</SectionLabel>
+              <SectionTag>Our Story</SectionTag>
               <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
                 Built Around the Practical Requirements of Supply Chains
               </h2>
@@ -174,7 +141,7 @@ export default function About({ onNavigate }) {
               </div>
             </div>
 
-            <div className="relative rounded-sm overflow-hidden bg-linen" style={{ aspectRatio: '4/3' }}>
+            <div className="relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline" style={{ aspectRatio: '4/3' }}>
               <img
                 src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&h=600&fit=crop&auto=format"
                 alt="Aerial view of port and container logistics operations"
@@ -191,69 +158,85 @@ export default function About({ onNavigate }) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <SectionLabel>What We Do</SectionLabel>
+            <SectionTag>What We Do</SectionTag>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
               Connected Services Across the Supply Chain
             </h2>
-            <p className="text-dim text-base font-body leading-relaxed">
+            <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
               Our capabilities span the connected requirements of UK and international supply chains.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {coreServices.map((svc) => (
-              <div key={svc.title} className="p-6 bg-white border border-hairline rounded-sm hover:border-navy/20 transition-colors group">
+              <div key={svc.title} className="p-6 bg-white border border-hairline rounded-sm hover:border-navy/20 transition-all duration-300 group shadow-sm">
                 <div className="w-8 h-[2px] bg-gold mb-4 group-hover:w-12 transition-all duration-300" />
-                <h3 className="text-navy text-sm font-semibold font-display mb-2">{svc.title}</h3>
+                <h3 className="text-navy text-base font-semibold font-display mb-2">{svc.title}</h3>
                 <p className="text-dim text-sm font-body leading-relaxed">{svc.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-12 text-center">
             <button
               onClick={() => onNavigate('services')}
-              className="inline-flex items-center gap-2 text-navy text-sm font-semibold font-display border-b-2 border-navy pb-0.5 hover:text-gold hover:border-gold transition-colors"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 border-2 border-navy text-navy text-sm font-bold font-display tracking-wide rounded-sm hover:bg-navy hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
             >
-              View All Services & Solutions
+              View All Services &amp; Solutions
               <ArrowIcon />
             </button>
           </div>
         </div>
       </section>
 
-      {/* ── OUR APPROACH ────────────────────────────────────────────── */}
-      <section className="bg-white py-20 lg:py-28">
+      {/* ── OUR APPROACH (PARALLEL REDESIGN) ─────────────────────────── */}
+      <section className="bg-white py-20 lg:py-28 border-t border-hairline">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-12 lg:gap-20">
+          
+          {/* Top-Left Section Header */}
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <SectionTag>Our Approach</SectionTag>
+            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display leading-tight">
+              How We Work
+            </h2>
+          </div>
+
+          {/* Parallel 2-Column Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column: Intro Description + 4 Core Values */}
             <div>
-              <SectionLabel>Our Approach</SectionLabel>
-              <h2 className="text-navy text-3xl font-bold font-display mb-5 leading-tight">How We Work</h2>
-              <p className="text-dim text-base font-body leading-relaxed mb-6">
+              <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
                 We approach every customer requirement with a clear focus on operational delivery, responsiveness and accountability.
               </p>
-              <div className="grid grid-cols-2 gap-4">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {values.map((v) => (
-                  <div key={v.label} className="p-4 bg-linen rounded-sm">
-                    <div className="w-5 h-px bg-gold mb-3" />
-                    <h4 className="text-navy text-sm font-semibold font-display mb-1">{v.label}</h4>
+                  <div 
+                    key={v.label} 
+                    className="p-5 bg-linen rounded-sm border border-hairline hover:border-navy/20 transition-all duration-200"
+                  >
+                    <div className="w-6 h-[2px] bg-gold mb-3" />
+                    <h4 className="text-navy text-base font-semibold font-display mb-1.5">{v.label}</h4>
                     <p className="text-dim text-xs font-body leading-relaxed">{v.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-7">
+            {/* Right Column: 4 Approach Pillars */}
+            <div className="space-y-6 lg:space-y-7">
               {approach.map((item) => (
-                <div key={item.title} className="flex gap-5 pb-7 border-b border-hairline last:border-0 last:pb-0">
-                  <div className="w-[2px] bg-gold shrink-0 mt-1 rounded-full" />
+                <div key={item.title} className="flex gap-4 group">
+                  <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
                   <div>
-                    <h3 className="text-navy text-base font-semibold font-display mb-2">{item.title}</h3>
+                    <h3 className="text-navy text-base font-semibold font-display mb-1.5">{item.title}</h3>
                     <p className="text-dim text-sm font-body leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>
@@ -268,9 +251,9 @@ export default function About({ onNavigate }) {
               { value: 'XX+', label: 'Customers Supported' },
               { value: 'UK', label: 'Focused Operations' },
             ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl font-bold font-display text-gold mb-2">{stat.value}</div>
-                <div className="text-white/55 text-sm font-body">{stat.label}</div>
+              <div key={stat.label} className="text-center p-6 border border-white/10 rounded-sm hover:border-gold/30 transition-colors">
+                <div className="text-4xl lg:text-5xl font-bold font-display text-gold mb-2">{stat.value}</div>
+                <div className="text-white/65 text-sm font-semibold font-display">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -281,7 +264,7 @@ export default function About({ onNavigate }) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative rounded-sm overflow-hidden bg-navy/5" style={{ aspectRatio: '4/3' }}>
+            <div className="relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline" style={{ aspectRatio: '4/3' }}>
               <img
                 src="https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=800&h=600&fit=crop&auto=format"
                 alt="Warehouse operations serving UK organisations"
@@ -290,25 +273,25 @@ export default function About({ onNavigate }) {
               />
             </div>
             <div>
-              <SectionLabel>Markets We Serve</SectionLabel>
+              <SectionTag>Markets We Serve</SectionTag>
               <h2 className="text-navy text-3xl font-bold font-display mb-5 leading-tight">
                 Supporting UK-Based Organisations
               </h2>
               <p className="text-dim text-base font-body leading-relaxed mb-8">
                 We primarily serve UK-based organisations, including those operating in sectors where supply-chain reliability, accountability and operational continuity are critical considerations.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-8">
                 {['Healthcare Organisations', 'Public Sector Bodies', 'Defence-Related Organisations', 'Commercial & Industrial Businesses'].map((market) => (
                   <div key={market} className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                    <span className="text-navy text-sm font-body">{market}</span>
+                    <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
+                    <span className="text-navy text-sm font-medium font-body">{market}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
+              <div>
                 <button
                   onClick={() => onNavigate('industries')}
-                  className="inline-flex items-center gap-2 text-navy text-sm font-semibold font-display border-b-2 border-navy pb-0.5 hover:text-gold hover:border-gold transition-colors"
+                  className="inline-flex items-center gap-2.5 px-8 py-3.5 border-2 border-navy text-navy text-sm font-bold font-display tracking-wide rounded-sm hover:bg-navy hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   View All Industries
                   <ArrowIcon />
@@ -321,18 +304,24 @@ export default function About({ onNavigate }) {
 
       {/* ── CTA ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
+        <img
+          src="https://images.unsplash.com/photo-1641176716788-d4816a66dc6d?w=1920&h=700&fit=crop&auto=format"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.9) 60%, rgba(12,37,69,0.75) 100%)' }}
+          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.90) 60%, rgba(12,37,69,0.75) 100%)' }}
         />
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
           <div className="flex justify-center">
-            <SectionLabel light>Get in Touch</SectionLabel>
+            <SectionTag>Get in Touch</SectionTag>
           </div>
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4">
+          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
             Ready to Discuss Your Requirements?
           </h2>
-          <p className="text-white/60 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/65 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
             Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -356,6 +345,7 @@ export default function About({ onNavigate }) {
           </div>
         </div>
       </section>
+
     </div>
   )
 }

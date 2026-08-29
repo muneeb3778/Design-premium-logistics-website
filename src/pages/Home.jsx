@@ -3,14 +3,7 @@ import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 
 /*
-  FIX (hero text truncating with "..."):
-  Previous headline/subtext copy was too long to fit on a single line at
-  the reduced hero font sizes within the available width, so the
-  text-ellipsis safety net was actively truncating it. Copy shortened
-  below so each line fits naturally without truncation. The
-  whitespace-nowrap/overflow-hidden/text-ellipsis classes remain in the
-  markup purely as a safety net for future copy edits — they should no
-  longer trigger with this shorter copy.
+  Hero slideshow data
 */
 const heroSlides = [
   {
@@ -134,24 +127,6 @@ const faqs = [
   },
 ]
 
-function SectionLabel({ children, light = false }) {
-  return (
-    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
-      <span className="w-6 h-px bg-gold shrink-0" />
-      {children}
-    </span>
-  )
-}
-
-/*
-  HeroLabel — used ONLY inside the hero slideshow (fix #3).
-  Deliberately kept separate from SectionLabel above: SectionLabel is
-  reused further down this same page (Services & Solutions, Why Choose
-  Us, Industries, Stats, FAQ, Final CTA) — editing it directly would
-  have removed the dash / resized text across the entire homepage
-  instead of just the hero tag. This component has no leading dash and
-  a larger font size, exactly as requested for the hero slide tags only.
-*/
 function HeroLabel({ children }) {
   return (
     <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
@@ -164,6 +139,14 @@ function ArrowIcon() {
   return (
     <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current" aria-hidden="true">
       <path d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z" />
+    </svg>
+  )
+}
+
+function WhatsAppIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" className={`fill-current ${className}`} aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   )
 }
@@ -296,7 +279,6 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <SectionLabel>Services &amp; Solutions</SectionLabel>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Our Services &amp; Solutions</h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
               Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
@@ -335,43 +317,53 @@ export default function Home({ onNavigate }) {
       {/* ── WHY CHOOSE US ─────────────────────────────────────────────── */}
       <section className="bg-white py-20 lg:py-28 border-t border-hairline">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Top Header Information */}
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+              Why Choose Us
+            </span>
+            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
+              Your Shipping &amp; Logistics Needs, Connected
+            </h2>
+            <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
+              We combine operational knowledge with direct service delivery — connecting transportation, warehousing and distribution into a coherent, responsive solution.
+            </p>
+          </div>
 
-            <div className="relative rounded-sm overflow-hidden bg-linen" style={{ aspectRatio: '4/3', minHeight: 320 }}>
+          {/* Image and Value Props Parallel Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+            
+            {/* Image (Parallel Left Column) */}
+            <div className="relative rounded-sm overflow-hidden bg-linen min-h-[360px] sm:min-h-[440px] lg:min-h-full">
               <img
                 src="https://images.unsplash.com/photo-1772305336606-989a457ffbae?w=900&h=700&fit=crop&auto=format"
                 alt="Premium logistics warehouse with polished concrete floor"
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute bottom-5 left-5 bg-navy/92 text-white px-5 py-3.5 rounded-sm backdrop-blur-sm">
-                <p className="text-[10px] text-white/45 font-body tracking-[0.12em] uppercase mb-0.5">Operating Since</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-6 left-6 bg-navy/95 text-white px-5 py-3.5 rounded-sm backdrop-blur-sm border border-white/10 shadow-lg">
+                <p className="text-[10px] text-white/50 font-body tracking-[0.12em] uppercase mb-0.5">Operating Since</p>
                 <p className="text-2xl font-bold font-display text-gold-light">Est. [YEAR]</p>
               </div>
             </div>
 
-            <div>
-              <SectionLabel>Why Choose Us</SectionLabel>
-              <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-5">
-                Your Shipping &amp; Logistics Needs, Connected
-              </h2>
-              <p className="text-dim text-base font-body leading-relaxed mb-10">
-                We combine operational knowledge with direct service delivery — connecting transportation, warehousing and distribution into a coherent, responsive solution.
-              </p>
-
-              <div className="space-y-7">
+            {/* Value Propositions (Parallel Right Column) */}
+            <div className="flex flex-col justify-between">
+              <div className="space-y-6 lg:space-y-7">
                 {valueProps.map((vp) => (
-                  <div key={vp.title} className="flex gap-4">
-                    <div className="w-[2px] bg-gold shrink-0 mt-1 rounded-full" />
+                  <div key={vp.title} className="flex gap-4 group">
+                    <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
                     <div>
-                      <h3 className="text-navy text-sm font-semibold font-display mb-1.5">{vp.title}</h3>
+                      <h3 className="text-navy text-base font-semibold font-display mb-1">{vp.title}</h3>
                       <p className="text-dim text-sm font-body leading-relaxed">{vp.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap gap-3">
                 <QuoteButton onClick={() => onNavigate('quote')} />
                 <button
                   onClick={() => onNavigate('about')}
@@ -381,6 +373,7 @@ export default function Home({ onNavigate }) {
                 </button>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -389,7 +382,9 @@ export default function Home({ onNavigate }) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <SectionLabel>Industries</SectionLabel>
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+              Industries
+            </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
               Supporting Organisations Across Critical Supply Chains
             </h2>
@@ -426,10 +421,11 @@ export default function Home({ onNavigate }) {
             ))}
           </div>
 
-          <div className="mt-10">
+          {/* Centered Button */}
+          <div className="mt-12 text-center">
             <button
               onClick={() => onNavigate('industries')}
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 border-2 border-navy text-navy text-sm font-bold font-display tracking-wide rounded-sm hover:bg-navy hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
             >
               View All Industries
               <ArrowIcon />
@@ -442,7 +438,9 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="text-center max-w-xl mx-auto mb-14">
-            <SectionLabel>Our Experience</SectionLabel>
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+              Our Experience
+            </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
               Experience Built Around Reliability
             </h2>
@@ -492,7 +490,9 @@ export default function Home({ onNavigate }) {
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-12 lg:gap-16">
             <div>
-              <SectionLabel>FAQ</SectionLabel>
+              <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+                FAQ
+              </span>
               <h2 className="text-navy text-3xl font-bold font-display mb-4">Frequently Asked Questions</h2>
               <p className="text-dim text-base font-body leading-relaxed mb-6">
                 Common questions about our services, capabilities and how to work with us.
@@ -538,50 +538,53 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-navy py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
         <img
           src="https://images.unsplash.com/photo-1641176716788-d4816a66dc6d?w=1920&h=700&fit=crop&auto=format"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.96) 0%, rgba(12,37,69,0.75) 55%, rgba(12,37,69,0.45) 100%)' }}
+          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.90) 60%, rgba(12,37,69,0.75) 100%)' }}
         />
 
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative">
-          <div className="max-w-[640px]">
-            <SectionLabel light>Get in Touch</SectionLabel>
-            <h2 className="text-white text-3xl lg:text-4xl xl:text-5xl font-bold font-display leading-tight mb-5">
-              Have a Transportation, Warehousing or Import Requirement?
-            </h2>
-            <p className="text-white/60 text-base lg:text-lg font-body leading-relaxed mb-10">
-              Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
+        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
+          <div className="flex justify-center">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+              Get in Touch
+            </span>
+          </div>
 
-              <button
-                onClick={() => onNavigate('contact')}
-                className="px-7 py-3.5 border border-white/28 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
-              >
-                Speak to Our Team
-              </button>
+          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display leading-tight mb-4 max-w-2xl mx-auto">
+            Have a Transportation, Warehousing or Import Requirement?
+          </h2>
 
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"
-                style={{ backgroundColor: '#25D366' }}
-              >
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Start WhatsApp Chat
-              </a>
-            </div>
+          <p className="text-white/65 text-base font-body leading-relaxed mb-9 max-w-xl mx-auto">
+            Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
+
+            <button
+              onClick={() => onNavigate('contact')}
+              className="px-7 py-3.5 border border-white/28 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
+            >
+              Speak to Our Team
+            </button>
+
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"
+              style={{ backgroundColor: '#25D366' }}
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              Start WhatsApp Chat
+            </a>
           </div>
         </div>
       </section>

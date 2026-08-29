@@ -1,18 +1,18 @@
 // src/pages/Industries.jsx
+import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 
-function SectionLabel({ children, light = false }) {
+function HeroLabel({ children }) {
   return (
-    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
-      <span className="w-6 h-px bg-gold shrink-0" />
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-function HeroLabel({ children }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -51,6 +51,7 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
 
 const industries = [
   {
+    id: 'healthcare',
     label: 'Healthcare',
     headline: 'Reliable Logistics for Healthcare Supply Chains',
     image: 'https://images.unsplash.com/photo-1628372095387-017d1099fc19?w=1200&h=600&fit=crop&auto=format',
@@ -67,6 +68,7 @@ const industries = [
     services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
+    id: 'public-sector',
     label: 'Public Sector',
     headline: 'Accountable Logistics for Public-Sector Organisations',
     image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1200&h=600&fit=crop&auto=format',
@@ -83,6 +85,7 @@ const industries = [
     services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
+    id: 'defence-related',
     label: 'Defence-Related',
     headline: 'Disciplined Logistics for Defence-Related Supply Chains',
     image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=1200&h=600&fit=crop&auto=format',
@@ -99,6 +102,7 @@ const industries = [
     services: ['Transportation', 'Warehousing', 'Distribution'],
   },
   {
+    id: 'commercial-industrial',
     label: 'Commercial & Industrial',
     headline: 'Flexible Logistics for Commercial and Industrial Operations',
     image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1200&h=600&fit=crop&auto=format',
@@ -117,17 +121,49 @@ const industries = [
 ]
 
 export default function Industries({ onNavigate }) {
+  const [activeTab, setActiveTab] = useState(industries[0].id)
+
+  // Scroll Spy: Tracks active section and updates tab underline automatically
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0,
+    }
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveTab(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions)
+
+    industries.forEach((ind) => {
+      const el = document.getElementById(ind.id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleTabClick = (e, id) => {
+    e.preventDefault()
+    setActiveTab(id)
+    const targetElement = document.getElementById(id)
+    if (targetElement) {
+      const yOffset = -135 // Accounts for fixed navigation and sticky tab bar height
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
+
   return (
     <div>
 
-      {/* ── HERO ──
-          FIX (hero text truncating with "..."):
-          Headline and subtext both shortened so each reliably fits on
-          one line at the reduced hero font size, instead of relying on
-          text-ellipsis to silently hide the overflow. Safety-net classes
-          (whitespace-nowrap etc.) retained in case future copy edits
-          run long again.
-      */}
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
         style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
@@ -161,15 +197,20 @@ export default function Industries({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── INDUSTRY NAV ──────────────────────────────────────────────── */}
-      <div className="bg-white border-b border-hairline sticky top-[72px] z-30">
+      {/* ── INDUSTRY STICKY NAV TABS WITH SCROLL SPY ────────────────── */}
+      <div className="bg-white border-b border-hairline sticky top-[72px] z-30 shadow-xs">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="flex overflow-x-auto gap-0 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex overflow-x-auto gap-2 sm:gap-4 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
             {industries.map((ind) => (
               <a
-                key={ind.label}
-                href={`#${ind.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '')}`}
-                className="px-5 py-4 text-sm font-medium font-body whitespace-nowrap border-b-2 border-transparent text-dim hover:text-navy hover:border-gold transition-colors shrink-0"
+                key={ind.id}
+                href={`#${ind.id}`}
+                onClick={(e) => handleTabClick(e, ind.id)}
+                className={`px-5 py-4 text-sm font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
+                  activeTab === ind.id
+                    ? 'border-gold text-navy font-bold'
+                    : 'border-transparent text-dim font-medium hover:text-navy hover:border-gold/40'
+                }`}
               >
                 {ind.label}
               </a>
@@ -181,60 +222,67 @@ export default function Industries({ onNavigate }) {
       {/* ── INDUSTRY SECTIONS ─────────────────────────────────────────── */}
       {industries.map((ind, idx) => (
         <section
-          key={ind.label}
-          id={ind.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '')}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28' : 'bg-linen py-20 lg:py-28'}
+          key={ind.id}
+          id={ind.id}
+          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5" style={{ aspectRatio: '16/10' }}>
+              {/* Image Column */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline" style={{ aspectRatio: '16/10' }}>
                 <img
                   src={ind.image}
                   alt={ind.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-navy/5" />
                 <div className="absolute bottom-5 left-5">
-                  <span className="inline-block bg-navy/90 text-white text-[10px] font-semibold tracking-[0.13em] uppercase font-display px-3 py-1.5 rounded-sm backdrop-blur-sm">
+                  <span className="inline-block bg-navy/95 text-gold-light text-xs font-bold tracking-[0.12em] uppercase font-display px-3.5 py-2 rounded-sm backdrop-blur-sm border border-white/10 shadow-md">
                     {ind.label}
                   </span>
                 </div>
               </div>
 
-              {/* Content */}
+              {/* Content Column */}
               <div className="lg:[direction:ltr]">
-                <SectionLabel>{ind.label}</SectionLabel>
-                <h2 className="text-navy text-2xl lg:text-3xl font-bold font-display mb-5">{ind.headline}</h2>
-                <p className="text-dim text-base font-body leading-relaxed mb-8">{ind.context}</p>
+                <SectionTag>{ind.label}</SectionTag>
+                <h2 className="text-navy text-2xl lg:text-3xl font-bold font-display mb-4 leading-tight">
+                  {ind.headline}
+                </h2>
+                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                  {ind.context}
+                </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
-                  <div>
-                    <h3 className="text-navy text-xs font-semibold font-display tracking-wide uppercase mb-3 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold" />
+                  {/* Considerations Card */}
+                  <div className="p-5 bg-white/70 sm:bg-white rounded-sm border border-hairline shadow-xs">
+                    <h3 className="text-navy text-sm font-semibold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-px bg-gold shrink-0" />
                       Key Considerations
                     </h3>
                     <ul className="space-y-2">
                       {ind.considerations.map((c) => (
-                        <li key={c} className="flex items-start gap-2 text-dim text-sm font-body">
-                          <span className="w-1 h-1 rounded-full bg-gold shrink-0 mt-2" />
-                          {c}
+                        <li key={c} className="flex items-start gap-2 text-dim text-xs sm:text-sm font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <span>{c}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div>
-                    <h3 className="text-navy text-xs font-semibold font-display tracking-wide uppercase mb-3 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold" />
+
+                  {/* Services Card */}
+                  <div className="p-5 bg-white/70 sm:bg-white rounded-sm border border-hairline shadow-xs">
+                    <h3 className="text-navy text-sm font-semibold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-px bg-gold shrink-0" />
                       Relevant Services
                     </h3>
                     <ul className="space-y-2">
                       {ind.services.map((s) => (
-                        <li key={s} className="flex items-start gap-2 text-dim text-sm font-body">
-                          <span className="w-1 h-1 rounded-full bg-gold shrink-0 mt-2" />
-                          {s}
+                        <li key={s} className="flex items-start gap-2 text-dim text-xs sm:text-sm font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <span>{s}</span>
                         </li>
                       ))}
                     </ul>
@@ -244,13 +292,14 @@ export default function Industries({ onNavigate }) {
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => onNavigate('services')}
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-hairline text-navy text-sm font-semibold font-display rounded-sm hover:bg-linen transition-colors shadow-xs"
                   >
-                    View Services
+                    Explore Services &amp; Solutions
                     <ArrowIcon />
                   </button>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -258,18 +307,24 @@ export default function Industries({ onNavigate }) {
 
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
+        <img
+          src="https://images.unsplash.com/photo-1641176716788-d4816a66dc6d?w=1920&h=700&fit=crop&auto=format"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.9) 60%, rgba(12,37,69,0.75) 100%)' }}
+          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.90) 60%, rgba(12,37,69,0.75) 100%)' }}
         />
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
           <div className="flex justify-center">
-            <SectionLabel light>Get in Touch</SectionLabel>
+            <SectionTag>Get in Touch</SectionTag>
           </div>
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4">
+          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
             Ready to Discuss Your Requirements?
           </h2>
-          <p className="text-white/60 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/65 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
             Tell us about your organisation and supply-chain requirements and our team will respond promptly.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -293,6 +348,7 @@ export default function Industries({ onNavigate }) {
           </div>
         </div>
       </section>
+
     </div>
   )
 }

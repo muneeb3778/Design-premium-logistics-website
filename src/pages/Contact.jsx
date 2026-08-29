@@ -2,28 +2,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { waLink } from '../constants'
 
-
-function SectionLabel({ children, light = false }) {
+function HeroLabel({ children }) {
   return (
-    <span className={`flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase font-display mb-4 ${light ? 'text-gold' : 'text-gold'}`}>
-      <span className="w-6 h-px bg-gold shrink-0" />
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-/*
-  HeroLabel — used ONLY inside the Contact page hero (mirrors Home.jsx,
-  About.jsx, Services.jsx and Industries.jsx). Kept separate from
-  SectionLabel: SectionLabel is reused further down this same page
-  (Contact Details, Quick Enquiry section labels) — editing it directly
-  would have removed the dash / resized text there too instead of just
-  the hero tag. This component has no leading dash and a larger font
-  size, exactly as requested for the hero tag only.
-*/
-function HeroLabel({ children }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -45,16 +34,6 @@ const enquiryTypes = [
   'General Enquiry',
 ]
 
-/*
-  FIX (per meeting discussion "it is very difficult to change color of the
-  options... lots of logic... try to make it with AI"):
-  Native <select>/<option> elements cannot be reliably restyled across
-  browsers — Chrome in particular ignores most CSS on <option>. This
-  custom dropdown replaces the native select entirely, giving full
-  control over background, hover and selected states (gold accent to
-  match the rest of the site), while keeping the same visual footprint
-  and shadow treatment as the other inputs.
-*/
 function CustomSelect({ id, value, onChange, options, placeholder }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
@@ -76,7 +55,7 @@ function CustomSelect({ id, value, onChange, options, placeholder }) {
         aria-haspopup="listbox"
         aria-expanded={open}
         className={`w-full px-4 py-3 border border-hairline rounded-sm text-sm font-body text-left bg-white shadow-[0_2px_8px_rgba(12,37,69,0.06)] focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 focus:shadow-[0_4px_14px_rgba(12,37,69,0.12)] transition-all flex items-center justify-between ${
-          value ? 'text-navy' : 'text-dim/50'
+          value ? 'text-navy font-medium' : 'text-dim/50'
         }`}
       >
         <span>{value || placeholder}</span>
@@ -102,7 +81,7 @@ function CustomSelect({ id, value, onChange, options, placeholder }) {
               aria-selected={value === opt}
               onClick={() => { onChange(opt); setOpen(false) }}
               className={`w-full text-left px-4 py-2.5 text-sm font-body transition-colors ${
-                value === opt ? 'bg-gold/10 text-navy font-semibold' : 'text-navy hover:bg-linen'
+                value === opt ? 'bg-gold/15 text-navy font-semibold' : 'text-navy hover:bg-linen'
               }`}
             >
               {opt}
@@ -136,19 +115,7 @@ export default function Contact({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ──
-          FIX (per meeting decision "Hero section height set to 60-70%"):
-          Previous value was 50vh — well below the agreed range. Corrected
-          to 65vh to match About.jsx / Services.jsx / Industries.jsx so
-          every page hero shares the same proportions site-wide.
-
-          FIX (hero text truncating with "..."):
-          Headline and subtext both shortened so each reliably fits on
-          one line at the reduced hero font size, instead of relying on
-          text-ellipsis to silently hide the overflow. Safety-net classes
-          (whitespace-nowrap etc.) retained in case future copy edits
-          run long again.
-      */}
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
         style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
@@ -182,99 +149,98 @@ export default function Contact({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── MAIN CONTACT SECTION ── */}
+      {/* ── MAIN CONTACT SECTION ──────────────────────────────────────── */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-12 lg:gap-16">
 
-            {/* Contact info */}
+            {/* Left Column: Contact Details */}
             <div>
-              <SectionLabel>Contact Details</SectionLabel>
-              <h2 className="text-navy text-2xl font-bold font-display mb-5">How to Reach Us</h2>
-              <p className="text-dim text-sm font-body leading-relaxed mb-8">
+              <SectionTag>Contact Details</SectionTag>
+              <h2 className="text-navy text-3xl font-bold font-display mb-4 leading-tight">
+                How to Reach Us
+              </h2>
+              <p className="text-dim text-base font-body leading-relaxed mb-8">
                 Our team is available to discuss your requirements, answer questions and arrange a formal quote for your transportation, logistics or trading needs.
               </p>
 
               <div className="space-y-5 mb-8">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
+                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
                       <path d="M3.654 1.328a.678.678 0 00-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 004.168 6.608 17.569 17.569 0 006.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 00-.063-1.015l-2.307-1.794a.678.678 0 00-.58-.122l-2.19.547a1.745 1.745 0 01-1.657-.459L5.482 8.062a1.745 1.745 0 01-.46-1.657l.548-2.19a.678.678 0 00-.122-.58L3.654 1.328z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Phone</p>
-                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-sm font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
+                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Phone</p>
+                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
+                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
                       <path d="M0 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v.217l7 4.2 7-4.2V4a1 1 0 00-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 002 13h12a1 1 0 00.966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Email</p>
-                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-sm font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
+                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Email</p>
+                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
                   </div>
                 </div>
 
-                {/* WhatsApp contact row — uses waLink so the number is managed
-                    from the single WHATSAPP_NUMBER constant at the top of
-                    this file. Pre-filled text gives the agent instant context. */}
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
-                    <WhatsAppIcon className="w-4 h-4 text-navy/60" />
+                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
+                    <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">WhatsApp</p>
+                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">WhatsApp</p>
                     <a
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy text-sm font-body hover:text-gold transition-colors"
+                      className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors"
                     >
                       Start a WhatsApp Conversation
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
+                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
                       <path d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 110-6 3 3 0 010 6z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Address</p>
+                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Address</p>
                     <p className="text-navy text-sm font-body leading-relaxed">[Company Address]<br />United Kingdom</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
+                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
+                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
                       <path d="M8 3.5a.5.5 0 00-1 0V9a.5.5 0 00.252.434l3.5 2a.5.5 0 00.496-.868L8 8.71V3.5z" />
                       <path d="M8 16A8 8 0 108 0a8 8 0 000 16zm7-8A7 7 0 111 8a7 7 0 0114 0z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Opening Hours</p>
+                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Opening Hours</p>
                     <p className="text-navy text-sm font-body leading-relaxed">[OPENING HOURS]</p>
                   </div>
                 </div>
               </div>
 
-              {/* WhatsApp CTA card — same waLink constant */}
-              <div className="p-5 bg-linen border border-hairline rounded-sm shadow-[0_2px_10px_rgba(12,37,69,0.05)]">
-                <p className="text-navy text-sm font-semibold font-display mb-1.5">Quick questions?</p>
-                <p className="text-dim text-xs font-body mb-3">Use WhatsApp for immediate responses to quick questions about our services.</p>
+              {/* WhatsApp CTA Card */}
+              <div className="p-6 bg-linen border border-hairline rounded-sm shadow-sm">
+                <p className="text-navy text-base font-semibold font-display mb-1.5">Quick questions?</p>
+                <p className="text-dim text-xs font-body mb-4 leading-relaxed">Use WhatsApp for immediate responses to quick questions about our services.</p>
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm font-semibold font-display text-white transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-sm text-sm font-bold font-display text-white transition-all shadow-md hover:brightness-110"
                   style={{ backgroundColor: '#25D366' }}
                 >
                   <WhatsAppIcon className="w-4 h-4" />
@@ -283,22 +249,26 @@ export default function Contact({ onNavigate }) {
               </div>
             </div>
 
-            {/* Enquiry form */}
+            {/* Right Column: Enquiry Form */}
             <div>
-              <SectionLabel>Quick Enquiry</SectionLabel>
-              <h2 className="text-navy text-2xl font-bold font-display mb-2">Send Us an Enquiry</h2>
-              <p className="text-dim text-sm font-body mb-8">For a detailed quote, use our <button onClick={() => onNavigate('quote')} className="text-navy underline underline-offset-2 hover:text-gold transition-colors">Request a Quote form</button>.</p>
+              <SectionTag>Quick Enquiry</SectionTag>
+              <h2 className="text-navy text-3xl font-bold font-display mb-3 leading-tight">
+                Send Us an Enquiry
+              </h2>
+              <p className="text-dim text-base font-body mb-8">
+                For a detailed quote, use our <button onClick={() => onNavigate('quote')} className="text-navy font-semibold underline underline-offset-4 hover:text-gold transition-colors">Request a Quote form</button>.
+              </p>
 
               {submitted ? (
-                <div className="p-8 bg-linen border border-hairline rounded-sm text-center shadow-[0_2px_10px_rgba(12,37,69,0.05)]">
-                  <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-white" aria-hidden="true">
+                <div className="p-10 bg-linen border border-hairline rounded-sm text-center shadow-sm">
+                  <div className="w-14 h-14 bg-navy rounded-full flex items-center justify-center mx-auto mb-4 text-gold">
+                    <svg viewBox="0 0 24 24" className="w-7 h-7 fill-current" aria-hidden="true">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                     </svg>
                   </div>
-                  <h3 className="text-navy text-lg font-bold font-display mb-2">Enquiry Received</h3>
-                  <p className="text-dim text-sm font-body leading-relaxed">
-                    Thank you for your enquiry. Our team will review your message and respond to you at the email address you provided.
+                  <h3 className="text-navy text-xl font-bold font-display mb-2">Enquiry Received</h3>
+                  <p className="text-dim text-sm font-body leading-relaxed max-w-md mx-auto">
+                    Thank you for reaching out. Our team will review your message and respond promptly to the email address you provided.
                   </p>
                 </div>
               ) : (
@@ -357,9 +327,6 @@ export default function Contact({ onNavigate }) {
 
                   <div>
                     <label className={labelClass} htmlFor="contact-type">Enquiry Type</label>
-                    {/* FIX: replaced native <select> with fully-styleable CustomSelect
-                        so the dropdown panel and options actually reflect our theme
-                        (gold highlight, hover states) instead of default OS styling. */}
                     <CustomSelect
                       id="contact-type"
                       value={form.enquiryType}
@@ -382,7 +349,7 @@ export default function Contact({ onNavigate }) {
                     />
                   </div>
 
-                  <div className="p-4 bg-linen rounded-sm">
+                  <div className="p-4 bg-linen rounded-sm border border-hairline">
                     <p className="text-dim text-xs font-body leading-relaxed">
                       By submitting this form you agree to our Privacy Policy. Your information will be used to respond to your enquiry and will not be shared with third parties.
                     </p>
@@ -400,9 +367,11 @@ export default function Contact({ onNavigate }) {
                 </form>
               )}
             </div>
+
           </div>
         </div>
       </section>
+
     </div>
   )
 }
