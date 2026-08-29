@@ -28,7 +28,7 @@ const heroSlides = [
     tag: 'Imports & Freight',
     headline: 'Seamless Import Logistics, Simplified.',
     subtext: 'Coordinated import and freight handling from port arrival through to final delivery.',
-    image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=1920&h=1080&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
     alt: 'International shipyard with cranes and vessels at port',
   },
 ]
@@ -159,14 +159,11 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
 export default function Home({ onNavigate }) {
   const [slide, setSlide] = useState(0)
   const [openFaq, setOpenFaq] = useState(null)
-  const pausedRef = useRef(false)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (!pausedRef.current) {
+    const timer = setInterval(() => {  
         setSlide((s) => (s + 1) % heroSlides.length)
-      }
-    }, 2500)
+    }, 5000)
     return () => clearInterval(timer)
   }, [])
 
@@ -184,8 +181,6 @@ export default function Home({ onNavigate }) {
       <section
         className="relative overflow-hidden"
         style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
-        onMouseEnter={() => { pausedRef.current = true }}
-        onMouseLeave={() => { pausedRef.current = false }}
         aria-label="Homepage feature slideshow"
       >
         {heroSlides.map((s, i) => (
@@ -228,7 +223,7 @@ export default function Home({ onNavigate }) {
 
                   <button
                     onClick={() => onNavigate('services')}
-                    className="px-7 py-3.5 border border-white/35 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
+                    className="px-7 py-3.5 border border-white/20 bg-white/15 text-white text-sm font-medium font-body rounded-sm hover:bg-white/25 transition-colors"
                   >
                     Explore Services &amp; Solutions
                   </button>
