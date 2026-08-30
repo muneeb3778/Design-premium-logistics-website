@@ -183,225 +183,210 @@ export default function Quote({ onNavigate }) {
         </div>
       </div>
 
-      {/* ── FORM CONTENT SECTION ──────────────────────────────────────── */}
-      <section className="bg-linen py-16 lg:py-24">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="max-w-2xl bg-white p-6 sm:p-10 rounded-sm border border-hairline shadow-sm">
+       {/* Form content */}
+      <div className="max-w-[1320px] mx-auto px-5 lg:px-10 py-10 lg:py-14">
+        <div className="max-w-2xl">
 
-            {/* Step 0: Contact Details */}
-            {step === 0 && (
-              <div>
-                <SectionTag>Step 1 of 4</SectionTag>
-                <h2 className="text-navy text-2xl font-bold font-display mb-6 leading-tight">Your Contact Details</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className={labelClass} htmlFor="q-name">Full Name <span className="text-gold">*</span></label>
-                      <input id="q-name" type="text" required placeholder="Your full name" value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass} htmlFor="q-company">Company / Organisation <span className="text-gold">*</span></label>
-                      <input id="q-company" type="text" required placeholder="Organisation name" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className={inputClass} />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className={labelClass} htmlFor="q-email">Business Email <span className="text-gold">*</span></label>
-                      <input id="q-email" type="email" required placeholder="you@company.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass} htmlFor="q-phone">Phone</label>
-                      <input id="q-phone" type="tel" placeholder="Your phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
-                    </div>
+          {/* Step 0: Contact Details */}
+          {step === 0 && (
+            <div>
+              <h2 className="text-navy text-xl font-bold font-display mb-6">Your Contact Details</h2>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-name">Full Name *</label>
+                    <input id="q-name" type="text" required placeholder="Your full name" value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass} htmlFor="q-country">Country</label>
-                    <input id="q-country" type="text" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-company">Company / Organisation *</label>
+                    <input id="q-company" type="text" required placeholder="Organisation name" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className={inputClass} />
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* Step 1: Requirement */}
-            {step === 1 && (
-              <div>
-                <SectionTag>Step 2 of 4</SectionTag>
-                <h2 className="text-navy text-2xl font-bold font-display mb-2 leading-tight">What Do You Need?</h2>
-                <p className="text-dim text-sm font-body mb-6">Select one or more services. You can select multiple if your requirement spans several areas.</p>
-                <div className="grid grid-cols-1 gap-3">
-                  {serviceOptions.map((s) => {
-                    const isSelected = form.services.includes(s)
-                    return (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => toggleService(s)}
-                        className={`p-4 border rounded-sm text-left text-sm font-display transition-all duration-200 flex items-center justify-between shadow-xs ${
-                          isSelected
-                            ? 'border-navy bg-navy/5 text-navy font-semibold'
-                            : 'border-hairline bg-white text-dim hover:border-navy/30 hover:text-navy'
-                        }`}
-                      >
-                        <span className="text-sm">{s}</span>
-                        <div className={`w-5 h-5 rounded-sm border flex items-center justify-center shrink-0 transition-colors ${
-                          isSelected ? 'bg-gold border-gold text-white' : 'border-hairline bg-white'
-                        }`}>
-                          {isSelected && (
-                            <svg viewBox="0 0 12 12" className="w-3 h-3 fill-current" aria-hidden="true">
-                              <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.75" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          )}
-                        </div>
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Step 2: Cargo & Shipment */}
-            {step === 2 && (
-              <div>
-                <SectionTag>Step 3 of 4</SectionTag>
-                <h2 className="text-navy text-2xl font-bold font-display mb-6 leading-tight">Cargo &amp; Shipment Details</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className={labelClass} htmlFor="q-origin">Origin / Collection Location</label>
-                      <input id="q-origin" type="text" placeholder="e.g. Felixstowe, UK" value={form.origin} onChange={(e) => setForm({ ...form, origin: e.target.value })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass} htmlFor="q-destination">Destination</label>
-                      <input id="q-destination" type="text" placeholder="e.g. Birmingham, UK" value={form.destination} onChange={(e) => setForm({ ...form, destination: e.target.value })} className={inputClass} />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-email">Business Email *</label>
+                    <input id="q-email" type="email" required placeholder="you@company.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass} htmlFor="q-goods">Goods Description</label>
-                    <input id="q-goods" type="text" placeholder="Describe the goods or cargo" value={form.goodsDescription} onChange={(e) => setForm({ ...form, goodsDescription: e.target.value })} className={inputClass} />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                      <label className={labelClass} htmlFor="q-qty">Quantity / Units</label>
-                      <input id="q-qty" type="text" placeholder="e.g. 10 pallets" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass} htmlFor="q-weight">Weight</label>
-                      <input id="q-weight" type="text" placeholder="e.g. 5,000 kg" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass} htmlFor="q-dims">Dimensions</label>
-                      <input id="q-dims" type="text" placeholder="L × W × H" value={form.dimensions} onChange={(e) => setForm({ ...form, dimensions: e.target.value })} className={inputClass} />
-                    </div>
-                  </div>
-                  <div>
-                    <label className={labelClass} htmlFor="q-date">Required Collection / Delivery Date</label>
-                    <input id="q-date" type="date" value={form.collectionDate} onChange={(e) => setForm({ ...form, collectionDate: e.target.value })} className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass} htmlFor="q-special">Special Requirements</label>
-                    <input id="q-special" type="text" placeholder="e.g. temperature control, hazardous goods, fragile cargo" value={form.specialRequirements} onChange={(e) => setForm({ ...form, specialRequirements: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-phone">Phone</label>
+                    <input id="q-phone" type="tel" placeholder="Your phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* Step 3: Additional Info */}
-            {step === 3 && (
-              <div>
-                <SectionTag>Step 4 of 4</SectionTag>
-                <h2 className="text-navy text-2xl font-bold font-display mb-6 leading-tight">Additional Information</h2>
-                <div className="space-y-5">
-                  <div>
-                    <label className={labelClass} htmlFor="q-additional">Additional Details</label>
-                    <textarea
-                      id="q-additional"
-                      rows={5}
-                      placeholder="Include any other relevant information about your requirement, timeline, frequency, or specific considerations..."
-                      value={form.additionalInfo}
-                      onChange={(e) => setForm({ ...form, additionalInfo: e.target.value })}
-                      className={`${inputClass} resize-none`}
-                    />
-                  </div>
-
-                  {/* Summary Box */}
-                  <div className="p-6 bg-linen border border-hairline rounded-sm">
-                    <h3 className="text-navy text-sm font-semibold font-display mb-3.5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold shrink-0" />
-                      Quote Request Summary
-                    </h3>
-                    <div className="space-y-2 text-sm font-body">
-                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Name:</span><span className="text-navy font-medium">{form.fullName || '—'}</span></div>
-                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Company:</span><span className="text-navy font-medium">{form.company || '—'}</span></div>
-                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Email:</span><span className="text-navy font-medium">{form.email || '—'}</span></div>
-                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Services:</span><span className="text-navy font-medium">{form.services.length > 0 ? form.services.join(', ') : '—'}</span></div>
-                      {form.origin && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Origin:</span><span className="text-navy font-medium">{form.origin}</span></div>}
-                      {form.destination && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Destination:</span><span className="text-navy font-medium">{form.destination}</span></div>}
-                      {form.goodsDescription && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Goods:</span><span className="text-navy font-medium">{form.goodsDescription}</span></div>}
-                    </div>
-                  </div>
-
-                  <div className="p-4 bg-linen rounded-sm border border-hairline">
-                    <p className="text-dim text-xs font-body leading-relaxed">
-                      By submitting this form you agree to our Privacy Policy. Your information will be used solely to prepare and respond to your quote request.
-                    </p>
-                  </div>
+                <div>
+                  <label className={labelClass} htmlFor="q-country">Country</label>
+                  <input id="q-country" type="text" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} className={inputClass} />
                 </div>
               </div>
-            )}
-
-            {/* Form Step Navigation Buttons */}
-            <div className="mt-8 pt-6 border-t border-hairline flex items-center justify-between">
-              {step > 0 ? (
-                <button
-                  type="button"
-                  onClick={() => setStep(step - 1)}
-                  className="flex items-center gap-2 px-6 py-3 border border-hairline text-navy text-sm font-semibold font-display rounded-sm hover:bg-linen transition-colors"
-                >
-                  <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current" aria-hidden="true">
-                    <path d="M15 8a.5.5 0 00-.5-.5H2.707l3.147-3.146a.5.5 0 10-.708-.708l-4 4a.5.5 0 000 .708l4 4a.5.5 0 00.708-.708L2.707 8.5H14.5A.5.5 0 0015 8z" />
-                  </svg>
-                  Back
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => onNavigate('home')}
-                  className="text-dim text-sm font-body hover:text-navy transition-colors"
-                >
-                  Cancel
-                </button>
-              )}
-
-              {step < steps.length - 1 ? (
-                <button
-                  type="button"
-                  onClick={() => setStep(step + 1)}
-                  className="inline-flex items-center gap-2 px-7 py-3 bg-navy text-white text-sm font-bold font-display rounded-sm hover:bg-navy-mid transition-all shadow-md hover:shadow-lg"
-                >
-                  Continue
-                  <ArrowIcon />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleFinalSubmit}
-                  className="px-8 py-3.5 text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg"
-                  style={{ backgroundColor: '#eed484' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
-                >
-                  Submit Quote Request
-                </button>
-              )}
             </div>
+          )}
 
-            {/* Trust Note */}
-            <p className="mt-6 text-dim text-xs font-body text-center">
-              We aim to respond to all quote requests within 1 business day. For urgent requirements, please call us or use WhatsApp.
-            </p>
+          {/* Step 1: Requirement */}
+          {step === 1 && (
+            <div>
+              <h2 className="text-navy text-xl font-bold font-display mb-2">What Do You Need?</h2>
+              <p className="text-dim text-sm font-body mb-6">Select one or more services. You can select multiple if your requirement spans several areas.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {serviceOptions.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => toggleService(s)}
+                    className={`p-4 border rounded-sm text-left text-sm font-body transition-all ${
+                      form.services.includes(s)
+                        ? 'border-navy bg-navy text-white'
+                        : 'border-hairline bg-white text-navy hover:border-navy/30'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-4 h-4 rounded-sm border flex items-center justify-center shrink-0 transition-colors ${
+                        form.services.includes(s) ? 'bg-gold border-gold' : 'border-hairline bg-white'
+                      }`}>
+                        {form.services.includes(s) && (
+                          <svg viewBox="0 0 12 12" className="w-2.5 h-2.5 fill-white" aria-hidden="true">
+                            <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </div>
+                      {s}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Cargo & Shipment */}
+          {step === 2 && (
+            <div>
+              <h2 className="text-navy text-xl font-bold font-display mb-6">Cargo & Shipment Details</h2>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-origin">Origin / Collection Location</label>
+                    <input id="q-origin" type="text" placeholder="e.g. Felixstowe, UK" value={form.origin} onChange={(e) => setForm({ ...form, origin: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-destination">Destination</label>
+                    <input id="q-destination" type="text" placeholder="e.g. Birmingham, UK" value={form.destination} onChange={(e) => setForm({ ...form, destination: e.target.value })} className={inputClass} />
+                  </div>
+                </div>
+                <div>
+                  <label className={labelClass} htmlFor="q-goods">Goods Description</label>
+                  <input id="q-goods" type="text" placeholder="Describe the goods or cargo" value={form.goodsDescription} onChange={(e) => setForm({ ...form, goodsDescription: e.target.value })} className={inputClass} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-qty">Quantity / Units</label>
+                    <input id="q-qty" type="text" placeholder="e.g. 10 pallets" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-weight">Weight</label>
+                    <input id="q-weight" type="text" placeholder="e.g. 5,000 kg" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-dims">Dimensions</label>
+                    <input id="q-dims" type="text" placeholder="L × W × H" value={form.dimensions} onChange={(e) => setForm({ ...form, dimensions: e.target.value })} className={inputClass} />
+                  </div>
+                </div>
+                <div>
+                  <label className={labelClass} htmlFor="q-date">Required Collection / Delivery Date</label>
+                  <input id="q-date" type="date" value={form.collectionDate} onChange={(e) => setForm({ ...form, collectionDate: e.target.value })} className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass} htmlFor="q-special">Special Requirements</label>
+                  <input id="q-special" type="text" placeholder="e.g. temperature control, hazardous goods, fragile cargo" value={form.specialRequirements} onChange={(e) => setForm({ ...form, specialRequirements: e.target.value })} className={inputClass} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Additional Info */}
+          {step === 3 && (
+            <div>
+              <h2 className="text-navy text-xl font-bold font-display mb-6">Additional Information</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className={labelClass} htmlFor="q-additional">Additional Details</label>
+                  <textarea
+                    id="q-additional"
+                    rows={6}
+                    placeholder="Include any other relevant information about your requirement, timeline, frequency, or specific considerations..."
+                    value={form.additionalInfo}
+                    onChange={(e) => setForm({ ...form, additionalInfo: e.target.value })}
+                    className={`${inputClass} resize-none`}
+                  />
+                </div>
+
+                {/* Summary */}
+                <div className="p-5 bg-linen border border-hairline rounded-sm">
+                  <h3 className="text-navy text-sm font-semibold font-display mb-3">Quote Request Summary</h3>
+                  <div className="space-y-2 text-sm font-body">
+                    <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Name:</span><span className="text-navy">{form.fullName || '—'}</span></div>
+                    <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Company:</span><span className="text-navy">{form.company || '—'}</span></div>
+                    <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Email:</span><span className="text-navy">{form.email || '—'}</span></div>
+                    <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Services:</span><span className="text-navy">{form.services.length > 0 ? form.services.join(', ') : '—'}</span></div>
+                    {form.origin && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Origin:</span><span className="text-navy">{form.origin}</span></div>}
+                    {form.destination && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Destination:</span><span className="text-navy">{form.destination}</span></div>}
+                    {form.goodsDescription && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Goods:</span><span className="text-navy">{form.goodsDescription}</span></div>}
+                  </div>
+                </div>
+
+                <div className="p-4 bg-sky-light/30 border border-sky-light rounded-sm">
+                  <p className="text-dim text-xs font-body leading-relaxed">
+                    By submitting this form you agree to our <button className="underline underline-offset-2 text-navy">Privacy Policy</button>. Your information will be used solely to prepare and respond to your quote request.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Navigation */}
+          <div className="mt-8 flex items-center justify-between">
+            {step > 0 ? (
+              <button
+                onClick={() => setStep(step - 1)}
+                className="flex items-center gap-2 px-5 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
+              >
+                <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current" aria-hidden="true">
+                  <path d="M15 8a.5.5 0 00-.5-.5H2.707l3.147-3.146a.5.5 0 10-.708-.708l-4 4a.5.5 0 000 .708l4 4a.5.5 0 00.708-.708L2.707 8.5H14.5A.5.5 0 0015 8z" />
+                </svg>
+                Back
+              </button>
+            ) : (
+              <button
+                onClick={() => onNavigate('home')}
+                className="text-dim text-sm font-body hover:text-navy transition-colors"
+              >
+                Cancel
+              </button>
+            )}
+
+            {step < steps.length - 1 ? (
+              <button
+                onClick={() => setStep(step + 1)}
+                className="flex items-center gap-2 px-7 py-3 bg-navy text-white text-sm font-semibold font-display rounded-sm hover:bg-navy-mid transition-colors"
+              >
+                Continue
+                <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current" aria-hidden="true">
+                  <path d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z" />
+                </svg>
+              </button>
+            ) : (
+              <button
+                onClick={handleFinalSubmit}
+                className="px-8 py-3 bg-gold text-black text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors shadow-md"
+              >
+                Submit Quote Request
+              </button>
+            )}
           </div>
+
+          {/* Trust note */}
+          <p className="mt-6 text-dim text-xs font-body text-center">
+            We aim to respond to all quote requests within 1 business day. For urgent requirements, please call us or use WhatsApp.
+          </p>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
