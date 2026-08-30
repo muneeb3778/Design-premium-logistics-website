@@ -4,15 +4,15 @@ import { waLink } from '../constants'
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
       {children}
     </span>
   )
 }
 
-function SectionTag({ children, className = 'mb-3' }) {
+function SectionTag({ children, className = 'mb-3', noShift = false }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${noShift ? '' : 'pl-8'} ${className}`}>
       {children}
     </span>
   )
@@ -333,7 +333,7 @@ export default function Services({ onNavigate }) {
         />
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
           <div className="flex justify-center">
-            <SectionTag>Get in Touch</SectionTag>
+            <SectionTag noShift>Get in Touch</SectionTag>
           </div>
           <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
             Ready to Discuss Your Requirements?

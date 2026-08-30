@@ -129,7 +129,7 @@ const faqs = [
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
       {children}
     </span>
   )
@@ -320,7 +320,7 @@ export default function Home({ onNavigate }) {
           
           {/* Top Header Information */}
           <div className="max-w-3xl mb-12 lg:mb-16">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
               Why Choose Us
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
@@ -382,7 +382,7 @@ export default function Home({ onNavigate }) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
               Industries
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
@@ -490,7 +490,7 @@ export default function Home({ onNavigate }) {
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-12 lg:gap-16">
             <div>
-              <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+              <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
                 FAQ
               </span>
               <h2 className="text-navy text-3xl font-bold font-display mb-4">Frequently Asked Questions</h2>
