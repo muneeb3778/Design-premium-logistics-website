@@ -165,82 +165,85 @@ export default function Contact({ onNavigate }) {
               </p>
 
               <div className="space-y-5 mb-8">
-                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
-                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
                       <path d="M3.654 1.328a.678.678 0 00-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 004.168 6.608 17.569 17.569 0 006.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 00-.063-1.015l-2.307-1.794a.678.678 0 00-.58-.122l-2.19.547a1.745 1.745 0 01-1.657-.459L5.482 8.062a1.745 1.745 0 01-.46-1.657l.548-2.19a.678.678 0 00-.122-.58L3.654 1.328z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Phone</p>
-                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
+                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Phone</p>
+                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-sm font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
-                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
                       <path d="M0 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v.217l7 4.2 7-4.2V4a1 1 0 00-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 002 13h12a1 1 0 00.966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Email</p>
-                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
+                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Email</p>
+                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-sm font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
-                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
-                    <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                {/* WhatsApp contact row — uses waLink so the number is managed
+                    from the single WHATSAPP_NUMBER constant at the top of
+                    this file. Pre-filled text gives the agent instant context. */}
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                    <WhatsAppIcon className="w-4 h-4 text-navy/60" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">WhatsApp</p>
+                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">WhatsApp</p>
                     <a
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy text-sm font-semibold font-body hover:text-gold transition-colors"
+                      className="text-navy text-sm font-body hover:text-gold transition-colors"
                     >
                       Start a WhatsApp Conversation
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
-                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
                       <path d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 110-6 3 3 0 010 6z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Address</p>
+                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Address</p>
                     <p className="text-navy text-sm font-body leading-relaxed">[Company Address]<br />United Kingdom</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 p-3.5 rounded-sm bg-linen/50 border border-hairline hover:border-navy/20 transition-colors">
-                  <div className="w-9 h-9 bg-white rounded-sm border border-hairline flex items-center justify-center shrink-0 shadow-xs">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/70" aria-hidden="true">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 bg-linen rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 fill-navy/60" aria-hidden="true">
                       <path d="M8 3.5a.5.5 0 00-1 0V9a.5.5 0 00.252.434l3.5 2a.5.5 0 00.496-.868L8 8.71V3.5z" />
                       <path d="M8 16A8 8 0 108 0a8 8 0 000 16zm7-8A7 7 0 111 8a7 7 0 0114 0z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-display font-semibold tracking-widest uppercase mb-0.5">Opening Hours</p>
+                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Opening Hours</p>
                     <p className="text-navy text-sm font-body leading-relaxed">[OPENING HOURS]</p>
                   </div>
                 </div>
               </div>
 
-              {/* WhatsApp CTA Card */}
-              <div className="p-6 bg-linen border border-hairline rounded-sm shadow-sm">
-                <p className="text-navy text-base font-semibold font-display mb-1.5">Quick questions?</p>
-                <p className="text-dim text-xs font-body mb-4 leading-relaxed">Use WhatsApp for immediate responses to quick questions about our services.</p>
+              {/* WhatsApp CTA card — same waLink constant */}
+              <div className="p-5 bg-linen border border-hairline rounded-sm shadow-[0_2px_10px_rgba(12,37,69,0.05)]">
+                <p className="text-navy text-sm font-semibold font-display mb-1.5">Quick questions?</p>
+                <p className="text-dim text-xs font-body mb-3">Use WhatsApp for immediate responses to quick questions about our services.</p>
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-sm text-sm font-bold font-display text-white transition-all shadow-md hover:brightness-110"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm font-semibold font-display text-white transition-colors"
                   style={{ backgroundColor: '#25D366' }}
                 >
                   <WhatsAppIcon className="w-4 h-4" />
