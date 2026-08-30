@@ -279,7 +279,10 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Our Services &amp; Solutions</h2>
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+              our Solutions &amp; Services
+            </span>
+            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Coordinated Supply Chain Capabilities</h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
               Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
             </p>
@@ -311,6 +314,18 @@ export default function Home({ onNavigate }) {
               </button>
             ))}
           </div>
+
+          <div className="mt-11 text-center">
+            <button
+              onClick={() => onNavigate('services')}
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
+            >
+              Explore All Services & Solutions
+              <ArrowIcon />
+            </button>
+          </div>
+
+
         </div>
       </section>
 
