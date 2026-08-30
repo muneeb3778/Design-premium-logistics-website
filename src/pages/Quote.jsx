@@ -1,5 +1,5 @@
 // src/pages/Quote.jsx
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const serviceOptions = [
   'Transportation & Inland Logistics',
@@ -9,7 +9,7 @@ const serviceOptions = [
   'Other / Multiple Services',
 ]
 
-const steps = ['Contact Details', 'Requirement', 'Cargo & Shipment', 'Additional Info']
+const steps = ['Contact Details', 'Requirement', 'Pickup', 'Dropoff', 'Additional Info']
 
 function HeroLabel({ children }) {
   return (
@@ -35,6 +35,101 @@ function ArrowIcon() {
   )
 }
 
+/**
+ * Custom resizable textarea with a permanently visible drag handle.
+ * Fixes the native browser bug where the resize grip gets hidden
+ * behind the scrollbar once the content overflows.
+ */
+function ResizableTextarea({ id, value, onChange, placeholder, rows = 4, minHeight = 100, className = '' }) {
+  const textareaRef = useRef(null)
+  const [isResizing, setIsResizing] = useState(false)
+  const startY = useRef(0)
+  const startHeight = useRef(0)
+
+  const handleMouseDown = (e) => {
+    e.preventDefault()
+    setIsResizing(true)
+    startY.current = e.clientY
+    startHeight.current = textareaRef.current.offsetHeight
+    document.body.style.cursor = 'ns-resize'
+    document.body.style.userSelect = 'none'
+  }
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isResizing || !textareaRef.current) return
+      const newHeight = startHeight.current + (e.clientY - startY.current)
+      if (newHeight >= minHeight) {
+        textareaRef.current.style.height = `${newHeight}px`
+      }
+    }
+    const handleMouseUp = () => {
+      setIsResizing(false)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+    }
+    if (isResizing) {
+      window.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('mouseup', handleMouseUp)
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [isResizing, minHeight])
+
+  // Touch support for mobile drag-resize
+  const handleTouchStart = (e) => {
+    setIsResizing(true)
+    startY.current = e.touches[0].clientY
+    startHeight.current = textareaRef.current.offsetHeight
+  }
+
+  useEffect(() => {
+    const handleTouchMove = (e) => {
+      if (!isResizing || !textareaRef.current) return
+      const newHeight = startHeight.current + (e.touches[0].clientY - startY.current)
+      if (newHeight >= minHeight) {
+        textareaRef.current.style.height = `${newHeight}px`
+      }
+    }
+    const handleTouchEnd = () => setIsResizing(false)
+    if (isResizing) {
+      window.addEventListener('touchmove', handleTouchMove)
+      window.addEventListener('touchend', handleTouchEnd)
+    }
+    return () => {
+      window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [isResizing, minHeight])
+
+  return (
+    <div className="relative">
+      <textarea
+        ref={textareaRef}
+        id={id}
+        rows={rows}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        style={{ minHeight: `${minHeight}px` }}
+        className={`${className} resize-none pr-6`}
+      />
+      <div
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        className="absolute bottom-1.5 right-1.5 w-4 h-4 cursor-ns-resize flex items-center justify-center text-dim/70 hover:text-navy transition-colors z-10"
+        title="Drag to resize"
+      >
+        <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current" aria-hidden="true">
+          <path d="M13.5 13.5h-2v-2h2v2zm0-4.5h-2V7h2v2zm-4.5 4.5h-2v-2h2v2z" />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
 export default function Quote({ onNavigate }) {
   const [step, setStep] = useState(0)
   const [submitted, setSubmitted] = useState(false)
@@ -46,14 +141,25 @@ export default function Quote({ onNavigate }) {
     phone: '',
     country: 'United Kingdom',
     services: [],
-    origin: '',
-    destination: '',
+    // Pickup fields
+    pickupDoorNo: '',
+    pickupStreet: '',
+    pickupCity: '',
+    pickupPostcode: '',
+    pickupCountry: 'United Kingdom',
     goodsDescription: '',
     quantity: '',
     weight: '',
     dimensions: '',
-    collectionDate: '',
+    pickupDate: '',
     specialRequirements: '',
+    // Dropoff fields
+    dropoffDoorNo: '',
+    dropoffStreet: '',
+    dropoffCity: '',
+    dropoffPostcode: '',
+    dropoffCountry: 'United Kingdom',
+    dropoffDate: '',
     additionalInfo: '',
     hearAboutUs: '',
   })
@@ -255,24 +361,46 @@ export default function Quote({ onNavigate }) {
             </div>
           )}
 
-          {/* Step 2: Cargo & Shipment */}
+          {/* Step 2: Pickup */}
           {step === 2 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-6">Cargo & Shipment Details</h2>
+              <h2 className="text-navy text-xl font-bold font-display mb-6">Pickup Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className={labelClass} htmlFor="q-origin">Origin / Collection Location</label>
-                    <input id="q-origin" type="text" placeholder="e.g. Felixstowe, UK" value={form.origin} onChange={(e) => setForm({ ...form, origin: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-pickup-door">Door No.</label>
+                    <input id="q-pickup-door" type="text" placeholder="e.g. Unit 4B" value={form.pickupDoorNo} onChange={(e) => setForm({ ...form, pickupDoorNo: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass} htmlFor="q-destination">Destination</label>
-                    <input id="q-destination" type="text" placeholder="e.g. Birmingham, UK" value={form.destination} onChange={(e) => setForm({ ...form, destination: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-pickup-street">Street</label>
+                    <input id="q-pickup-street" type="text" placeholder="e.g. Industrial Way" value={form.pickupStreet} onChange={(e) => setForm({ ...form, pickupStreet: e.target.value })} className={inputClass} />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-pickup-city">City</label>
+                    <input id="q-pickup-city" type="text" placeholder="e.g. London" value={form.pickupCity} onChange={(e) => setForm({ ...form, pickupCity: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-pickup-postcode">Postcode / Pin</label>
+                    <input id="q-pickup-postcode" type="text" placeholder="e.g. EC1A 1BB" value={form.pickupPostcode} onChange={(e) => setForm({ ...form, pickupPostcode: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-pickup-country">Country</label>
+                    <input id="q-pickup-country" type="text" placeholder="e.g. United Kingdom" value={form.pickupCountry} onChange={(e) => setForm({ ...form, pickupCountry: e.target.value })} className={inputClass} />
                   </div>
                 </div>
                 <div>
                   <label className={labelClass} htmlFor="q-goods">Goods Description</label>
-                  <input id="q-goods" type="text" placeholder="Describe the goods or cargo" value={form.goodsDescription} onChange={(e) => setForm({ ...form, goodsDescription: e.target.value })} className={inputClass} />
+                  <ResizableTextarea
+                    id="q-goods"
+                    rows={4}
+                    minHeight={100}
+                    placeholder="Describe the goods or cargo (drag the corner handle to expand/shrink)"
+                    value={form.goodsDescription}
+                    onChange={(e) => setForm({ ...form, goodsDescription: e.target.value })}
+                    className={inputClass}
+                  />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
@@ -289,8 +417,8 @@ export default function Quote({ onNavigate }) {
                   </div>
                 </div>
                 <div>
-                  <label className={labelClass} htmlFor="q-date">Required Collection / Delivery Date</label>
-                  <input id="q-date" type="date" value={form.collectionDate} onChange={(e) => setForm({ ...form, collectionDate: e.target.value })} className={inputClass} />
+                  <label className={labelClass} htmlFor="q-pickup-date">Pick Up Date</label>
+                  <input id="q-pickup-date" type="date" value={form.pickupDate} onChange={(e) => setForm({ ...form, pickupDate: e.target.value })} className={inputClass} />
                 </div>
                 <div>
                   <label className={labelClass} htmlFor="q-special">Special Requirements</label>
@@ -300,20 +428,58 @@ export default function Quote({ onNavigate }) {
             </div>
           )}
 
-          {/* Step 3: Additional Info */}
+          {/* Step 3: Dropoff */}
           {step === 3 && (
+            <div>
+              <h2 className="text-navy text-xl font-bold font-display mb-6">Dropoff Details</h2>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-door">Door No.</label>
+                    <input id="q-dropoff-door" type="text" placeholder="e.g. Unit 12" value={form.dropoffDoorNo} onChange={(e) => setForm({ ...form, dropoffDoorNo: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-street">Street</label>
+                    <input id="q-dropoff-street" type="text" placeholder="e.g. Logistics Park" value={form.dropoffStreet} onChange={(e) => setForm({ ...form, dropoffStreet: e.target.value })} className={inputClass} />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-city">City</label>
+                    <input id="q-dropoff-city" type="text" placeholder="e.g. Birmingham" value={form.dropoffCity} onChange={(e) => setForm({ ...form, dropoffCity: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-postcode">Postcode / Pin</label>
+                    <input id="q-dropoff-postcode" type="text" placeholder="e.g. B1 1AA" value={form.dropoffPostcode} onChange={(e) => setForm({ ...form, dropoffPostcode: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-country">Country</label>
+                    <input id="q-dropoff-country" type="text" placeholder="e.g. United Kingdom" value={form.dropoffCountry} onChange={(e) => setForm({ ...form, dropoffCountry: e.target.value })} className={inputClass} />
+                  </div>
+                </div>
+                <div>
+                  <label className={labelClass} htmlFor="q-dropoff-date">Drop Off Date</label>
+                  <input id="q-dropoff-date" type="date" value={form.dropoffDate} onChange={(e) => setForm({ ...form, dropoffDate: e.target.value })} className={inputClass} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 4: Additional Info */}
+          {step === 4 && (
             <div>
               <h2 className="text-navy text-xl font-bold font-display mb-6">Additional Information</h2>
               <div className="space-y-4">
                 <div>
                   <label className={labelClass} htmlFor="q-additional">Additional Details</label>
-                  <textarea
+                  <ResizableTextarea
                     id="q-additional"
                     rows={6}
+                    minHeight={120}
                     placeholder="Include any other relevant information about your requirement, timeline, frequency, or specific considerations..."
                     value={form.additionalInfo}
                     onChange={(e) => setForm({ ...form, additionalInfo: e.target.value })}
-                    className={`${inputClass} resize-none`}
+                    className={inputClass}
                   />
                 </div>
 
@@ -325,8 +491,8 @@ export default function Quote({ onNavigate }) {
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Company:</span><span className="text-navy">{form.company || '—'}</span></div>
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Email:</span><span className="text-navy">{form.email || '—'}</span></div>
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Services:</span><span className="text-navy">{form.services.length > 0 ? form.services.join(', ') : '—'}</span></div>
-                    {form.origin && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Origin:</span><span className="text-navy">{form.origin}</span></div>}
-                    {form.destination && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Destination:</span><span className="text-navy">{form.destination}</span></div>}
+                    {form.pickupCity && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Pickup:</span><span className="text-navy">{`${form.pickupDoorNo ? form.pickupDoorNo + ', ' : ''}${form.pickupStreet ? form.pickupStreet + ', ' : ''}${form.pickupCity}`}</span></div>}
+                    {form.dropoffCity && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Dropoff:</span><span className="text-navy">{`${form.dropoffDoorNo ? form.dropoffDoorNo + ', ' : ''}${form.dropoffStreet ? form.dropoffStreet + ', ' : ''}${form.dropoffCity}`}</span></div>}
                     {form.goodsDescription && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Goods:</span><span className="text-navy">{form.goodsDescription}</span></div>}
                   </div>
                 </div>
