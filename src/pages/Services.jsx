@@ -1,5 +1,5 @@
 // src/pages/Services.jsx
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 
 function HeroLabel({ children }) {
@@ -142,7 +142,43 @@ const serviceList = [
 
 export default function Services({ onNavigate }) {
   const [activeService, setActiveService] = useState(serviceList[0].id)
-  const current = serviceList.find((s) => s.id === activeService) ?? serviceList[0]
+
+  // Scroll Spy: Tracks active section and updates tab underline automatically
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0,
+    }
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveService(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions)
+
+    serviceList.forEach((s) => {
+      const el = document.getElementById(s.id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleTabClick = (e, id) => {
+    e.preventDefault()
+    setActiveService(id)
+    const targetElement = document.getElementById(id)
+    if (targetElement) {
+      const yOffset = -135 // Accounts for fixed navigation and sticky tab bar height
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
 
   return (
     <div>
@@ -181,98 +217,107 @@ export default function Services({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── SERVICE NAV TABS ──────────────────────────────────────────── */}
+      {/* ── SERVICE NAV TABS WITH SCROLL SPY ──────────────────────────── */}
       <div className="bg-white border-b border-hairline sticky top-[72px] z-30 shadow-xs">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="flex overflow-x-auto gap-2 sm:gap-4 scrollbar-hide" style={{ scrollbarWidth: 'none' }}>
             {serviceList.map((s) => (
-              <button
+              <a
                 key={s.id}
-                onClick={() => setActiveService(s.id)}
+                href={`#${s.id}`}
+                onClick={(e) => handleTabClick(e, s.id)}
                 className={`px-5 py-4 text-sm font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
                   activeService === s.id
                     ? 'border-gold text-navy font-bold'
-                    : 'border-transparent text-dim font-medium hover:text-navy'
+                    : 'border-transparent text-dim font-medium hover:text-navy hover:border-gold/40'
                 }`}
               >
                 {s.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ── SERVICE DETAIL ────────────────────────────────────────────── */}
-      <section className="bg-white py-16 lg:py-24">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      {/* ── SERVICE SECTIONS ──────────────────────────────────────────── */}
+      {serviceList.map((svc, idx) => (
+        <section
+          key={svc.id}
+          id={svc.id}
+          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
+        >
+          <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-            <div>
-              <SectionTag>{current.label}</SectionTag>
-              <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
-                {current.fullTitle}
-              </h2>
-              <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-10">
-                {current.overview}
-              </p>
+              {/* Image Column */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full" style={{ aspectRatio: '16/10' }}>
+                <img
+                  src={svc.image}
+                  alt={svc.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-navy/8" />
+              </div>
 
-              {/* Capabilities & Key Benefits cards with intact dash lines */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-                <div className="p-6 bg-linen rounded-sm border border-hairline hover:border-navy/20 transition-colors">
-                  <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
-                    <span className="w-4 h-px bg-gold shrink-0" />
-                    Capabilities
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {current.capabilities.map((cap) => (
-                      <li key={cap} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
-                        <span>{cap}</span>
-                      </li>
-                    ))}
-                  </ul>
+              {/* Content Column */}
+              <div className="lg:[direction:ltr]">
+                <SectionTag>{svc.label}</SectionTag>
+                <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
+                  {svc.fullTitle}
+                </h2>
+                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-10">
+                  {svc.overview}
+                </p>
+
+                {/* Capabilities & Key Benefits cards with intact dash lines */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+                  <div className="p-6 bg-white/70 sm:bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
+                      <span className="w-4 h-px bg-gold shrink-0" />
+                      Capabilities
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {svc.capabilities.map((cap) => (
+                        <li key={cap} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="p-6 bg-white/70 sm:bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
+                      <span className="w-4 h-px bg-gold shrink-0" />
+                      Key Benefits
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {svc.benefits.map((b) => (
+                        <li key={b} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <div className="p-6 bg-linen rounded-sm border border-hairline hover:border-navy/20 transition-colors">
-                  <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
-                    <span className="w-4 h-px bg-gold shrink-0" />
-                    Key Benefits
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {current.benefits.map((b) => (
-                      <li key={b} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex flex-wrap gap-3">
+                  <QuoteButton onClick={() => onNavigate('quote')} />
+                  <button
+                    onClick={() => onNavigate('contact')}
+                    className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                  >
+                    Speak to Our Team
+                  </button>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <QuoteButton onClick={() => onNavigate('quote')} />
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
-                >
-                  Speak to Our Team
-                </button>
-              </div>
             </div>
-
-            <div className="relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline" style={{ aspectRatio: '4/3' }}>
-              <img
-                src={current.image}
-                alt={current.alt}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-navy/8" />
-            </div>
-
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy py-20 lg:py-24">

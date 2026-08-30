@@ -54,7 +54,8 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.015em;
 }
 
-:focus-visible {
+button:focus-visible,
+a:focus-visible {
   outline: 2px solid #eed484;
   outline-offset: 3px;
   border-radius: 2px;
