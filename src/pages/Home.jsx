@@ -452,8 +452,8 @@ export default function Home({ onNavigate }) {
       {/* ── STATISTICS / TRUST ────────────────────────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className=" max-w-xl mx-auto mb-14">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+          <div className="text-center max-w-xl mx-auto mb-14">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               Our Experience
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
