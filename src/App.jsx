@@ -35,10 +35,12 @@ export default function App() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-105"
-        style={{ backgroundColor: '#eed484' }}
+        style={{ backgroundColor: '#eed484' }}  
+        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
+        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}  
         aria-label="Scroll to top"
       >
-        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-none stroke-white stroke-[2.5]" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-none stroke-navy stroke-[2.5]" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M12 19V5M5 12l7-7 7 7" />
         </svg>
       </button>

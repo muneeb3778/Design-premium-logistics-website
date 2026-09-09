@@ -4,15 +4,15 @@ import { waLink } from '../constants'
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
+    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-function SectionTag({ children, className = 'mb-3', noShift = false }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${noShift ? '' : 'pl-8'} ${className}`}>
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -118,16 +118,16 @@ export default function Contact({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
+        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=1920&h=600&fit=crop&auto=format"
+          src="https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=1920&h=1080&fit=crop&auto=format"
           alt="Warehouse representing our operations and contact"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.92) 0%, rgba(12,37,69,0.58) 55%, rgba(12,37,69,0.30) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
@@ -135,7 +135,7 @@ export default function Contact({ onNavigate }) {
 
           <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
                 <HeroLabel>Contact</HeroLabel>
                 <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Get in Touch With Our Team
@@ -143,6 +143,15 @@ export default function Contact({ onNavigate }) {
                 <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Let's discuss your logistics requirements today.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
+          <div className="shrink-0 pb-6" aria-hidden="true">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+              <div className="flex justify-center">
+                <div className="h-2.5 w-2.5 opacity-0" />
               </div>
             </div>
           </div>
@@ -172,8 +181,8 @@ export default function Contact({ onNavigate }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Phone</p>
-                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-sm font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
+                    <p className="text-xs text-dim font-body tracking-widest uppercase mb-0.5">Phone</p>
+                    <a href="tel:[PHONE_NUMBER]" className="text-navy text-base font-body hover:text-gold transition-colors">[PHONE NUMBER]</a>
                   </div>
                 </div>
 
@@ -184,8 +193,8 @@ export default function Contact({ onNavigate }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Email</p>
-                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-sm font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
+                    <p className="text-xs text-dim font-body tracking-widest uppercase mb-0.5">Email</p>
+                    <a href="mailto:[EMAIL_ADDRESS]" className="text-navy text-base font-body hover:text-gold transition-colors break-all">[EMAIL ADDRESS]</a>
                   </div>
                 </div>
 
@@ -197,12 +206,12 @@ export default function Contact({ onNavigate }) {
                     <WhatsAppIcon className="w-4 h-4 text-navy/60" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">WhatsApp</p>
+                    <p className="text-xs text-dim font-body tracking-widest uppercase mb-0.5">WhatsApp</p>
                     <a
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy text-sm font-body hover:text-gold transition-colors"
+                      className="text-navy text-base font-body hover:text-gold transition-colors"
                     >
                       Start a WhatsApp Conversation
                     </a>
@@ -216,8 +225,8 @@ export default function Contact({ onNavigate }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Address</p>
-                    <p className="text-navy text-sm font-body leading-relaxed">[Company Address]<br />United Kingdom</p>
+                    <p className="text-xs text-dim font-body tracking-widest uppercase mb-0.5">Address</p>
+                    <p className="text-navy text-base font-body leading-relaxed">[Company Address]<br />United Kingdom</p>
                   </div>
                 </div>
 
@@ -229,16 +238,16 @@ export default function Contact({ onNavigate }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] text-dim font-body tracking-widest uppercase mb-0.5">Opening Hours</p>
-                    <p className="text-navy text-sm font-body leading-relaxed">[OPENING HOURS]</p>
+                    <p className="text-xs text-dim font-body tracking-widest uppercase mb-0.5">Opening Hours</p>
+                    <p className="text-navy text-base font-body leading-relaxed">[OPENING HOURS]</p>
                   </div>
                 </div>
               </div>
 
               {/* WhatsApp CTA card — same waLink constant */}
               <div className="p-5 bg-linen border border-hairline rounded-sm shadow-[0_2px_10px_rgba(12,37,69,0.05)]">
-                <p className="text-navy text-sm font-semibold font-display mb-1.5">Quick questions?</p>
-                <p className="text-dim text-xs font-body mb-3">Use WhatsApp for immediate responses to quick questions about our services.</p>
+                <p className="text-navy text-base font-semibold font-display mb-1.5">Quick questions?</p>
+                <p className="text-dim text-sm font-body mb-3">Use WhatsApp for immediate responses to quick questions about our services.</p>
                 <a
                   href={waLink}
                   target="_blank"
@@ -270,7 +279,7 @@ export default function Contact({ onNavigate }) {
                     </svg>
                   </div>
                   <h3 className="text-navy text-xl font-bold font-display mb-2">Enquiry Received</h3>
-                  <p className="text-dim text-sm font-body leading-relaxed max-w-md mx-auto">
+                  <p className="text-dim text-base font-body leading-relaxed max-w-md mx-auto">
                     Thank you for reaching out. Our team will review your message and respond promptly to the email address you provided.
                   </p>
                 </div>
@@ -353,7 +362,7 @@ export default function Contact({ onNavigate }) {
                   </div>
 
                   <div className="p-4 bg-linen rounded-sm border border-hairline">
-                    <p className="text-dim text-xs font-body leading-relaxed">
+                    <p className="text-dim text-sm font-body leading-relaxed">
                       By submitting this form you agree to our Privacy Policy. Your information will be used to respond to your enquiry and will not be shared with third parties.
                     </p>
                   </div>

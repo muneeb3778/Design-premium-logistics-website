@@ -4,15 +4,15 @@ import { waLink } from '../constants'
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
+    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-function SectionTag({ children, className = 'mb-3', noShift = false }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${noShift ? '' : 'pl-8'} ${className}`}>
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -186,16 +186,16 @@ export default function Services({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
+        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=700&fit=crop&auto=format"
+          src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=1080&fit=crop&auto=format"
           alt="Aerial view of container port representing our services"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.90) 0%, rgba(12,37,69,0.55) 55%, rgba(12,37,69,0.28) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
@@ -203,7 +203,7 @@ export default function Services({ onNavigate }) {
 
           <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
                 <HeroLabel>Services &amp; Solutions</HeroLabel>
                 <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Our Services &amp; Solutions
@@ -211,6 +211,15 @@ export default function Services({ onNavigate }) {
                 <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Movement, storage and distribution, connected.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
+          <div className="shrink-0 pb-6" aria-hidden="true">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+              <div className="flex justify-center">
+                <div className="h-2.5 w-2.5 opacity-0" />
               </div>
             </div>
           </div>
@@ -226,7 +235,7 @@ export default function Services({ onNavigate }) {
                 key={s.id}
                 href={`#${s.id}`}
                 onClick={(e) => handleTabClick(e, s.id)}
-                className={`px-5 py-4 text-sm font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
+                className={`px-5 py-4 text-sm sm:text-base font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
                   activeService === s.id
                     ? 'border-gold text-navy font-bold'
                     : 'border-transparent text-dim font-medium hover:text-navy hover:border-gold/40'
@@ -250,7 +259,7 @@ export default function Services({ onNavigate }) {
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
               {/* Image Column */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full" style={{ aspectRatio: '16/10' }}>
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full min-h-[340px] sm:min-h-[380px]" style={{ aspectRatio: '16/10' }}>
                 <img
                   src={svc.image}
                   alt={svc.alt}
@@ -270,32 +279,32 @@ export default function Services({ onNavigate }) {
                   {svc.overview}
                 </p>
 
-                {/* Capabilities & Key Benefits cards with intact dash lines */}
+                {/* Capabilities & Key Benefits cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-                  <div className="p-6 bg-white/70 sm:bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
+                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
                       <span className="w-4 h-px bg-gold shrink-0" />
                       Capabilities
                     </h3>
                     <ul className="space-y-2.5">
                       {svc.capabilities.map((cap) => (
-                        <li key={cap} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                        <li key={cap} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
                           <span>{cap}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="p-6 bg-white/70 sm:bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base font-semibold font-display mb-3.5 flex items-center gap-2">
+                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
                       <span className="w-4 h-px bg-gold shrink-0" />
                       Key Benefits
                     </h3>
                     <ul className="space-y-2.5">
                       {svc.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2.5 text-dim text-sm font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                        <li key={b} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -333,19 +342,19 @@ export default function Services({ onNavigate }) {
         />
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
           <div className="flex justify-center">
-            <SectionTag noShift>Get in Touch</SectionTag>
+            <SectionTag>Get in Touch</SectionTag>
           </div>
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
+          <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight max-w-2xl mx-auto">
             Ready to Discuss Your Requirements?
           </h2>
-          <p className="text-white/65 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/80 text-base sm:text-lg font-body mb-9 max-w-xl mx-auto leading-relaxed">
             Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
             <button
               onClick={() => onNavigate('contact')}
-              className="px-7 py-3.5 border border-white/28 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
+              className="px-7 py-3.5 border border-white/28 bg-white/10 text-white text-sm font-medium font-body rounded-sm hover:bg-white/20 transition-colors"
             >
               Contact Us
             </button>

@@ -36,8 +36,6 @@ const heroSlides = [
   },
 ]
 
-const capabilities = ['Transportation', 'Imports', 'Warehousing', 'Distribution']
-
 const services = [
   {
     title: 'Transportation',
@@ -129,7 +127,7 @@ const faqs = [
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
+    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
@@ -180,7 +178,7 @@ export default function Home({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ────────────────────────────────────────────────────── */}
+    {/* ── HERO ────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden"
         style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
@@ -220,24 +218,15 @@ export default function Home({ onNavigate }) {
                 <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed mb-6 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   {heroSlides[slide].subtext}
                 </p>
-
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    onClick={() => onNavigate('services')}
-                    className="px-7 py-3.5 border border-white/20 bg-white/15 text-white text-sm font-medium font-body rounded-sm hover:bg-white/25 transition-colors"
-                  >
-                    Explore Services &amp; Solutions
-                  </button>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom overlay bar */}
-          <div className="shrink-0 bg-gradient-to-t from-navy via-navy/85 to-navy/0 pt-10 pb-6">
+          {/* Slide navigation dots — no backdrop, just floats on the image */}
+          <div className="shrink-0 pb-6">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-              <div className="flex justify-center mb-6" role="tablist" aria-label="Slideshow navigation">
-                <div className="flex items-center gap-2.5">
+              <div className="flex justify-center" role="tablist" aria-label="Slideshow navigation">
+                <div className="flex items-center gap-2.5" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}>
                   {heroSlides.map((_, i) => (
                     <button
                       key={i}
@@ -246,29 +235,11 @@ export default function Home({ onNavigate }) {
                       aria-label={`Slide ${i + 1}`}
                       onClick={() => setSlide(i)}
                       className={`rounded-full transition-all duration-300 ${
-                        i === slide ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-white/35 hover:bg-white/60'
+                        i === slide ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-white/60 hover:bg-white/90'
                       }`}
                     />
                   ))}
                 </div>
-              </div>
-
-              <div className="border-t border-white/12 pt-5 flex flex-col items-center gap-2.5">
-                <div className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1.5">
-                  {capabilities.map((cap, i, arr) => (
-                    <div key={cap} className="flex items-center">
-                      <span className="px-3.5 py-1 text-white/85 text-xs sm:text-sm font-semibold font-display tracking-wide whitespace-nowrap">
-                        {cap}
-                      </span>
-                      {i < arr.length - 1 && (
-                        <span className="w-1 h-1 rounded-full bg-gold/70 shrink-0" />
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <p className="text-white/35 text-[10px] font-body tracking-[0.12em] uppercase text-center px-4">
-                  Built around reliability, responsiveness and operational continuity
-                </p>
               </div>
             </div>
           </div>
@@ -279,7 +250,7 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               our Solutions &amp; Services
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Coordinated Supply Chain Capabilities</h2>
@@ -294,7 +265,7 @@ export default function Home({ onNavigate }) {
                 key={svc.title}
                 onClick={() => onNavigate('services')}
                 className="group relative overflow-hidden rounded-sm text-left"
-                style={{ aspectRatio: '4/3' }}
+                style={{ aspectRatio: '4/3.3' }}
               >
                 <img
                   src={svc.image}
@@ -305,9 +276,9 @@ export default function Home({ onNavigate }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
                 <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/12 transition-colors duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-white text-[15px] font-semibold font-display mb-1.5 leading-snug">{svc.title}</h3>
-                  <p className="text-white/60 text-xs font-body leading-relaxed mb-3">{svc.desc}</p>
-                  <div className="flex items-center gap-1.5 text-gold text-xs font-semibold font-display opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <h3 className="text-white text-lg font-semibold font-display mb-1.5 leading-snug">{svc.title}</h3>
+                  <p className="text-white/75 text-sm font-body leading-relaxed mb-3">{svc.desc}</p>
+                  <div className="flex items-center gap-1.5 text-gold text-sm font-semibold font-display opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     Learn more <ArrowIcon />
                   </div>
                 </div>
@@ -335,7 +306,7 @@ export default function Home({ onNavigate }) {
           
           {/* Top Header Information */}
           <div className="max-w-3xl mb-12 lg:mb-16">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               Why Choose Us
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
@@ -397,7 +368,7 @@ export default function Home({ onNavigate }) {
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               Industries
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
@@ -429,8 +400,8 @@ export default function Home({ onNavigate }) {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block text-gold text-[11px] font-semibold tracking-[0.13em] uppercase font-display mb-2">{ind.label}</span>
-                  <p className="text-white/70 text-sm font-body leading-relaxed">{ind.desc}</p>
+                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-2">{ind.label}</span>
+                  <p className="text-white/85 text-sm sm:text-base font-body leading-relaxed">{ind.desc}</p>
                 </div>
               </button>
             ))}
@@ -480,10 +451,10 @@ export default function Home({ onNavigate }) {
           </div>
 
           <div className="border-t border-hairline pt-10">
-            <p className="text-center text-dim text-[10px] font-body tracking-[0.13em] uppercase mb-6">Accreditations &amp; Credentials</p>
+            <p className="text-center text-dim text-xs font-body tracking-[0.13em] uppercase mb-6">Accreditations &amp; Credentials</p>
             <div className="flex flex-wrap justify-center gap-3">
               {['[VERIFIED CERTIFICATION]', '[VERIFIED CERTIFICATION]', '[VERIFIED MEMBERSHIP]', '[VERIFIED ACCREDITATION]'].map((cert) => (
-                <div key={cert} className="px-5 py-2.5 border border-hairline rounded-sm text-dim text-xs font-body hover:border-navy/20 transition-colors">
+                <div key={cert} className="px-5 py-2.5 border border-hairline rounded-sm text-dim text-sm font-body hover:border-navy/20 transition-colors">
                   {cert}
                 </div>
               ))}
@@ -505,7 +476,7 @@ export default function Home({ onNavigate }) {
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-12 lg:gap-16">
             <div>
-              <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3 pl-8">
+              <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
                 FAQ
               </span>
               <h2 className="text-navy text-3xl font-bold font-display mb-4">Frequently Asked Questions</h2>
@@ -529,7 +500,7 @@ export default function Home({ onNavigate }) {
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                     aria-expanded={openFaq === i}
                   >
-                    <span className={`text-sm font-semibold font-display transition-colors ${openFaq === i ? 'text-navy' : 'text-navy/80 group-hover:text-navy'}`}>
+                    <span className={`text-base font-semibold font-display transition-colors ${openFaq === i ? 'text-navy' : 'text-navy/80 group-hover:text-navy'}`}>
                       {faq.q}
                     </span>
                     <svg
@@ -542,7 +513,7 @@ export default function Home({ onNavigate }) {
                   </button>
                   {openFaq === i && (
                     <div className="pb-5">
-                      <p className="text-dim text-sm font-body leading-relaxed">{faq.a}</p>
+                      <p className="text-dim text-base font-body leading-relaxed">{faq.a}</p>
                     </div>
                   )}
                 </div>

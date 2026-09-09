@@ -3,15 +3,15 @@ import { waLink } from '../constants'
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
+    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-function SectionTag({ children, className = 'mb-3', noShift = false }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${noShift ? '' : 'pl-8'} ${className}`}>
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -85,19 +85,19 @@ export default function About({ onNavigate }) {
   return (
     <div>
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
+          {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
+        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=700&fit=crop&auto=format"
+          src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=1080&fit=crop&auto=format"
           alt="Logistics fleet and transportation operations"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.88) 0%, rgba(12,37,69,0.55) 55%, rgba(12,37,69,0.30) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
@@ -105,7 +105,7 @@ export default function About({ onNavigate }) {
 
           <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[70%] xl:max-w-[65%]">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[70%] xl:max-w-[65%] pt-8 sm:pt-10 lg:pt-24">
                 <HeroLabel>About Us</HeroLabel>
                 <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   A Reliable Partner in Logistics
@@ -113,6 +113,15 @@ export default function About({ onNavigate }) {
                 <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Transportation, warehousing and distribution — connected.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
+          <div className="shrink-0 pb-6" aria-hidden="true">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+              <div className="flex justify-center">
+                <div className="h-2.5 w-2.5 opacity-0" />
               </div>
             </div>
           </div>
@@ -128,7 +137,7 @@ export default function About({ onNavigate }) {
               <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
                 Built Around the Practical Requirements of Supply Chains
               </h2>
-              <div className="space-y-4 text-dim font-body text-base leading-relaxed">
+              <div className="space-y-4 text-dim font-body text-base lg:text-lg leading-relaxed">
                 <p>
                   [COMPANY NAME] was established to address a clear need in the UK logistics market — a provider that could genuinely connect transportation, warehousing, imports and distribution within a single, operationally competent offering.
                 </p>
@@ -171,7 +180,7 @@ export default function About({ onNavigate }) {
             {coreServices.map((svc) => (
               <div key={svc.title} className="p-6 bg-white border border-hairline rounded-sm hover:border-navy/20 transition-all duration-300 group shadow-sm">
                 <div className="w-8 h-[2px] bg-gold mb-4 group-hover:w-12 transition-all duration-300" />
-                <h3 className="text-navy text-base font-semibold font-display mb-2">{svc.title}</h3>
+                <h3 className="text-navy text-lg font-semibold font-display mb-2">{svc.title}</h3>
                 <p className="text-dim text-sm font-body leading-relaxed">{svc.desc}</p>
               </div>
             ))}
@@ -218,7 +227,7 @@ export default function About({ onNavigate }) {
                   >
                     <div className="w-6 h-[2px] bg-gold mb-3" />
                     <h4 className="text-navy text-base font-semibold font-display mb-1.5">{v.label}</h4>
-                    <p className="text-dim text-xs font-body leading-relaxed">{v.desc}</p>
+                    <p className="text-dim text-sm font-body leading-relaxed">{v.desc}</p>
                   </div>
                 ))}
               </div>
@@ -253,7 +262,7 @@ export default function About({ onNavigate }) {
             ].map((stat) => (
               <div key={stat.label} className="text-center p-6 border border-white/10 rounded-sm hover:border-gold/30 transition-colors">
                 <div className="text-4xl lg:text-5xl font-bold font-display text-gold mb-2">{stat.value}</div>
-                <div className="text-white/65 text-sm font-semibold font-display">{stat.label}</div>
+                <div className="text-white/75 text-sm font-semibold font-display">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -277,14 +286,14 @@ export default function About({ onNavigate }) {
               <h2 className="text-navy text-3xl font-bold font-display mb-5 leading-tight">
                 Supporting UK-Based Organisations
               </h2>
-              <p className="text-dim text-base font-body leading-relaxed mb-8">
+              <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
                 We primarily serve UK-based organisations, including those operating in sectors where supply-chain reliability, accountability and operational continuity are critical considerations.
               </p>
               <div className="space-y-4 mb-8">
                 {['Healthcare Organisations', 'Public Sector Bodies', 'Defence-Related Organisations', 'Commercial & Industrial Businesses'].map((market) => (
                   <div key={market} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
-                    <span className="text-navy text-sm font-medium font-body">{market}</span>
+                    <span className="text-navy text-base font-medium font-body">{market}</span>
                   </div>
                 ))}
               </div>
@@ -316,7 +325,7 @@ export default function About({ onNavigate }) {
         />
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
           <div className="flex justify-center">
-            <SectionTag noShift>Get in Touch</SectionTag>
+            <SectionTag>Get in Touch</SectionTag>
           </div>
           <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
             Ready to Discuss Your Requirements?

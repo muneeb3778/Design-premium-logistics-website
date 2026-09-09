@@ -13,15 +13,15 @@ const steps = ['Contact Details', 'Requirement', 'Pickup', 'Dropoff', 'Additiona
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-4 pl-8">
+    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
       {children}
     </span>
   )
 }
 
-function SectionTag({ children, className = 'mb-3', noShift = false }) {
+function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${noShift ? '' : 'pl-8'} ${className}`}>
+    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -217,16 +217,16 @@ export default function Quote({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '65vh', minHeight: 500, maxHeight: 720 }}
+        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=1920&h=700&fit=crop&auto=format"
+          src="https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=1920&h=1080&fit=crop&auto=format"
           alt="Logistics fleet prepared for transportation quote"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.92) 0%, rgba(12,37,69,0.58) 55%, rgba(12,37,69,0.30) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
@@ -234,7 +234,7 @@ export default function Quote({ onNavigate }) {
 
           <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
                 <HeroLabel>Request a Quote</HeroLabel>
                 <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Tell Us About Your Requirements
@@ -242,6 +242,15 @@ export default function Quote({ onNavigate }) {
                 <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   Tailored logistics solutions built around your exact specifications.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
+          <div className="shrink-0 pb-6" aria-hidden="true">
+            <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+              <div className="flex justify-center">
+                <div className="h-2.5 w-2.5 opacity-0" />
               </div>
             </div>
           </div>
@@ -274,7 +283,7 @@ export default function Quote({ onNavigate }) {
                       </svg>
                     ) : i + 1}
                   </div>
-                  <span className={`text-sm font-display tracking-wide whitespace-nowrap transition-colors ${
+                  <span className={`text-sm sm:text-base font-display tracking-wide whitespace-nowrap transition-colors ${
                     i === step ? 'text-navy font-bold' : i < step ? 'text-navy font-medium' : 'text-dim'
                   }`}>
                     {s}
@@ -296,7 +305,7 @@ export default function Quote({ onNavigate }) {
           {/* Step 0: Contact Details */}
           {step === 0 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-6">Your Contact Details</h2>
+              <h2 className="text-navy text-2xl font-bold font-display mb-6">Your Contact Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -329,8 +338,8 @@ export default function Quote({ onNavigate }) {
           {/* Step 1: Requirement */}
           {step === 1 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-2">What Do You Need?</h2>
-              <p className="text-dim text-sm font-body mb-6">Select one or more services. You can select multiple if your requirement spans several areas.</p>
+              <h2 className="text-navy text-2xl font-bold font-display mb-2">What Do You Need?</h2>
+              <p className="text-dim text-base font-body mb-6">Select one or more services. You can select multiple if your requirement spans several areas.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {serviceOptions.map((s) => (
                   <button
@@ -364,7 +373,7 @@ export default function Quote({ onNavigate }) {
           {/* Step 2: Pickup */}
           {step === 2 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-6">Pickup Details</h2>
+              <h2 className="text-navy text-2xl font-bold font-display mb-6">Pickup Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -431,7 +440,7 @@ export default function Quote({ onNavigate }) {
           {/* Step 3: Dropoff */}
           {step === 3 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-6">Dropoff Details</h2>
+              <h2 className="text-navy text-2xl font-bold font-display mb-6">Dropoff Details</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -468,7 +477,7 @@ export default function Quote({ onNavigate }) {
           {/* Step 4: Additional Info */}
           {step === 4 && (
             <div>
-              <h2 className="text-navy text-xl font-bold font-display mb-6">Additional Information</h2>
+              <h2 className="text-navy text-2xl font-bold font-display mb-6">Additional Information</h2>
               <div className="space-y-4">
                 <div>
                   <label className={labelClass} htmlFor="q-additional">Additional Details</label>
@@ -485,7 +494,7 @@ export default function Quote({ onNavigate }) {
 
                 {/* Summary */}
                 <div className="p-5 bg-linen border border-hairline rounded-sm">
-                  <h3 className="text-navy text-sm font-semibold font-display mb-3">Quote Request Summary</h3>
+                  <h3 className="text-navy text-base font-semibold font-display mb-3">Quote Request Summary</h3>
                   <div className="space-y-2 text-sm font-body">
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Name:</span><span className="text-navy">{form.fullName || '—'}</span></div>
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Company:</span><span className="text-navy">{form.company || '—'}</span></div>
@@ -498,7 +507,7 @@ export default function Quote({ onNavigate }) {
                 </div>
 
                 <div className="p-4 bg-sky-light/30 border border-sky-light rounded-sm">
-                  <p className="text-dim text-xs font-body leading-relaxed">
+                  <p className="text-dim text-sm font-body leading-relaxed">
                     By submitting this form you agree to our <button className="underline underline-offset-2 text-navy">Privacy Policy</button>. Your information will be used solely to prepare and respond to your quote request.
                   </p>
                 </div>
@@ -548,7 +557,7 @@ export default function Quote({ onNavigate }) {
           </div>
 
           {/* Trust note */}
-          <p className="mt-6 text-dim text-xs font-body text-center">
+          <p className="mt-6 text-dim text-sm font-body text-center">
             We aim to respond to all quote requests within 1 business day. For urgent requirements, please call us or use WhatsApp.
           </p>
         </div>
