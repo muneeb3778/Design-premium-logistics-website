@@ -98,6 +98,230 @@ const industries = [
   },
 ]
 
+/*
+  Clients & Enterprise Partners Data
+*/
+const clients = [
+  {
+    id: 'f1',
+    name: 'Formula 1®',
+    sector: 'Motorsport Logistics',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <span className="text-2xl font-black italic tracking-tighter text-[#E10600]">F1</span>
+        <div className="border-l border-slate-300 pl-2 text-left">
+          <span className="block text-xs font-black tracking-wider text-navy uppercase leading-none">FORMULA 1</span>
+          <span className="block text-[9px] text-dim tracking-widest uppercase">Global Racing</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'alpine',
+    name: 'Alpine UK',
+    sector: 'Motorsport Division',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <div className="w-7 h-7 rounded-full bg-[#00428C] flex items-center justify-center text-white font-bold text-xs italic">
+          A
+        </div>
+        <div className="text-left">
+          <span className="block text-sm font-bold tracking-[0.16em] text-navy uppercase leading-none">ALPINE</span>
+          <span className="block text-[9px] text-[#0090FF] font-semibold tracking-wider uppercase">Motorsport UK</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'mod',
+    name: 'MOD UK',
+    sector: 'Ministry of Defence',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-navy" aria-hidden="true">
+          <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3-4.8-2.5-4.8 2.5.9-5.3-3.8-3.7 5.3-.8L12 2z" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-xs font-extrabold tracking-wider text-navy uppercase leading-none">MINISTRY OF DEFENCE</span>
+          <span className="block text-[9px] text-dim tracking-wider uppercase">United Kingdom</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'atomic',
+    name: 'Atomic Energy UK',
+    sector: 'Energy & Research',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-navy fill-none stroke-2" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" fill="#dfbd51" stroke="none" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(30 12 12)" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-xs font-bold tracking-tight text-navy uppercase leading-none">UK ATOMIC ENERGY</span>
+          <span className="block text-[9px] text-dim tracking-widest uppercase">Research & Power</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'nhs',
+    name: 'NHS',
+    sector: 'National Health Trust',
+    renderLogo: () => (
+      <div className="flex items-center gap-2.5">
+        <div className="bg-[#005EB8] px-2 py-0.5 rounded-xs">
+          <span className="text-sm font-black italic tracking-normal text-white">NHS</span>
+        </div>
+        <div className="text-left">
+          <span className="block text-[11px] font-bold text-navy leading-none">National Health Trust</span>
+          <span className="block text-[9px] text-dim tracking-wide uppercase">Medical Logistics</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'boeing',
+    name: 'Boeing',
+    sector: 'Aerospace & Defence',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#0039A6]" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-base font-black tracking-widest text-[#0039A6] uppercase leading-none font-sans">BOEING</span>
+          <span className="block text-[8px] text-dim tracking-widest uppercase">Aerospace</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'airports',
+    name: 'Heathrow & Gatwick',
+    sector: 'Airport Operations',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">GATWICK &amp; HEATHROW</span>
+          <span className="block text-[8px] text-dim tracking-widest uppercase">UK Airport Hubs</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'hsbc',
+    name: 'HSBC',
+    sector: 'Banking & Financial',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <div className="relative w-5 h-5">
+          <div className="absolute inset-0 bg-[#DB0011]" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
+        </div>
+        <div className="text-left">
+          <span className="block text-sm font-black tracking-wider text-navy leading-none">HSBC</span>
+          <span className="block text-[8px] text-dim tracking-wider uppercase">Global Banking</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'fedex',
+    name: 'FedEx',
+    sector: 'Global Logistics',
+    renderLogo: () => (
+      <div className="text-left">
+        <div className="flex items-baseline text-base font-black leading-none tracking-tight">
+          <span className="text-[#4D148C]">Fed</span>
+          <span className="text-[#FF6600]">Ex</span>
+        </div>
+        <span className="block text-[8px] text-dim tracking-widest uppercase mt-0.5">Express Freight</span>
+      </div>
+    ),
+  },
+  {
+    id: 'studios',
+    name: 'Warner Bros & Shinfield',
+    sector: 'Film & Media Studios',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-7 bg-[#003B7B] rounded-b-md flex items-center justify-center text-white text-[10px] font-black tracking-tighter">
+          WB
+        </div>
+        <div className="text-left">
+          <span className="block text-[10px] font-bold text-navy uppercase leading-tight">WARNER BROS.</span>
+          <span className="block text-[8px] text-dim tracking-wider uppercase">Shinfield Studios</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'kodak',
+    name: 'Kodak Studios',
+    sector: 'Media & Production',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 bg-[#E31837] flex items-center justify-center rounded-xs text-[#FFC72C] font-black text-sm">
+          K
+        </div>
+        <div className="text-left">
+          <span className="block text-xs font-black tracking-wider text-[#E31837] leading-none uppercase">Kodak</span>
+          <span className="block text-[8px] text-dim tracking-wider uppercase">Studios Logistics</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'datacentres',
+    name: 'Data Centres UK',
+    sector: 'Critical Infrastructure',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+          <path d="M4 1h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zM6 5h2V3H6v2zm0 8h2v-2H6v2zm0 8h2v-2H6v2z" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">DATA CENTRES</span>
+          <span className="block text-[8px] text-dim tracking-widest uppercase">Infrastructure</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'companieshouse',
+    name: 'Companies House UK',
+    sector: 'Government Agency',
+    renderLogo: () => (
+      <div className="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" />
+        </svg>
+        <div className="text-left">
+          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">COMPANIES HOUSE</span>
+          <span className="block text-[8px] text-dim tracking-widest uppercase">UK Executive Agency</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'mitie',
+    name: 'Mitie UK',
+    sector: 'Facilities & Security',
+    renderLogo: () => (
+      <div className="flex items-center gap-1.5">
+        <span className="text-lg font-black tracking-tight text-navy lowercase font-sans">mitie</span>
+        <div className="w-2 h-2 rounded-full bg-[#E40046] mb-1.5" />
+        <span className="block text-[8px] text-dim tracking-widest uppercase ml-1">UK Facilities</span>
+      </div>
+    ),
+  },
+]
+
 const faqs = [
   {
     q: 'What services do you provide?',
@@ -168,6 +392,7 @@ export default function Home({ onNavigate }) {
   const [slide, setSlide] = useState(0)
   const [openFaq, setOpenFaq] = useState(null)
 
+  // Automatic hero slider
   useEffect(() => {
     const timer = setInterval(() => {
       setSlide((s) => (s + 1) % heroSlides.length)
@@ -175,10 +400,39 @@ export default function Home({ onNavigate }) {
     return () => clearInterval(timer)
   }, [])
 
+  // Clients carousel state & continuous 3-second cycle (never stops on mouse enter)
+  const [clientIndex, setClientIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(4)
+
+  useEffect(() => {
+    const updateVisible = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCount(1.3)
+      } else if (window.innerWidth < 768) {
+        setVisibleCount(2.2)
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(3.2)
+      } else {
+        setVisibleCount(4.5)
+      }
+    }
+    updateVisible()
+    window.addEventListener('resize', updateVisible)
+    return () => window.removeEventListener('resize', updateVisible)
+  }, [])
+
+  // Continuous auto-advance every 3 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setClientIndex((prev) => (prev + 1) % clients.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <div>
 
-    {/* ── HERO ────────────────────────────────────────────────────── */}
+      {/* ── HERO ────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden"
         style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
@@ -222,7 +476,7 @@ export default function Home({ onNavigate }) {
             </div>
           </div>
 
-          {/* Slide navigation dots — no backdrop, just floats on the image */}
+          {/* Slide navigation dots */}
           <div className="shrink-0 pb-6">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center" role="tablist" aria-label="Slideshow navigation">
@@ -295,8 +549,6 @@ export default function Home({ onNavigate }) {
               <ArrowIcon />
             </button>
           </div>
-
-
         </div>
       </section>
 
@@ -304,7 +556,6 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28 border-t border-hairline">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
-          {/* Top Header Information */}
           <div className="max-w-3xl mb-12 lg:mb-16">
             <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               Why Choose Us
@@ -317,10 +568,7 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          {/* Image and Value Props Parallel Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
-            
-            {/* Image (Parallel Left Column) */}
             <div className="relative rounded-sm overflow-hidden bg-linen min-h-[360px] sm:min-h-[440px] lg:min-h-full">
               <img
                 src="https://images.unsplash.com/photo-1772305336606-989a457ffbae?w=900&h=700&fit=crop&auto=format"
@@ -335,7 +583,6 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
 
-            {/* Value Propositions (Parallel Right Column) */}
             <div className="flex flex-col justify-between">
               <div className="space-y-6 lg:space-y-7">
                 {valueProps.map((vp) => (
@@ -407,7 +654,6 @@ export default function Home({ onNavigate }) {
             ))}
           </div>
 
-          {/* Centered Button */}
           <div className="mt-12 text-center">
             <button
               onClick={() => onNavigate('industries')}
@@ -420,7 +666,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── STATISTICS / TRUST ────────────────────────────────────────── */}
+      {/* ── STATISTICS / TRUST (OUR EXPERIENCE) ────────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="text-center max-w-xl mx-auto mb-14">
@@ -468,6 +714,72 @@ export default function Home({ onNavigate }) {
             <p className="text-navy text-base font-body leading-relaxed italic mb-5">[VERIFIED CLIENT TESTIMONIAL]</p>
             <div className="text-dim text-[11px] font-display tracking-[0.1em] uppercase">[CLIENT NAME] · [CLIENT ORGANISATION]</div>
           </div>
+        </div>
+      </section>
+
+      {/* ── OUR CLIENTS (CONTINUOUS 3s CAROUSEL) ────────────────────────── */}
+      <section className="bg-slate-50/70 py-20 lg:py-24 border-t border-hairline overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="block text-gold text-xs sm:text-sm font-bold font-display tracking-[0.18em] uppercase mb-2">
+              TRUSTED BY
+            </span>
+            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-3">
+              Our Clients &amp; Partners
+            </h2>
+            <p className="text-dim text-sm sm:text-base font-body leading-relaxed">
+              Organisations that trust us to support their critical supply chains, aerospace movements, and enterprise operations.
+            </p>
+          </div>
+
+          {/* Carousel Viewport Container */}
+          <div className="relative">
+            {/* Soft gradient edge masks */}
+            <div className="hidden sm:block pointer-events-none absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50/90 to-transparent z-10" />
+            <div className="hidden sm:block pointer-events-none absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50/90 to-transparent z-10" />
+
+            {/* Slider Track */}
+            <div className="overflow-hidden py-3">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{
+                  transform: `translateX(-${(clientIndex * 100) / visibleCount}%)`,
+                }}
+              >
+                {/* Render clients duplicate sets to ensure smooth loop without trailing gaps */}
+                {[...clients, ...clients].map((client, idx) => (
+                  <div
+                    key={`${client.id}-${idx}`}
+                    className="shrink-0 px-2.5 sm:px-3"
+                    style={{ width: `${100 / visibleCount}%` }}
+                  >
+                    <div className="h-[105px] bg-white border border-slate-200/80 rounded-xl px-5 py-4 flex flex-col items-center justify-center text-center shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:border-gold/60 hover:shadow-md transition-all duration-300 group select-none">
+                      <div className="transition-transform duration-300 group-hover:scale-105">
+                        {client.renderLogo()}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pagination indicators */}
+            <div className="flex justify-center items-center gap-2 mt-7">
+              {clients.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setClientIndex(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === clientIndex ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
