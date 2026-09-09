@@ -44,6 +44,12 @@ const services = [
     alt: 'Logistics truck at speed on a bridge',
   },
   {
+    title: 'Critical & Last-Minute Deliveries',
+    desc: 'Rapid-response, dedicated urgent freight and time-critical transport when schedules are non-negotiable.',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=800&h=600&fit=crop&auto=format',
+    alt: 'Dedicated priority courier vehicle on rapid delivery route',
+  },
+  {
     title: 'Imports',
     desc: 'Import and freight coordination across relevant routes and partners for your cargo requirements.',
     image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=800&h=600&fit=crop&auto=format&q=65',
@@ -77,6 +83,12 @@ const industries = [
     desc: 'Reliable logistics, transportation, storage and distribution support for healthcare supply chains.',
     image: 'https://images.unsplash.com/photo-1628372095387-017d1099fc19?w=800&h=560&fit=crop&auto=format',
     alt: 'Healthcare facility and supply chain support',
+  },
+  {
+    label: 'Arts & Film Studios',
+    desc: 'Dedicated transport and high-care handling for production sets, studio soundstages, props and media assets.',
+    image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=800&h=560&fit=crop&auto=format',
+    alt: 'Film studio production stage and lighting equipment',
   },
   {
     label: 'Public Sector',
@@ -325,27 +337,27 @@ const clients = [
 const faqs = [
   {
     q: 'What services do you provide?',
-    a: 'We provide a connected range of services including transportation, import and freight coordination, warehousing and storage, and distribution and delivery. Each service is designed to work individually or as part of an integrated supply-chain solution.',
+    a: 'We provide a connected range of services including nationwide transportation, critical and last-minute deliveries, import and freight coordination, warehousing, and scheduled distribution.',
+  },
+  {
+    q: 'Do you offer same-day or time-critical deliveries?',
+    a: 'Yes. Our critical and last-minute delivery service provides dedicated express dispatch across the UK for emergency freight, aerospace components, medical consignments, and tight production timelines.',
   },
   {
     q: 'Do you provide inland transportation?',
-    a: 'Yes. We provide inland transportation services connecting ports, terminals, warehouses, facilities and delivery destinations. Our team can discuss specific routes, collection points, delivery requirements and load specifications.',
+    a: 'Yes. We provide inland transportation services connecting ports, terminals, warehouses, facilities and delivery destinations across the UK supply chain.',
   },
   {
     q: 'Do you provide warehousing?',
-    a: 'Yes. We offer flexible warehousing and storage solutions for short-term and longer-duration storage requirements. Contact us to discuss your specific storage needs.',
+    a: 'Yes. We offer flexible warehousing and storage solutions for short-term and longer-duration requirements, designed around operational continuity.',
   },
   {
     q: 'Can you support imported goods?',
-    a: 'Yes. We support import logistics coordination, working with freight and shipping partners to facilitate the movement of imported goods through ports, terminals and onward to storage or final destination.',
-  },
-  {
-    q: 'Do you provide distribution?',
-    a: 'Yes. We provide coordinated distribution services supporting delivery to required destinations, integrated with our warehousing and logistics network. Our team can discuss delivery requirements, frequency and locations.',
+    a: 'Yes. We coordinate import logistics with freight and shipping partners to move goods seamlessly through UK ports and terminals onward to final destinations.',
   },
   {
     q: 'How do I request a quote?',
-    a: 'Use our Request a Quote form to describe your requirements. Our team will review and respond promptly. You can also contact us directly by phone, email or WhatsApp for immediate assistance.',
+    a: 'Use our Request a Quote form to describe your requirements. Our team reviews submissions promptly, or you can reach us immediately via WhatsApp or phone.',
   },
 ]
 
@@ -400,7 +412,7 @@ export default function Home({ onNavigate }) {
     return () => clearInterval(timer)
   }, [])
 
-  // Clients carousel state & continuous 3-second cycle (never stops on mouse enter)
+  // Clients carousel state & continuous 3-second cycle
   const [clientIndex, setClientIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(4)
 
@@ -421,7 +433,6 @@ export default function Home({ onNavigate }) {
     return () => window.removeEventListener('resize', updateVisible)
   }, [])
 
-  // Continuous auto-advance every 3 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setClientIndex((prev) => (prev + 1) % clients.length)
@@ -509,17 +520,18 @@ export default function Home({ onNavigate }) {
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Coordinated Supply Chain Capabilities</h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
-              Connected capabilities designed to support the movement, storage and distribution of goods across the supply chain.
+              Connected capabilities designed to support the movement, urgent transport, storage and distribution of goods across the supply chain.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* 5-Card Grid: Responsive across mobile, tablet, desktop and widescreen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {services.map((svc) => (
               <button
                 key={svc.title}
                 onClick={() => onNavigate('services')}
-                className="group relative overflow-hidden rounded-sm text-left"
-                style={{ aspectRatio: '4/3.3' }}
+                className="group relative overflow-hidden rounded-sm text-left flex flex-col justify-end"
+                style={{ aspectRatio: '4/3.5' }}
               >
                 <img
                   src={svc.image}
@@ -527,12 +539,12 @@ export default function Home({ onNavigate }) {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/35 to-transparent" />
                 <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/12 transition-colors duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-white text-lg font-semibold font-display mb-1.5 leading-snug">{svc.title}</h3>
-                  <p className="text-white/75 text-sm font-body leading-relaxed mb-3">{svc.desc}</p>
-                  <div className="flex items-center gap-1.5 text-gold text-sm font-semibold font-display opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div className="relative z-10 p-5">
+                  <h3 className="text-white text-base font-semibold font-display mb-1 leading-snug">{svc.title}</h3>
+                  <p className="text-white/75 text-xs sm:text-sm font-body leading-relaxed mb-3 line-clamp-2">{svc.desc}</p>
+                  <div className="flex items-center gap-1.5 text-gold text-xs font-semibold font-display opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     Learn more <ArrowIcon />
                   </div>
                 </div>
@@ -626,13 +638,13 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {industries.map((ind) => (
               <button
                 key={ind.label}
                 onClick={() => onNavigate('industries')}
                 className="group relative overflow-hidden rounded-sm text-left"
-                style={{ aspectRatio: '16/9' }}
+                style={{ aspectRatio: '16/10' }}
               >
                 <img
                   src={ind.image}
@@ -640,15 +652,15 @@ export default function Home({ onNavigate }) {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/82 via-navy/22 to-transparent" />
-                <div className="absolute top-5 right-5">
-                  <div className="w-8 h-8 bg-white/12 group-hover:bg-gold/85 rounded-full flex items-center justify-center transition-colors duration-200 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
+                <div className="absolute top-4 right-4">
+                  <div className="w-8 h-8 bg-white/15 group-hover:bg-gold/85 rounded-full flex items-center justify-center transition-colors duration-200 text-white">
                     <ArrowIcon />
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-2">{ind.label}</span>
-                  <p className="text-white/85 text-sm sm:text-base font-body leading-relaxed">{ind.desc}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-1.5">{ind.label}</span>
+                  <p className="text-white/85 text-xs sm:text-sm font-body leading-relaxed line-clamp-2">{ind.desc}</p>
                 </div>
               </button>
             ))}
@@ -721,7 +733,6 @@ export default function Home({ onNavigate }) {
       <section className="bg-slate-50/70 py-20 lg:py-24 border-t border-hairline overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
-          {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="block text-gold text-xs sm:text-sm font-bold font-display tracking-[0.18em] uppercase mb-2">
               TRUSTED BY
@@ -734,13 +745,10 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          {/* Carousel Viewport Container */}
           <div className="relative">
-            {/* Soft gradient edge masks */}
             <div className="hidden sm:block pointer-events-none absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50/90 to-transparent z-10" />
             <div className="hidden sm:block pointer-events-none absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50/90 to-transparent z-10" />
 
-            {/* Slider Track */}
             <div className="overflow-hidden py-3">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
@@ -748,7 +756,6 @@ export default function Home({ onNavigate }) {
                   transform: `translateX(-${(clientIndex * 100) / visibleCount}%)`,
                 }}
               >
-                {/* Render clients duplicate sets to ensure smooth loop without trailing gaps */}
                 {[...clients, ...clients].map((client, idx) => (
                   <div
                     key={`${client.id}-${idx}`}
@@ -765,7 +772,6 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
 
-            {/* Pagination indicators */}
             <div className="flex justify-center items-center gap-2 mt-7">
               {clients.map((_, i) => (
                 <button
@@ -856,7 +862,7 @@ export default function Home({ onNavigate }) {
           </div>
 
           <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display leading-tight mb-4 max-w-2xl mx-auto">
-            Have a Transportation, Warehousing or Import Requirement?
+            Have a Transportation, Warehousing or Urgent Delivery Requirement?
           </h2>
 
           <p className="text-white/65 text-base font-body leading-relaxed mb-9 max-w-xl mx-auto">
