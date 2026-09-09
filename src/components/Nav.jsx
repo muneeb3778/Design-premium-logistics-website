@@ -10,8 +10,7 @@ const navLinks = [
   { id: 'contact', label: 'Contact' },
 ]
 
-// Pages that open with a full-width dark hero image — nav should start transparent on these.
-// Add/remove page ids here as you build out Services / Industries / Contact heroes.
+// Pages that open with a full-width dark hero image — nav starts transparent on these
 const darkHeroPages = ['home', 'about', 'services', 'industries', 'contact']
 
 function WhatsAppIcon({ className = 'w-5 h-5' }) {
@@ -37,8 +36,6 @@ export default function Nav({ currentPage, onNavigate }) {
 
   useEffect(() => {
     setMenuOpen(false)
-    // Reset scroll-based state whenever the page changes so a fresh
-    // page load at scrollY 0 always starts transparent (if it's a hero page).
     setScrolled(window.scrollY > 80)
   }, [currentPage])
 
@@ -74,13 +71,13 @@ export default function Nav({ currentPage, onNavigate }) {
               </svg>
             </div>
             <div className="text-left leading-none">
-              <span className={`block text-[13px] font-bold tracking-wide font-display transition-colors ${
+              <span className={`block text-[14px] sm:text-[15px] font-bold tracking-wide font-display transition-colors ${
                 transparent ? 'text-white' : 'text-navy'
               }`}>
                 [COMPANY NAME]
               </span>
-              <span className={`block text-[9px] tracking-[0.16em] uppercase font-body mt-0.5 transition-colors ${
-                transparent ? 'text-white/50' : 'text-dim'
+              <span className={`block text-[10px] tracking-[0.16em] uppercase font-body mt-0.5 transition-colors ${
+                transparent ? 'text-white/60' : 'text-dim'
               }`}>
                 Logistics &amp; Trading
               </span>
@@ -88,16 +85,16 @@ export default function Nav({ currentPage, onNavigate }) {
           </button>
 
           {/* Desktop nav links */}
-          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
-                className={`relative px-4 py-2.5 text-sm font-medium font-body rounded-sm transition-colors whitespace-nowrap ${
+                className={`relative px-4 py-2.5 text-[15px] font-medium font-body rounded-sm transition-colors whitespace-nowrap ${
                   currentPage === link.id
-                    ? transparent ? 'text-white' : 'text-navy'
+                    ? transparent ? 'text-white font-semibold' : 'text-navy font-semibold'
                     : transparent
-                      ? 'text-white/75 hover:text-white'
+                      ? 'text-white/80 hover:text-white'
                       : 'text-dim hover:text-navy'
                 }`}
               >
@@ -110,7 +107,7 @@ export default function Nav({ currentPage, onNavigate }) {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
 
             {/* WhatsApp button */}
             <a
@@ -118,7 +115,7 @@ export default function Nav({ currentPage, onNavigate }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Start WhatsApp Chat"
-              className={`hidden lg:flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-semibold font-display transition-all ${
+              className={`hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm sm:text-[14.5px] font-semibold font-display transition-all ${
                 transparent
                   ? 'bg-white/15 text-white hover:bg-white/25 border border-white/20'
                   : 'bg-[#25D366] text-white hover:bg-[#1ebe5d] shadow-sm'
@@ -129,10 +126,10 @@ export default function Nav({ currentPage, onNavigate }) {
               <span className="xl:hidden">WhatsApp</span>
             </a>
 
-            {/* Request a Quote — always gold, never flips dark */}
+            {/* Request a Quote button */}
             <button
               onClick={() => onNavigate('quote')}
-              className="hidden sm:flex items-center px-5 py-2.5 text-sm font-semibold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg"
+              className="hidden sm:flex items-center px-5 py-2.5 text-sm sm:text-[15px] font-bold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg"
               style={{ backgroundColor: '#eed484' }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -163,16 +160,16 @@ export default function Nav({ currentPage, onNavigate }) {
 
       {/* Mobile menu drawer */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-hairline">
-          <div className="max-w-[1320px] mx-auto px-5 py-4">
-            <nav className="space-y-0.5" aria-label="Mobile navigation">
+        <div className="lg:hidden bg-white border-t border-hairline shadow-lg">
+          <div className="max-w-[1320px] mx-auto px-5 py-5">
+            <nav className="space-y-1" aria-label="Mobile navigation">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => { onNavigate(link.id); setMenuOpen(false) }}
-                  className={`flex w-full items-center px-4 py-3 text-sm font-medium font-body rounded-sm transition-colors ${
+                  className={`flex w-full items-center px-4 py-3.5 text-base font-medium font-body rounded-sm transition-colors ${
                     currentPage === link.id
-                      ? 'text-navy bg-linen font-semibold'
+                      ? 'text-navy bg-linen font-bold'
                       : 'text-dim hover:text-navy hover:bg-linen/50'
                   }`}
                 >
@@ -180,10 +177,10 @@ export default function Nav({ currentPage, onNavigate }) {
                 </button>
               ))}
             </nav>
-            <div className="mt-4 pt-4 border-t border-hairline space-y-2">
+            <div className="mt-5 pt-4 border-t border-hairline space-y-2.5">
               <button
                 onClick={() => { onNavigate('quote'); setMenuOpen(false) }}
-                className="flex w-full justify-center py-3 text-navy text-sm font-semibold font-display rounded-sm transition-all"
+                className="flex w-full justify-center py-3.5 text-navy text-base font-bold font-display rounded-sm transition-all shadow-sm"
                 style={{ backgroundColor: '#eed484' }}
                 onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -194,7 +191,7 @@ export default function Nav({ currentPage, onNavigate }) {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 py-3 rounded-sm text-sm font-semibold font-display text-white transition-colors"
+                className="flex w-full items-center justify-center gap-2 py-3.5 rounded-sm text-base font-bold font-display text-white transition-colors shadow-sm"
                 style={{ backgroundColor: '#25D366' }}
               >
                 <WhatsAppIcon className="w-4 h-4" />
