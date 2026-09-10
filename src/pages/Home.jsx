@@ -111,7 +111,7 @@ const industries = [
 ]
 
 /*
-  Clients & Enterprise Partners Data
+  Clients & Enterprise Partners Data (Bold, prominent, fills the card cleanly)
 */
 const clients = [
   {
@@ -119,11 +119,11 @@ const clients = [
     name: 'Formula 1®',
     sector: 'Motorsport Logistics',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <span className="text-2xl font-black italic tracking-tighter text-[#E10600]">F1</span>
-        <div className="border-l border-slate-300 pl-2 text-left">
-          <span className="block text-xs font-black tracking-wider text-navy uppercase leading-none">FORMULA 1</span>
-          <span className="block text-[9px] text-dim tracking-widest uppercase">Global Racing</span>
+      <div className="flex items-center gap-3">
+        <span className="text-4xl sm:text-[42px] font-black italic tracking-tighter text-[#E10600] leading-none">F1</span>
+        <div className="border-l-2 border-slate-300 pl-3 text-left">
+          <span className="block text-base sm:text-lg font-black tracking-wider text-navy uppercase leading-none">FORMULA 1</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Global Racing</span>
         </div>
       </div>
     ),
@@ -133,13 +133,13 @@ const clients = [
     name: 'Alpine UK',
     sector: 'Motorsport Division',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <div className="w-7 h-7 rounded-full bg-[#00428C] flex items-center justify-center text-white font-bold text-xs italic">
+      <div className="flex items-center gap-3.5">
+        <div className="w-12 h-12 rounded-full bg-[#00428C] flex items-center justify-center text-white font-black text-xl italic shadow-xs shrink-0">
           A
         </div>
         <div className="text-left">
-          <span className="block text-sm font-bold tracking-[0.16em] text-navy uppercase leading-none">ALPINE</span>
-          <span className="block text-[9px] text-[#0090FF] font-semibold tracking-wider uppercase">Motorsport UK</span>
+          <span className="block text-xl sm:text-2xl font-black tracking-[0.16em] text-navy uppercase leading-none">ALPINE</span>
+          <span className="block text-xs text-[#0090FF] font-bold tracking-wider uppercase mt-1">Motorsport UK</span>
         </div>
       </div>
     ),
@@ -149,13 +149,13 @@ const clients = [
     name: 'MOD UK',
     sector: 'Ministry of Defence',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-navy" aria-hidden="true">
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-10 h-10 fill-navy shrink-0" aria-hidden="true">
           <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3-4.8-2.5-4.8 2.5.9-5.3-3.8-3.7 5.3-.8L12 2z" />
         </svg>
         <div className="text-left">
-          <span className="block text-xs font-extrabold tracking-wider text-navy uppercase leading-none">MINISTRY OF DEFENCE</span>
-          <span className="block text-[9px] text-dim tracking-wider uppercase">United Kingdom</span>
+          <span className="block text-sm sm:text-base font-black tracking-wider text-navy uppercase leading-tight">MINISTRY OF DEFENCE</span>
+          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-0.5">United Kingdom</span>
         </div>
       </div>
     ),
@@ -165,15 +165,15 @@ const clients = [
     name: 'Atomic Energy UK',
     sector: 'Energy & Research',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-navy fill-none stroke-2" aria-hidden="true">
-          <circle cx="12" cy="12" r="3" fill="#dfbd51" stroke="none" />
-          <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(30 12 12)" />
-          <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" />
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-10 h-10 stroke-navy fill-none stroke-2 shrink-0" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5" fill="#dfbd51" stroke="none" />
+          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(30 12 12)" />
+          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(-30 12 12)" />
         </svg>
         <div className="text-left">
-          <span className="block text-xs font-bold tracking-tight text-navy uppercase leading-none">UK ATOMIC ENERGY</span>
-          <span className="block text-[9px] text-dim tracking-widest uppercase">Research & Power</span>
+          <span className="block text-sm sm:text-base font-black tracking-tight text-navy uppercase leading-tight">UK ATOMIC ENERGY</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">Research &amp; Power</span>
         </div>
       </div>
     ),
@@ -183,13 +183,13 @@ const clients = [
     name: 'NHS',
     sector: 'National Health Trust',
     renderLogo: () => (
-      <div className="flex items-center gap-2.5">
-        <div className="bg-[#005EB8] px-2 py-0.5 rounded-xs">
-          <span className="text-sm font-black italic tracking-normal text-white">NHS</span>
+      <div className="flex items-center gap-3.5">
+        <div className="bg-[#005EB8] px-3.5 py-1.5 rounded-sm shadow-xs shrink-0">
+          <span className="text-2xl sm:text-3xl font-black italic tracking-tight text-white leading-none">NHS</span>
         </div>
         <div className="text-left">
-          <span className="block text-[11px] font-bold text-navy leading-none">National Health Trust</span>
-          <span className="block text-[9px] text-dim tracking-wide uppercase">Medical Logistics</span>
+          <span className="block text-sm sm:text-base font-black text-navy leading-tight">National Health Trust</span>
+          <span className="block text-xs text-dim tracking-wide uppercase font-semibold mt-0.5">Medical Logistics</span>
         </div>
       </div>
     ),
@@ -199,13 +199,13 @@ const clients = [
     name: 'Boeing',
     sector: 'Aerospace & Defence',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#0039A6]" aria-hidden="true">
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-10 h-10 fill-[#0039A6] shrink-0" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z" />
         </svg>
         <div className="text-left">
-          <span className="block text-base font-black tracking-widest text-[#0039A6] uppercase leading-none font-sans">BOEING</span>
-          <span className="block text-[8px] text-dim tracking-widest uppercase">Aerospace</span>
+          <span className="block text-2xl sm:text-[26px] font-black tracking-widest text-[#0039A6] uppercase leading-none font-sans">BOEING</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Aerospace Logistics</span>
         </div>
       </div>
     ),
@@ -215,13 +215,13 @@ const clients = [
     name: 'Heathrow & Gatwick',
     sector: 'Airport Operations',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
           <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
         </svg>
         <div className="text-left">
-          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">GATWICK &amp; HEATHROW</span>
-          <span className="block text-[8px] text-dim tracking-widest uppercase">UK Airport Hubs</span>
+          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">GATWICK &amp; HEATHROW</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">UK Airport Hubs</span>
         </div>
       </div>
     ),
@@ -231,13 +231,13 @@ const clients = [
     name: 'HSBC',
     sector: 'Banking & Financial',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <div className="relative w-5 h-5">
+      <div className="flex items-center gap-3">
+        <div className="relative w-8 h-8 shrink-0">
           <div className="absolute inset-0 bg-[#DB0011]" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
         </div>
         <div className="text-left">
-          <span className="block text-sm font-black tracking-wider text-navy leading-none">HSBC</span>
-          <span className="block text-[8px] text-dim tracking-wider uppercase">Global Banking</span>
+          <span className="block text-2xl sm:text-3xl font-black tracking-wider text-navy leading-none">HSBC</span>
+          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-1">Global Banking</span>
         </div>
       </div>
     ),
@@ -248,11 +248,11 @@ const clients = [
     sector: 'Global Logistics',
     renderLogo: () => (
       <div className="text-left">
-        <div className="flex items-baseline text-base font-black leading-none tracking-tight">
+        <div className="flex items-baseline text-3xl sm:text-[34px] font-black leading-none tracking-tight">
           <span className="text-[#4D148C]">Fed</span>
           <span className="text-[#FF6600]">Ex</span>
         </div>
-        <span className="block text-[8px] text-dim tracking-widest uppercase mt-0.5">Express Freight</span>
+        <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Express Freight</span>
       </div>
     ),
   },
@@ -261,13 +261,13 @@ const clients = [
     name: 'Warner Bros & Shinfield',
     sector: 'Film & Media Studios',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <div className="w-6 h-7 bg-[#003B7B] rounded-b-md flex items-center justify-center text-white text-[10px] font-black tracking-tighter">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-11 bg-[#003B7B] rounded-b-lg flex items-center justify-center text-white text-sm font-black tracking-tighter shrink-0 shadow-xs">
           WB
         </div>
         <div className="text-left">
-          <span className="block text-[10px] font-bold text-navy uppercase leading-tight">WARNER BROS.</span>
-          <span className="block text-[8px] text-dim tracking-wider uppercase">Shinfield Studios</span>
+          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">WARNER BROS.</span>
+          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-0.5">Shinfield Studios</span>
         </div>
       </div>
     ),
@@ -277,13 +277,13 @@ const clients = [
     name: 'Kodak Studios',
     sector: 'Media & Production',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <div className="w-6 h-6 bg-[#E31837] flex items-center justify-center rounded-xs text-[#FFC72C] font-black text-sm">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-[#E31837] flex items-center justify-center rounded-sm text-[#FFC72C] font-black text-xl shrink-0 shadow-xs">
           K
         </div>
         <div className="text-left">
-          <span className="block text-xs font-black tracking-wider text-[#E31837] leading-none uppercase">Kodak</span>
-          <span className="block text-[8px] text-dim tracking-wider uppercase">Studios Logistics</span>
+          <span className="block text-xl sm:text-2xl font-black tracking-wider text-[#E31837] leading-none uppercase">Kodak</span>
+          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-1">Studios Logistics</span>
         </div>
       </div>
     ),
@@ -293,13 +293,13 @@ const clients = [
     name: 'Data Centres UK',
     sector: 'Critical Infrastructure',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
           <path d="M4 1h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zM6 5h2V3H6v2zm0 8h2v-2H6v2zm0 8h2v-2H6v2z" />
         </svg>
         <div className="text-left">
-          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">DATA CENTRES</span>
-          <span className="block text-[8px] text-dim tracking-widest uppercase">Infrastructure</span>
+          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">DATA CENTRES</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">Critical Infrastructure</span>
         </div>
       </div>
     ),
@@ -309,13 +309,13 @@ const clients = [
     name: 'Companies House UK',
     sector: 'Government Agency',
     renderLogo: () => (
-      <div className="flex items-center gap-2">
-        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-navy" aria-hidden="true">
+      <div className="flex items-center gap-3">
+        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
           <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" />
         </svg>
         <div className="text-left">
-          <span className="block text-[11px] font-bold text-navy uppercase leading-tight">COMPANIES HOUSE</span>
-          <span className="block text-[8px] text-dim tracking-widest uppercase">UK Executive Agency</span>
+          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">COMPANIES HOUSE</span>
+          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">UK Executive Agency</span>
         </div>
       </div>
     ),
@@ -325,10 +325,10 @@ const clients = [
     name: 'Mitie UK',
     sector: 'Facilities & Security',
     renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="text-lg font-black tracking-tight text-navy lowercase font-sans">mitie</span>
-        <div className="w-2 h-2 rounded-full bg-[#E40046] mb-1.5" />
-        <span className="block text-[8px] text-dim tracking-widest uppercase ml-1">UK Facilities</span>
+      <div className="flex items-center gap-2.5">
+        <span className="text-3xl sm:text-4xl font-black tracking-tight text-navy lowercase font-sans leading-none">mitie</span>
+        <div className="w-3 h-3 rounded-full bg-[#E40046] mb-2.5 shrink-0" />
+        <span className="block text-xs text-dim tracking-widest uppercase font-medium ml-1">UK Facilities</span>
       </div>
     ),
   },
@@ -511,7 +511,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── SERVICES & SOLUTIONS ──────────────────────────────────────── */}
+      {/* ── SERVICES & SOLUTIONS (MATCHED TO INDUSTRIES SECTION) ──────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
@@ -524,14 +524,14 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          {/* 5-Card Grid: Responsive across mobile, tablet, desktop and widescreen */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          {/* Exact same flexbox structure, aspect-ratio & centering as Industries */}
+          <div className="flex flex-wrap justify-center gap-5">
             {services.map((svc) => (
               <button
                 key={svc.title}
                 onClick={() => onNavigate('services')}
-                className="group relative overflow-hidden rounded-sm text-left flex flex-col justify-end"
-                style={{ aspectRatio: '4/3.5' }}
+                className="group relative overflow-hidden rounded-sm text-left shrink-0 w-full sm:w-[calc(50%-10px)] lg:w-[calc((100%-40px)/3)]"
+                style={{ aspectRatio: '16/10' }}
               >
                 <img
                   src={svc.image}
@@ -539,25 +539,26 @@ export default function Home({ onNavigate }) {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/35 to-transparent" />
-                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/12 transition-colors duration-300" />
-                <div className="relative z-10 p-5">
-                  <h3 className="text-white text-base font-semibold font-display mb-1 leading-snug">{svc.title}</h3>
-                  <p className="text-white/75 text-xs sm:text-sm font-body leading-relaxed mb-3 line-clamp-2">{svc.desc}</p>
-                  <div className="flex items-center gap-1.5 text-gold text-xs font-semibold font-display opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Learn more <ArrowIcon />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
+                <div className="absolute top-4 right-4">
+                  <div className="w-8 h-8 bg-white/15 group-hover:bg-gold/85 rounded-full flex items-center justify-center transition-colors duration-200 text-white">
+                    <ArrowIcon />
                   </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-1.5">{svc.title}</span>
+                  <p className="text-white/85 text-xs sm:text-sm font-body leading-relaxed line-clamp-2">{svc.desc}</p>
                 </div>
               </button>
             ))}
           </div>
 
-          <div className="mt-11 text-center">
+          <div className="mt-12 text-center">
             <button
               onClick={() => onNavigate('services')}
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 border-2 border-navy text-navy text-sm font-bold font-display tracking-wide rounded-sm hover:bg-navy hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
             >
-              Explore All Services & Solutions
+              Explore All Services &amp; Solutions
               <ArrowIcon />
             </button>
           </div>
@@ -609,10 +610,9 @@ export default function Home({ onNavigate }) {
               </div>
 
               <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap gap-3">
-                <QuoteButton onClick={() => onNavigate('quote')} />
                 <button
                   onClick={() => onNavigate('about')}
-                  className="px-6 py-3 border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors"
+                  className="px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
                 >
                   About Our Company
                 </button>
@@ -623,7 +623,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── INDUSTRIES ────────────────────────────────────────────────── */}
+      {/* ── INDUSTRIES (CENTER-ALIGNED) ───────────────────────────────── */}
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
@@ -638,12 +638,12 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="flex flex-wrap justify-center gap-5">
             {industries.map((ind) => (
               <button
                 key={ind.label}
                 onClick={() => onNavigate('industries')}
-                className="group relative overflow-hidden rounded-sm text-left"
+                className="group relative overflow-hidden rounded-sm text-left shrink-0 w-full sm:w-[calc(50%-10px)] lg:w-[calc((100%-40px)/3)]"
                 style={{ aspectRatio: '16/10' }}
               >
                 <img
@@ -729,11 +729,11 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── OUR CLIENTS (CONTINUOUS 3s CAROUSEL) ────────────────────────── */}
-      <section className="bg-slate-50/70 py-20 lg:py-24 border-t border-hairline overflow-hidden">
+      {/* ── OUR CLIENTS (LOW PADDING & BIGGER LOGOS) ───────────────────── */}
+      <section className="bg-slate-50/70 py-16 lg:py-20 border-t border-hairline overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="block text-gold text-xs sm:text-sm font-bold font-display tracking-[0.18em] uppercase mb-2">
               TRUSTED BY
             </span>
@@ -749,7 +749,7 @@ export default function Home({ onNavigate }) {
             <div className="hidden sm:block pointer-events-none absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50/90 to-transparent z-10" />
             <div className="hidden sm:block pointer-events-none absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50/90 to-transparent z-10" />
 
-            <div className="overflow-hidden py-3">
+            <div className="overflow-hidden py-2">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{
@@ -759,11 +759,11 @@ export default function Home({ onNavigate }) {
                 {[...clients, ...clients].map((client, idx) => (
                   <div
                     key={`${client.id}-${idx}`}
-                    className="shrink-0 px-2.5 sm:px-3"
+                    className="shrink-0 px-2 sm:px-2.5"
                     style={{ width: `${100 / visibleCount}%` }}
                   >
-                    <div className="h-[105px] bg-white border border-slate-200/80 rounded-xl px-5 py-4 flex flex-col items-center justify-center text-center shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:border-gold/60 hover:shadow-md transition-all duration-300 group select-none">
-                      <div className="transition-transform duration-300 group-hover:scale-105">
+                    <div className="h-[96px] sm:h-[102px] bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 flex items-center justify-center text-center shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:border-gold hover:shadow-md transition-all duration-300 group select-none">
+                      <div className="transition-transform duration-300 group-hover:scale-105 flex items-center justify-center w-full">
                         {client.renderLogo()}
                       </div>
                     </div>
@@ -772,18 +772,6 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-2 mt-7">
-              {clients.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setClientIndex(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === clientIndex ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
-                />
-              ))}
-            </div>
           </div>
 
         </div>

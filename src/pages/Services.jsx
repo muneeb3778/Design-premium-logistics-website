@@ -63,13 +63,35 @@ const serviceList = [
       'Multi-stop and consolidated routes',
       'Scheduled and ad-hoc movements',
       'Full-load and part-load options',
-      'Temperature-sensitive and specialist cargo support (discuss requirements)',
+      'Temperature-sensitive and specialist cargo support',
     ],
     benefits: [
       'Reliable, schedule-focused delivery',
       'Direct communication throughout',
       'Flexible routing and load options',
       'Integrated with warehousing and distribution',
+    ],
+  },
+  {
+    id: 'critical',
+    label: 'Critical Deliveries',
+    fullTitle: 'Critical & Last-Minute Deliveries',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=900&h=600&fit=crop&auto=format',
+    alt: 'Dedicated priority courier vehicle on rapid delivery route',
+    overview: 'When timelines are non-negotiable and standard freight cannot meet the deadline, our critical logistics team provides immediate, dedicated transport solutions across the UK. From aerospace AOG parts and emergency medical supplies to urgent industrial components, we respond within minutes.',
+    capabilities: [
+      'Dedicated urgent courier and express dispatch',
+      '24/7 rapid response and out-of-hours collections',
+      'Direct drive, door-to-door transit without consolidation',
+      'Aviation, aerospace (AOG) and emergency freight handling',
+      'Time-critical medical and healthcare consignments',
+      'Real-time tracking and continuous milestone updates',
+    ],
+    benefits: [
+      'Immediate dispatch with zero unnecessary stops',
+      'Direct line to dedicated operations controllers',
+      'Guaranteed urgent delivery schedules',
+      'Complete end-to-end chain of custody',
     ],
   },
   {
@@ -215,7 +237,6 @@ export default function Services({ onNavigate }) {
             </div>
           </div>
 
-          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
           <div className="shrink-0 pb-6" aria-hidden="true">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center">
@@ -256,31 +277,37 @@ export default function Services({ onNavigate }) {
           className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            
+            {/* Eyebrow Label positioned above the two columns */}
+            <SectionTag className="mb-3">{svc.label}</SectionTag>
 
-              {/* Image Column */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full min-h-[340px] sm:min-h-[380px]" style={{ aspectRatio: '16/10' }}>
+            {/* Grid: Image and Content pair together with matching top & bottom edges */}
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+
+              {/* Image Column: Expands from fullTitle top down to capabilities cards bottom */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-[380px]">
                 <img
                   src={svc.image}
                   alt={svc.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-navy/8" />
               </div>
 
-              {/* Content Column */}
-              <div className="lg:[direction:ltr]">
-                <SectionTag>{svc.label}</SectionTag>
-                <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
-                  {svc.fullTitle}
-                </h2>
-                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-10">
-                  {svc.overview}
-                </p>
+              {/* Content Column: Starts with fullTitle and ends at bottom of capabilities cards */}
+              <div className="lg:[direction:ltr] flex flex-col justify-between">
+                <div>
+                  <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-5 leading-tight">
+                    {svc.fullTitle}
+                  </h2>
+                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                    {svc.overview}
+                  </p>
+                </div>
 
                 {/* Capabilities & Key Benefits cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
                     <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
                       <span className="w-4 h-px bg-gold shrink-0" />
@@ -311,19 +338,24 @@ export default function Services({ onNavigate }) {
                     </ul>
                   </div>
                 </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <QuoteButton onClick={() => onNavigate('quote')} />
-                  <button
-                    onClick={() => onNavigate('contact')}
-                    className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
-                  >
-                    Speak to Our Team
-                  </button>
-                </div>
               </div>
 
             </div>
+
+            {/* Buttons Row: Placed below the baseline, perfectly aligned flush with the content side */}
+            <div className={`mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+              <div className="hidden lg:block" />
+              <div className="lg:[direction:ltr] flex flex-wrap gap-3">
+                <QuoteButton onClick={() => onNavigate('quote')} />
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                >
+                  Speak to Our Team
+                </button>
+              </div>
+            </div>
+
           </div>
         </section>
       ))}

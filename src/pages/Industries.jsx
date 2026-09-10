@@ -65,7 +65,24 @@ const industries = [
       'Warehouse and inventory support',
       'Distribution coordination',
     ],
-    services: ['Transportation', 'Warehousing', 'Distribution'],
+    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
+  },
+  {
+    id: 'arts-film-studios',
+    label: 'Arts & Film Studios',
+    headline: 'Specialist Logistics for Film, TV & Creative Production Studios',
+    image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=1200&h=600&fit=crop&auto=format',
+    alt: 'Film studio soundstage, lighting rigs and production set equipment',
+    context: 'Film, television and creative studios operate on unforgiving production schedules where missing props, delayed sound equipment, or unscheduled stage downtime can cost thousands per hour. We provide dedicated, high-care transportation and storage tailored directly around call sheets and shoot locations.',
+    considerations: [
+      'Direct shoot location & soundstage deliveries',
+      'High-care handling for cameras, lenses & lighting',
+      'Tight turnaround around call sheets and schedules',
+      'Secure, temperature-stable storage for props & sets',
+      'Out-of-hours & weekend production support',
+      'Dedicated direct courier between production hubs',
+    ],
+    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
   },
   {
     id: 'public-sector',
@@ -99,7 +116,7 @@ const industries = [
       'Secure and controlled operations',
       'Clear communication protocols',
     ],
-    services: ['Transportation', 'Warehousing', 'Distribution'],
+    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
   },
   {
     id: 'commercial-industrial',
@@ -195,7 +212,6 @@ export default function Industries({ onNavigate }) {
             </div>
           </div>
 
-          {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
           <div className="shrink-0 pb-6" aria-hidden="true">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center">
@@ -236,17 +252,22 @@ export default function Industries({ onNavigate }) {
           className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            
+            {/* Eyebrow Label positioned above the two columns */}
+            <SectionTag className="mb-3">{ind.label}</SectionTag>
 
-              {/* Image Column */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline min-h-[340px] sm:min-h-[380px]" style={{ aspectRatio: '16/10' }}>
+            {/* Grid: Image and Content pair together with matching top & bottom edges */}
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+
+              {/* Image Column: Expands from headline top down to cards bottom */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-[380px]">
                 <img
                   src={ind.image}
                   alt={ind.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-navy/5" />
+                <div className="absolute inset-0 bg-navy/8" />
                 <div className="absolute bottom-5 left-5">
                   <span className="inline-block bg-navy/95 text-gold-light text-xs sm:text-sm font-bold tracking-[0.12em] uppercase font-display px-4 py-2 rounded-sm backdrop-blur-sm border border-white/10 shadow-md">
                     {ind.label}
@@ -254,19 +275,21 @@ export default function Industries({ onNavigate }) {
                 </div>
               </div>
 
-              {/* Content Column */}
-              <div className="lg:[direction:ltr]">
-                <SectionTag>{ind.label}</SectionTag>
-                <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
-                  {ind.headline}
-                </h2>
-                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
-                  {ind.context}
-                </p>
+              {/* Content Column: Starts with headline and ends at bottom of cards */}
+              <div className="lg:[direction:ltr] flex flex-col justify-between">
+                <div>
+                  <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
+                    {ind.headline}
+                  </h2>
+                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                    {ind.context}
+                  </p>
+                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+                {/* Key Considerations & Relevant Services cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Considerations Card */}
-                  <div className="p-6 bg-white rounded-sm border border-hairline shadow-xs">
+                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
                     <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
                       <span className="w-4 h-px bg-gold shrink-0" />
                       Key Considerations
@@ -282,7 +305,7 @@ export default function Industries({ onNavigate }) {
                   </div>
 
                   {/* Services Card */}
-                  <div className="p-6 bg-white rounded-sm border border-hairline shadow-xs">
+                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
                     <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
                       <span className="w-4 h-px bg-gold shrink-0" />
                       Relevant Services
@@ -297,19 +320,24 @@ export default function Industries({ onNavigate }) {
                     </ul>
                   </div>
                 </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    onClick={() => onNavigate('services')}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
-                  >
-                    Explore Services &amp; Solutions
-                    <ArrowIcon />
-                  </button>
-                </div>
               </div>
 
             </div>
+
+            {/* Buttons Row: Placed below the baseline, properly aligned flush with the content side */}
+            <div className={`mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+              <div className="hidden lg:block" />
+              <div className="lg:[direction:ltr] flex flex-wrap gap-3">
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
+                >
+                  Explore Services &amp; Solutions
+                  <ArrowIcon />
+                </button>
+              </div>
+            </div>
+
           </div>
         </section>
       ))}

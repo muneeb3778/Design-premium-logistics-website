@@ -115,14 +115,14 @@ export default function Nav({ currentPage, onNavigate }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Start WhatsApp Chat"
-              className={`hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm sm:text-[14.5px] font-semibold font-display transition-all ${
+              className={`hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm sm:text-[15px] font-bold font-display transition-all ${
                 transparent
                   ? 'bg-white/15 text-white hover:bg-white/25 border border-white/20'
                   : 'bg-[#25D366] text-white hover:bg-[#1ebe5d] shadow-sm'
               }`}
             >
               <WhatsAppIcon className="w-4 h-4" />
-              <span className="hidden xl:inline">Start WhatsApp Chat</span>
+              <span className="hidden xl:inline">WhatsApp Chat</span>
               <span className="xl:hidden">WhatsApp</span>
             </a>
 
