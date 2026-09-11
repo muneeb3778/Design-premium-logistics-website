@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
+import CtaSection from '../components/CtaSection'
 
 /*
   Hero slideshow data
@@ -386,11 +387,11 @@ function WhatsAppIcon({ className = 'w-4 h-4' }) {
 }
 
 function QuoteButton({ onClick, size = 'md', className = '' }) {
-  const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-6 py-3'
+  const padding = size === 'lg' ? 'px-6 py-3.5' : 'px-6 py-3'
   return (
     <button
       onClick={onClick}
-      className={`${padding} text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
+      className={`inline-flex items-center justify-center ${padding} text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
       style={{ backgroundColor: '#eed484' }}
       onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
       onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -455,14 +456,14 @@ export default function Home({ onNavigate }) {
             className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100 z-0' : 'opacity-0 z-0'}`}
             aria-hidden={i !== slide}
           >
-            {/* Crisp hero image (no blur effect) */}
+            {/* Crisp hero image */}
             <img
               src={s.image}
               alt={s.alt}
               className="absolute inset-0 w-full h-full object-cover"
               loading={i === 0 ? 'eager' : 'lazy'}
             />
-            {/* Very slightly dark tinted overlay for optimal text clarity */}
+            {/* Slightly dark tinted overlay for optimal text clarity */}
             <div
               className="absolute inset-0"
               style={{
@@ -492,7 +493,7 @@ export default function Home({ onNavigate }) {
             </div>
           </div>
 
-          {/* Slide navigation dots — completely transparent background */}
+          {/* Slide navigation dots */}
           <div className="shrink-0 pb-7 pt-2">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center" role="tablist" aria-label="Slideshow navigation">
@@ -686,53 +687,69 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── STATISTICS / TRUST ────────────────────────────────────────── */}
+      {/* ── STATISTICS / TRUST (OUR EXPERIENCE) ───────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="text-center max-w-xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
               Our Experience
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
               Experience Built Around Reliability
             </h2>
-            <p className="text-dim text-base font-body leading-relaxed">
+            <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
               Our track record across transportation, warehousing, imports and distribution reflects the requirements of the organisations we work with.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          {/* Cards with prominent font sizing and balanced padding */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
               { value: 'XX+', label: 'Years Experience', sub: 'Serving UK supply chains' },
               { value: 'XX+', label: 'Shipments & Deliveries', sub: '[VERIFIED STATISTIC]' },
               { value: 'XX+', label: 'Customers Supported', sub: '[VERIFIED STATISTIC]' },
               { value: 'XX', label: 'Service Categories', sub: 'Connected capabilities' },
             ].map((stat) => (
-              <div key={stat.label} className="text-center p-6 border border-hairline rounded-sm hover:border-navy/20 transition-colors group">
-                <div className="text-4xl lg:text-5xl font-bold font-display text-gold mb-2 group-hover:text-gold-light transition-colors">{stat.value}</div>
-                <div className="text-navy text-sm font-semibold font-display mb-1">{stat.label}</div>
-                <div className="text-dim text-xs font-body">{stat.sub}</div>
+              <div
+                key={stat.label}
+                className="text-center p-7 sm:p-8 border border-hairline rounded-sm hover:border-navy/30 hover:shadow-md transition-all duration-300 group flex flex-col justify-center bg-white"
+              >
+                <div className="text-5xl sm:text-6xl font-bold font-display text-gold mb-3 group-hover:text-gold-light transition-colors">
+                  {stat.value}
+                </div>
+                <div className="text-navy text-lg sm:text-xl font-bold font-display mb-2 leading-tight">
+                  {stat.label}
+                </div>
+                <div className="text-dim text-sm sm:text-base font-body leading-relaxed">
+                  {stat.sub}
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="border-t border-hairline pt-10">
-            <p className="text-center text-dim text-xs font-body tracking-[0.13em] uppercase mb-6">Accreditations &amp; Credentials</p>
-            <div className="flex flex-wrap justify-center gap-3">
+          <div className="border-t border-hairline pt-12">
+            <p className="text-center text-dim text-xs sm:text-sm font-body tracking-[0.15em] uppercase font-semibold mb-6">
+              Accreditations &amp; Credentials
+            </p>
+            <div className="flex flex-wrap justify-center gap-3.5">
               {['[VERIFIED CERTIFICATION]', '[VERIFIED CERTIFICATION]', '[VERIFIED MEMBERSHIP]', '[VERIFIED ACCREDITATION]'].map((cert) => (
-                <div key={cert} className="px-5 py-2.5 border border-hairline rounded-sm text-dim text-sm font-body hover:border-navy/20 transition-colors">
+                <div key={cert} className="px-6 py-3 border border-hairline rounded-sm text-dim text-sm sm:text-base font-medium font-body hover:border-navy/30 hover:text-navy transition-colors">
                   {cert}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-12 max-w-2xl mx-auto p-8 bg-linen rounded-sm border border-hairline text-center">
-            <svg viewBox="0 0 24 24" className="w-7 h-7 fill-gold/25 mx-auto mb-4" aria-hidden="true">
+          <div className="mt-14 max-w-2xl mx-auto p-8 sm:p-10 bg-linen rounded-sm border border-hairline text-center">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 fill-gold/35 mx-auto mb-4" aria-hidden="true">
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
-            <p className="text-navy text-base font-body leading-relaxed italic mb-5">[VERIFIED CLIENT TESTIMONIAL]</p>
-            <div className="text-dim text-[11px] font-display tracking-[0.1em] uppercase">[CLIENT NAME] · [CLIENT ORGANISATION]</div>
+            <p className="text-navy text-lg sm:text-xl font-body leading-relaxed italic mb-5">
+              "[VERIFIED CLIENT TESTIMONIAL]"
+            </p>
+            <div className="text-dim text-xs sm:text-sm font-display tracking-[0.14em] uppercase font-bold">
+              [CLIENT NAME] · [CLIENT ORGANISATION]
+            </div>
           </div>
         </div>
       </section>
@@ -838,56 +855,7 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
-        <img
-          src="https://images.unsplash.com/photo-1641176716788-d4816a66dc6d?w=1920&h=700&fit=crop&auto=format"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-15"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.90) 60%, rgba(12,37,69,0.75) 100%)' }}
-        />
-
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
-          <div className="flex justify-center">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
-              Get in Touch
-            </span>
-          </div>
-
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display leading-tight mb-4 max-w-2xl mx-auto">
-            Have a Transportation, Warehousing or Urgent Delivery Requirement?
-          </h2>
-
-          <p className="text-white/65 text-base font-body leading-relaxed mb-9 max-w-xl mx-auto">
-            Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
-
-            <button
-              onClick={() => onNavigate('contact')}
-              className="px-7 py-3.5 border border-white/28 bg-white/10 text-white text-sm font-medium font-body rounded-sm hover:bg-white/20 transition-colors"
-            >
-              Speak to Our Team
-            </button>
-
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"
-              style={{ backgroundColor: '#25D366' }}
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              Start WhatsApp Chat
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaSection onNavigate={onNavigate} />
 
     </div>
   )

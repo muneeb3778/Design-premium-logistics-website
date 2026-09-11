@@ -1,6 +1,7 @@
 // src/pages/Contact.jsx
 import { useState, useRef, useEffect } from 'react'
 import { waLink } from '../constants'
+import CtaSection from '../components/CtaSection'
 
 function HeroLabel({ children }) {
   return (
@@ -213,7 +214,7 @@ export default function Contact({ onNavigate }) {
                       rel="noopener noreferrer"
                       className="text-navy text-base font-body hover:text-gold transition-colors"
                     >
-                      Start a WhatsApp Conversation
+                      WhatsApp Chat
                     </a>
                   </div>
                 </div>
@@ -256,7 +257,7 @@ export default function Contact({ onNavigate }) {
                   style={{ backgroundColor: '#25D366' }}
                 >
                   <WhatsAppIcon className="w-4 h-4" />
-                  Start WhatsApp Chat
+                  WhatsApp Chat
                 </a>
               </div>
             </div>
@@ -383,6 +384,9 @@ export default function Contact({ onNavigate }) {
           </div>
         </div>
       </section>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
+      <CtaSection onNavigate={onNavigate} />
 
     </div>
   )

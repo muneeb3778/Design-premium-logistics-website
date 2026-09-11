@@ -1,5 +1,6 @@
 // src/pages/About.jsx
 import { waLink } from '../constants'
+import CtaSection from '../components/CtaSection'
 
 function HeroLabel({ children }) {
   return (
@@ -311,49 +312,8 @@ export default function About({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── CTA ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
-        <img
-          src="https://images.unsplash.com/photo-1641176716788-d4816a66dc6d?w=1920&h=700&fit=crop&auto=format"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-15"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(105deg, rgba(12,37,69,0.98) 0%, rgba(12,37,69,0.90) 60%, rgba(12,37,69,0.75) 100%)' }}
-        />
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
-          <div className="flex justify-center">
-            <SectionTag>Get in Touch</SectionTag>
-          </div>
-          <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display mb-4 leading-tight">
-            Ready to Discuss Your Requirements?
-          </h2>
-          <p className="text-white/65 text-base font-body mb-9 max-w-lg mx-auto leading-relaxed">
-            Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <QuoteButton onClick={() => onNavigate('quote')} size="lg" />
-            <button
-              onClick={() => onNavigate('contact')}
-              className="px-7 py-3.5 border border-white/28 text-white text-sm font-medium font-body rounded-sm hover:bg-white/10 transition-colors"
-            >
-              Contact Us
-            </button>
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3.5 flex items-center gap-2 text-white text-sm font-semibold font-display rounded-sm transition-all hover:brightness-110 shadow-md"
-              style={{ backgroundColor: '#25D366' }}
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              Start WhatsApp Chat
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
+      <CtaSection onNavigate={onNavigate} />
 
     </div>
   )

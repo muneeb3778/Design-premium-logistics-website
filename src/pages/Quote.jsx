@@ -1,5 +1,6 @@
 // src/pages/Quote.jsx
 import { useState, useRef, useEffect } from 'react'
+import CtaSection from '../components/CtaSection'
 
 const serviceOptions = [
   'Transportation & Inland Logistics',
@@ -562,6 +563,10 @@ export default function Quote({ onNavigate }) {
           </p>
         </div>
       </div>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
+      <CtaSection onNavigate={onNavigate} />
+
     </div>
   )
 }

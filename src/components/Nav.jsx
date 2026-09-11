@@ -114,22 +114,21 @@ export default function Nav({ currentPage, onNavigate }) {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Start WhatsApp Chat"
-              className={`hidden lg:flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm sm:text-[15px] font-bold font-display transition-all ${
+              aria-label="WhatsApp Chat"
+              className={`hidden lg:flex items-center justify-center gap-2 w-40 xl:w-44 py-2.5 px-4 rounded-sm text-sm sm:text-[15px] font-bold font-display transition-all whitespace-nowrap ${
                 transparent
                   ? 'bg-white/15 text-white hover:bg-white/25 border border-white/20'
                   : 'bg-[#25D366] text-white hover:bg-[#1ebe5d] shadow-sm'
               }`}
             >
-              <WhatsAppIcon className="w-4 h-4" />
-              <span className="hidden xl:inline">WhatsApp Chat</span>
-              <span className="xl:hidden">WhatsApp</span>
+              <WhatsAppIcon className="w-4 h-4 shrink-0" />
+              <span>WhatsApp Chat</span>
             </a>
 
             {/* Request a Quote button */}
             <button
               onClick={() => onNavigate('quote')}
-              className="hidden sm:flex items-center px-5 py-2.5 text-sm sm:text-[15px] font-bold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg"
+              className="hidden sm:flex items-center justify-center w-40 xl:w-44 py-2.5 px-4 text-sm sm:text-[15px] font-bold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg"
               style={{ backgroundColor: '#eed484' }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -180,7 +179,7 @@ export default function Nav({ currentPage, onNavigate }) {
             <div className="mt-5 pt-4 border-t border-hairline space-y-2.5">
               <button
                 onClick={() => { onNavigate('quote'); setMenuOpen(false) }}
-                className="flex w-full justify-center py-3.5 text-navy text-base font-bold font-display rounded-sm transition-all shadow-sm"
+                className="flex w-full items-center justify-center py-3.5 px-4 text-navy text-base font-bold font-display rounded-sm transition-all shadow-sm"
                 style={{ backgroundColor: '#eed484' }}
                 onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -191,11 +190,11 @@ export default function Nav({ currentPage, onNavigate }) {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 py-3.5 rounded-sm text-base font-bold font-display text-white transition-colors shadow-sm"
+                className="flex w-full items-center justify-center gap-2 py-3.5 px-4 rounded-sm text-base font-bold font-display text-white transition-colors shadow-sm"
                 style={{ backgroundColor: '#25D366' }}
               >
-                <WhatsAppIcon className="w-4 h-4" />
-                Start WhatsApp Chat
+                <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                WhatsApp Chat
               </a>
             </div>
           </div>
