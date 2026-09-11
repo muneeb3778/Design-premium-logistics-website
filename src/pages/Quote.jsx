@@ -217,7 +217,7 @@ export default function Quote({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
+        style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
           src="https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=1920&h=1080&fit=crop&auto=format"
@@ -226,20 +226,20 @@ export default function Quote({ onNavigate }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.65) 0%, rgba(12,37,69,0.45) 50%, rgba(12,37,69,0.28) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
+          <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
                 <HeroLabel>Request a Quote</HeroLabel>
-                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-bold font-display leading-[1.2] mb-4">
                   Tell Us About Your Requirements
                 </h1>
-                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
                   Tailored logistics solutions built around your exact specifications.
                 </p>
               </div>
@@ -247,7 +247,7 @@ export default function Quote({ onNavigate }) {
           </div>
 
           {/* Spacer to match Home's hero dots bar height — keeps vertical centering identical */}
-          <div className="shrink-0 pb-6" aria-hidden="true">
+          <div className="shrink-0 pb-7 pt-2" aria-hidden="true">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center">
                 <div className="h-2.5 w-2.5 opacity-0" />

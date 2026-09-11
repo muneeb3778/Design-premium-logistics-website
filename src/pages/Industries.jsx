@@ -56,14 +56,12 @@ const industries = [
     headline: 'Reliable Logistics for Healthcare Supply Chains',
     image: 'https://images.unsplash.com/photo-1628372095387-017d1099fc19?w=1200&h=600&fit=crop&auto=format',
     alt: 'Healthcare facility representing supply chain support for health organisations',
-    context: 'Healthcare organisations operate supply chains where reliability, accountability and operational continuity are non-negotiable. From the procurement of essential goods to the distribution of supplies to healthcare facilities, logistics failures carry real operational consequences.',
+    context: 'Healthcare supply chains demand strict reliability, accountability, and operational continuity for essential goods and facility deliveries.',
     considerations: [
       'Time-sensitive supply requirements',
       'Reliable and accountable delivery',
       'Careful handling of sensitive goods',
-      'Clear communication and reporting',
-      'Warehouse and inventory support',
-      'Distribution coordination',
+      'Warehouse & distribution support',
     ],
     services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
   },
@@ -73,14 +71,12 @@ const industries = [
     headline: 'Specialist Logistics for Film, TV & Creative Production Studios',
     image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=1200&h=600&fit=crop&auto=format',
     alt: 'Film studio soundstage, lighting rigs and production set equipment',
-    context: 'Film, television and creative studios operate on unforgiving production schedules where missing props, delayed sound equipment, or unscheduled stage downtime can cost thousands per hour. We provide dedicated, high-care transportation and storage tailored directly around call sheets and shoot locations.',
+    context: 'Film and TV production studios operate on strict schedules where delays cost thousands per hour. We provide high-care transport and storage tailored to call sheets.',
     considerations: [
       'Direct shoot location & soundstage deliveries',
-      'High-care handling for cameras, lenses & lighting',
-      'Tight turnaround around call sheets and schedules',
-      'Secure, temperature-stable storage for props & sets',
+      'High-care handling for cameras & lighting',
+      'Rapid turnaround around call sheets',
       'Out-of-hours & weekend production support',
-      'Dedicated direct courier between production hubs',
     ],
     services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
   },
@@ -90,14 +86,12 @@ const industries = [
     headline: 'Accountable Logistics for Public-Sector Organisations',
     image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1200&h=600&fit=crop&auto=format',
     alt: 'Organised cargo logistics representing public sector supply chain support',
-    context: 'Public-sector organisations require logistics partners who can demonstrate accountability, operational structure and transparent reporting. Procurement processes, delivery schedules and audit trails matter. Our service is designed to support structured, compliant supply-chain operations.',
+    context: 'Public-sector supply chains require accountability, transparent reporting, and compliant processes for structured delivery management.',
     considerations: [
       'Structured and documented operations',
       'Accountable service delivery',
-      'Transparent reporting and communication',
-      'Compliance-focused processes',
-      'Scalable to procurement volumes',
-      'Reliable scheduling and delivery',
+      'Transparent reporting & compliance',
+      'Scalable procurement scheduling',
     ],
     services: ['Transportation', 'Warehousing', 'Distribution'],
   },
@@ -107,14 +101,12 @@ const industries = [
     headline: 'Disciplined Logistics for Defence-Related Supply Chains',
     image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=1200&h=600&fit=crop&auto=format',
     alt: 'Industrial port operations representing defence-related logistics support',
-    context: 'Defence-related organisations and their supply chains require logistics providers who operate with operational discipline, reliability and clear accountability. Schedule adherence, accurate reporting and careful handling are baseline expectations in this sector.',
+    context: 'Defence-related supply chains require operational discipline, strict schedule adherence, and clear accountability at every stage.',
     considerations: [
       'Operational reliability and discipline',
-      'Schedule adherence',
-      'Accountability at every stage',
-      'Careful handling of cargo',
+      'Strict schedule adherence',
+      'End-to-end accountability',
       'Secure and controlled operations',
-      'Clear communication protocols',
     ],
     services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
   },
@@ -124,14 +116,12 @@ const industries = [
     headline: 'Flexible Logistics for Commercial and Industrial Operations',
     image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1200&h=600&fit=crop&auto=format',
     alt: 'Commercial cargo and industrial logistics operations',
-    context: 'Commercial and industrial businesses require logistics partners who can adapt to changing operational requirements — from fluctuating volumes to multi-site distribution and supply-chain complexity. Our service is designed to scale with operational demand.',
+    context: 'Commercial and industrial businesses require flexible logistics partners adaptable to fluctuating volumes and multi-site distribution.',
     considerations: [
       'Scalable logistics capacity',
-      'Flexible warehousing and storage',
+      'Flexible warehousing & storage',
       'Multi-site distribution',
-      'Bulk and palletised cargo support',
       'Import and freight coordination',
-      'Integrated logistics solutions',
     ],
     services: ['Transportation', 'Imports', 'Warehousing', 'Distribution'],
   },
@@ -171,8 +161,10 @@ export default function Industries({ onNavigate }) {
     setActiveTab(id)
     const targetElement = document.getElementById(id)
     if (targetElement) {
-      const yOffset = -135 // Accounts for fixed navigation and sticky tab bar height
-      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset
+      const stickyBar = e.currentTarget.closest('.sticky')
+      const stickyHeight = stickyBar ? stickyBar.offsetHeight : 50
+      const totalHeaderOffset = -20 + stickyHeight // -20px main navbar + sticky tab bar height
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset - totalHeaderOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
@@ -183,7 +175,7 @@ export default function Industries({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
+        style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
           src="https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=1920&h=1080&fit=crop&auto=format"
@@ -192,27 +184,27 @@ export default function Industries({ onNavigate }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.65) 0%, rgba(12,37,69,0.45) 50%, rgba(12,37,69,0.28) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
+          <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
                 <HeroLabel>Industries</HeroLabel>
-                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-bold font-display leading-[1.2] mb-4">
                   Supporting Critical Supply Chains
                 </h1>
-                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
                   Reliable, accountable logistics for critical sectors.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="shrink-0 pb-6" aria-hidden="true">
+          <div className="shrink-0 pb-7 pt-2" aria-hidden="true">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center">
                 <div className="h-2.5 w-2.5 opacity-0" />
@@ -231,7 +223,7 @@ export default function Industries({ onNavigate }) {
                 key={ind.id}
                 href={`#${ind.id}`}
                 onClick={(e) => handleTabClick(e, ind.id)}
-                className={`px-5 py-4 text-sm sm:text-base font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
+                className={`py-3.5 px-3 text-sm font-display tracking-wide uppercase transition-colors shrink-0 border-b-2 ${
                   activeTab === ind.id
                     ? 'border-gold text-navy font-bold'
                     : 'border-transparent text-dim font-medium hover:text-navy hover:border-gold/40'
@@ -249,18 +241,15 @@ export default function Industries({ onNavigate }) {
         <section
           key={ind.id}
           id={ind.id}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
+          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
-            {/* Eyebrow Label positioned above the two columns */}
-            <SectionTag className="mb-3">{ind.label}</SectionTag>
-
             {/* Grid: Image and Content pair together with matching top & bottom edges */}
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image Column: Expands from headline top down to cards bottom */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-[380px]">
+              {/* Image Column: Expands from top of SectionTag down to bottom of action button */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-0">
                 <img
                   src={ind.image}
                   alt={ind.alt}
@@ -275,67 +264,67 @@ export default function Industries({ onNavigate }) {
                 </div>
               </div>
 
-              {/* Content Column: Starts with headline and ends at bottom of cards */}
+              {/* Content Column: Starts at SectionTag (heading label) and ends at bottom line of buttons */}
               <div className="lg:[direction:ltr] flex flex-col justify-between">
                 <div>
-                  <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
+                  <SectionTag className="mb-3">{ind.label}</SectionTag>
+                  <h2 className="text-navy text-2.5xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
                     {ind.headline}
                   </h2>
-                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-6">
                     {ind.context}
                   </p>
                 </div>
 
-                {/* Key Considerations & Relevant Services cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Considerations Card */}
-                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold shrink-0" />
-                      Key Considerations
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {ind.considerations.map((c) => (
-                        <li key={c} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
-                          <span>{c}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div>
+                  {/* Key Considerations & Relevant Services cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+                    {/* Considerations Card */}
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-px bg-gold shrink-0" />
+                        Key Considerations
+                      </h3>
+                      <ul className="space-y-2">
+                        {ind.considerations.map((c) => (
+                          <li key={c} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                            <span>{c}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Services Card */}
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-px bg-gold shrink-0" />
+                        Relevant Services
+                      </h3>
+                      <ul className="space-y-2">
+                        {ind.services.map((s) => (
+                          <li key={s} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                            <span>{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  {/* Services Card */}
-                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold shrink-0" />
-                      Relevant Services
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {ind.services.map((s) => (
-                        <li key={s} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
-                          <span>{s}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Action Button Row: Inside Content Column so image height extends to button bottom line */}
+                  <div className="flex flex-wrap gap-3">
+                    <button
+                      onClick={() => onNavigate('services')}
+                      className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
+                    >
+                      Explore Services &amp; Solutions
+                      <ArrowIcon />
+                    </button>
                   </div>
                 </div>
               </div>
 
-            </div>
-
-            {/* Buttons Row: Placed below the baseline, properly aligned flush with the content side */}
-            <div className={`mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
-              <div className="hidden lg:block" />
-              <div className="lg:[direction:ltr] flex flex-wrap gap-3">
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
-                >
-                  Explore Services &amp; Solutions
-                  <ArrowIcon />
-                </button>
-              </div>
             </div>
 
           </div>

@@ -31,7 +31,7 @@ const heroSlides = [
     tag: 'Imports & Freight',
     headline: 'Seamless Import Logistics, Simplified.',
     subtext: 'Coordinated freight handling, port to delivery.',
-    image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1920&h=1080&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=1920&h=1080&fit=crop&auto=format',
     alt: 'International shipyard with cranes and vessels at port',
   },
 ]
@@ -111,7 +111,7 @@ const industries = [
 ]
 
 /*
-  Clients & Enterprise Partners Data (Bold, prominent, fills the card cleanly)
+  Clients & Enterprise Partners Data
 */
 const clients = [
   {
@@ -363,7 +363,7 @@ const faqs = [
 
 function HeroLabel({ children }) {
   return (
-    <span className="block text-gold text-base sm:text-lg font-bold font-display tracking-[0.12em] uppercase mb-4">
+    <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase mb-4">
       {children}
     </span>
   )
@@ -412,7 +412,7 @@ export default function Home({ onNavigate }) {
     return () => clearInterval(timer)
   }, [])
 
-  // Clients carousel state & continuous 3-second cycle
+  // Clients carousel state & continuous cycle
   const [clientIndex, setClientIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(4)
 
@@ -446,7 +446,7 @@ export default function Home({ onNavigate }) {
       {/* ── HERO ────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden"
-        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
+        style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
         aria-label="Homepage feature slideshow"
       >
         {heroSlides.map((s, i) => (
@@ -455,15 +455,19 @@ export default function Home({ onNavigate }) {
             className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? 'opacity-100 z-0' : 'opacity-0 z-0'}`}
             aria-hidden={i !== slide}
           >
+            {/* Crisp hero image (no blur effect) */}
             <img
               src={s.image}
               alt={s.alt}
               className="absolute inset-0 w-full h-full object-cover"
               loading={i === 0 ? 'eager' : 'lazy'}
             />
+            {/* Very slightly dark tinted overlay for optimal text clarity */}
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
+              style={{
+                background: 'linear-gradient(to top, rgba(12,37,69,0.65) 0%, rgba(12,37,69,0.45) 50%, rgba(12,37,69,0.28) 100%)',
+              }}
             />
           </div>
         ))}
@@ -471,27 +475,31 @@ export default function Home({ onNavigate }) {
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
+          {/* Centered text container */}
+          <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[62%] pt-8 sm:pt-10 lg:pt-24">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
                 <HeroLabel>{heroSlides[slide].tag}</HeroLabel>
 
-                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-bold font-display leading-[1.2] mb-4">
                   {heroSlides[slide].headline}
                 </h1>
 
-                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed mb-6 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
                   {heroSlides[slide].subtext}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Slide navigation dots */}
-          <div className="shrink-0 pb-6">
+          {/* Slide navigation dots — completely transparent background */}
+          <div className="shrink-0 pb-7 pt-2">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center" role="tablist" aria-label="Slideshow navigation">
-                <div className="flex items-center gap-2.5" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))' }}>
+                <div
+                  className="flex items-center gap-2.5"
+                  style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.65))' }}
+                >
                   {heroSlides.map((_, i) => (
                     <button
                       key={i}
@@ -500,7 +508,7 @@ export default function Home({ onNavigate }) {
                       aria-label={`Slide ${i + 1}`}
                       onClick={() => setSlide(i)}
                       className={`rounded-full transition-all duration-300 ${
-                        i === slide ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-white/60 hover:bg-white/90'
+                        i === slide ? 'w-2.5 h-2.5 bg-gold' : 'w-2 h-2 bg-white/50 hover:bg-white/80'
                       }`}
                     />
                   ))}
@@ -508,10 +516,11 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* ── SERVICES & SOLUTIONS (MATCHED TO INDUSTRIES SECTION) ──────── */}
+      {/* ── SERVICES & SOLUTIONS ──────────────────────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
@@ -524,7 +533,6 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          {/* Exact same flexbox structure, aspect-ratio & centering as Industries */}
           <div className="flex flex-wrap justify-center gap-5">
             {services.map((svc) => (
               <button
@@ -623,7 +631,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── INDUSTRIES (CENTER-ALIGNED) ───────────────────────────────── */}
+      {/* ── INDUSTRIES ────────────────────────────────────────────────── */}
       <section className="bg-linen py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
@@ -678,7 +686,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── STATISTICS / TRUST (OUR EXPERIENCE) ────────────────────────── */}
+      {/* ── STATISTICS / TRUST ────────────────────────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="text-center max-w-xl mx-auto mb-14">
@@ -729,7 +737,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── OUR CLIENTS (LOW PADDING & BIGGER LOGOS) ───────────────────── */}
+      {/* ── OUR CLIENTS & ENTERPRISE PARTNERS ─────────────────────────── */}
       <section className="bg-slate-50/70 py-16 lg:py-20 border-t border-hairline overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           

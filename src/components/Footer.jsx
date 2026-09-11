@@ -18,17 +18,17 @@ const company = [
 
 export default function Footer({ onNavigate }) {
   return (
-    <footer className="bg-navy">
+    <footer className="bg-navy border-t border-white/10">
       <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
 
-        {/* Main */}
-        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* Main Footer — Grid with generous, consistent spacing */}
+        <div className="py-16 lg:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.75fr_0.75fr_0.95fr] gap-x-10 gap-y-14 lg:gap-x-16">
 
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <button
               onClick={() => onNavigate('home')}
-              className="flex items-center gap-3 mb-6 group"
+              className="flex items-center gap-3 mb-6 group text-left"
               aria-label="Go to homepage"
             >
               <div className="w-9 h-9 bg-white/10 flex items-center justify-center rounded-sm group-hover:bg-white/15 transition-colors">
@@ -42,10 +42,10 @@ export default function Footer({ onNavigate }) {
               </div>
               <div>
                 <span className="block text-base font-semibold text-white font-display tracking-wide">[COMPANY NAME]</span>
-                <span className="block text-xs text-white/45 tracking-[0.14em] uppercase font-body">Logistics & Trading</span>
+                <span className="block text-xs text-white/45 tracking-[0.14em] uppercase font-body">Logistics &amp; Trading</span>
               </div>
             </button>
-            <p className="text-sm leading-relaxed text-white/50 font-body mb-6 max-w-[280px]">
+            <p className="text-sm leading-relaxed text-white/50 font-body mb-6 max-w-[320px]">
               Transportation, logistics, warehousing, distribution and import solutions for UK and international supply chains.
             </p>
             <div className="flex gap-2.5">
@@ -98,8 +98,8 @@ export default function Footer({ onNavigate }) {
 
           {/* Services */}
           <div>
-            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-5 font-display">Services</h3>
-            <ul className="space-y-2.5">
+            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-6 font-display">Services</h3>
+            <ul className="space-y-3.5">
               {services.map((s) => (
                 <li key={s.label}>
                   <button
@@ -115,13 +115,13 @@ export default function Footer({ onNavigate }) {
 
           {/* Company */}
           <div>
-            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-5 font-display">Company</h3>
-            <ul className="space-y-2.5">
+            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-6 font-display">Company</h3>
+            <ul className="space-y-3.5">
               {company.map(({ label, page }) => (
                 <li key={label}>
                   <button
                     onClick={() => onNavigate(page)}
-                    className="text-sm text-white/55 hover:text-white/90 transition-colors font-body text-left"
+                    className="text-sm text-white/55 hover:text-white/90 transition-colors font-body text-left leading-snug"
                   >
                     {label}
                   </button>
@@ -132,8 +132,8 @@ export default function Footer({ onNavigate }) {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-5 font-display">Contact</h3>
-            <ul className="space-y-3.5">
+            <h3 className="text-white text-xs font-semibold tracking-[0.14em] uppercase mb-6 font-display">Contact</h3>
+            <ul className="space-y-4">
               <li>
                 <a href="tel:[PHONE_NUMBER]" className="flex items-start gap-2.5 text-sm text-white/55 hover:text-white/90 transition-colors font-body group">
                   <svg viewBox="0 0 16 16" className="w-4 h-4 fill-white/35 mt-0.5 shrink-0 group-hover:fill-white/60 transition-colors" aria-hidden="true">

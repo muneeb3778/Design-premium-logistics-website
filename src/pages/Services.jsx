@@ -56,20 +56,18 @@ const serviceList = [
     fullTitle: 'Transportation & Inland Logistics',
     image: 'https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=900&h=600&fit=crop&auto=format',
     alt: 'Logistics truck on bridge representing inland transportation',
-    overview: 'Our transportation and inland logistics service supports the movement of goods between ports, warehouses, facilities and final destinations across the UK. We operate with a focus on reliability, schedule adherence and direct communication throughout every movement.',
+    overview: 'Our transportation and inland logistics service supports the movement of goods between ports, warehouses, facilities and final destinations across the UK with reliability and schedule adherence.',
     capabilities: [
       'Port and terminal collections',
       'Warehouse-to-warehouse transfers',
       'Multi-stop and consolidated routes',
       'Scheduled and ad-hoc movements',
-      'Full-load and part-load options',
-      'Temperature-sensitive and specialist cargo support',
     ],
     benefits: [
       'Reliable, schedule-focused delivery',
       'Direct communication throughout',
       'Flexible routing and load options',
-      'Integrated with warehousing and distribution',
+      'Integrated warehousing & distribution',
     ],
   },
   {
@@ -78,18 +76,16 @@ const serviceList = [
     fullTitle: 'Critical & Last-Minute Deliveries',
     image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=900&h=600&fit=crop&auto=format',
     alt: 'Dedicated priority courier vehicle on rapid delivery route',
-    overview: 'When timelines are non-negotiable and standard freight cannot meet the deadline, our critical logistics team provides immediate, dedicated transport solutions across the UK. From aerospace AOG parts and emergency medical supplies to urgent industrial components, we respond within minutes.',
+    overview: 'When timelines are non-negotiable, our critical logistics team provides immediate, dedicated transport solutions across the UK for urgent freight and time-critical consignments.',
     capabilities: [
-      'Dedicated urgent courier and express dispatch',
-      '24/7 rapid response and out-of-hours collections',
-      'Direct drive, door-to-door transit without consolidation',
-      'Aviation, aerospace (AOG) and emergency freight handling',
-      'Time-critical medical and healthcare consignments',
-      'Real-time tracking and continuous milestone updates',
+      'Dedicated urgent courier dispatch',
+      '24/7 rapid response collections',
+      'Direct drive door-to-door transit',
+      'Aerospace, medical & urgent freight',
     ],
     benefits: [
-      'Immediate dispatch with zero unnecessary stops',
-      'Direct line to dedicated operations controllers',
+      'Immediate dispatch with zero stops',
+      'Direct line to operations controllers',
       'Guaranteed urgent delivery schedules',
       'Complete end-to-end chain of custody',
     ],
@@ -100,19 +96,17 @@ const serviceList = [
     fullTitle: 'Imports & Freight',
     image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=900&h=600&fit=crop&auto=format',
     alt: 'Cargo vessel representing import and freight operations',
-    overview: 'We coordinate import and freight requirements across relevant routes and partners, supporting the movement of cargo from origin through to UK port or onward destination. Our import coordination service is designed around the specific requirements of each customer and cargo type.',
+    overview: 'We coordinate import and freight requirements across relevant routes and partners, supporting cargo movement from origin through to UK ports and onward destinations.',
     capabilities: [
       'Import freight coordination',
       'Port and terminal liaison',
       'Container and bulk cargo support',
-      'Freight documentation support',
       'Partner carrier coordination',
-      'Multi-modal freight solutions',
     ],
     benefits: [
       'Coordinated end-to-end import management',
-      'Experienced freight team',
-      'Flexible cargo support',
+      'Experienced freight operations team',
+      'Flexible cargo handling support',
       'Connected with UK inland logistics',
     ],
   },
@@ -122,18 +116,16 @@ const serviceList = [
     fullTitle: 'Warehousing & Storage',
     image: 'https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=900&h=600&fit=crop&auto=format',
     alt: 'Warehouse shelving representing warehousing and storage capability',
-    overview: 'Our warehousing and storage service provides flexible, managed storage solutions designed to support operational continuity across the supply chain. From short-term storage to longer-duration inventory management, our warehousing capability is structured around customer requirements.',
+    overview: 'Our warehousing service provides flexible, managed storage solutions designed to support operational continuity and inventory visibility across your supply chain.',
     capabilities: [
       'Short-term and long-duration storage',
       'Inventory management support',
       'Goods-in and goods-out handling',
       'Palletised and loose cargo storage',
-      'Order fulfilment support',
-      'Stock reporting and visibility',
     ],
     benefits: [
       'Flexible storage terms',
-      'Integrated with distribution operations',
+      'Integrated distribution operations',
       'Inventory visibility and reporting',
       'Operational continuity focused',
     ],
@@ -144,20 +136,18 @@ const serviceList = [
     fullTitle: 'Distribution & Delivery',
     image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=900&h=600&fit=crop&auto=format',
     alt: 'Distribution trucks representing delivery operations',
-    overview: 'Our distribution and delivery service coordinates the movement of goods from warehouse or collection point to required destinations, supporting regular, scheduled or ad-hoc delivery requirements. Distribution is directly integrated with our warehousing operations for seamless stock-to-delivery management.',
+    overview: 'Our distribution service coordinates movement from warehouse or collection point to required destinations, supporting regular, scheduled or ad-hoc delivery requirements.',
     capabilities: [
       'Multi-drop and single destination delivery',
       'Scheduled and recurring delivery routes',
-      'Same-day and next-day options (discuss requirements)',
+      'Same-day and next-day options',
       'Proof of delivery management',
-      'Returns and reverse logistics support',
-      'Integrated warehouse-to-delivery workflow',
     ],
     benefits: [
       'Integrated with warehousing operations',
       'Flexible delivery scheduling',
       'Proof of delivery and reporting',
-      'Scalable to volume requirements',
+      'Scalable volume capacity',
     ],
   },
 ]
@@ -196,8 +186,10 @@ export default function Services({ onNavigate }) {
     setActiveService(id)
     const targetElement = document.getElementById(id)
     if (targetElement) {
-      const yOffset = -135 // Accounts for fixed navigation and sticky tab bar height
-      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset
+      const stickyBar = e.currentTarget.closest('.sticky')
+      const stickyHeight = stickyBar ? stickyBar.offsetHeight : 50
+      const totalHeaderOffset = 10 + stickyHeight // 10px main navbar + sticky tab bar height
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset - totalHeaderOffset
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   }
@@ -208,7 +200,7 @@ export default function Services({ onNavigate }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-navy"
-        style={{ height: '66vh', minHeight: 540, maxHeight: 760 }}
+        style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
           src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=1080&fit=crop&auto=format"
@@ -217,27 +209,27 @@ export default function Services({ onNavigate }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.55) 0%, rgba(12,37,69,0.30) 40%, rgba(12,37,69,0.12) 100%)' }}
+          style={{ background: 'linear-gradient(to top, rgba(12,37,69,0.65) 0%, rgba(12,37,69,0.45) 50%, rgba(12,37,69,0.28) 100%)' }}
         />
 
         <div className="relative z-20 h-full flex flex-col">
           <div className="h-[72px] shrink-0" />
 
-          <div className="flex-1 min-h-0 flex flex-col justify-center overflow-hidden">
+          <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
-              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%] pt-8 sm:pt-10 lg:pt-24">
+              <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
                 <HeroLabel>Services &amp; Solutions</HeroLabel>
-                <h1 className="text-white text-xl sm:text-2xl lg:text-[30px] xl:text-[34px] font-bold font-display leading-tight mb-4 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-bold font-display leading-[1.2] mb-4">
                   Our Services &amp; Solutions
                 </h1>
-                <p className="text-white/72 text-sm sm:text-base font-body leading-relaxed lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
+                <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
                   Movement, storage and distribution, connected.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="shrink-0 pb-6" aria-hidden="true">
+          <div className="shrink-0 pb-7 pt-2" aria-hidden="true">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
               <div className="flex justify-center">
                 <div className="h-2.5 w-2.5 opacity-0" />
@@ -256,7 +248,7 @@ export default function Services({ onNavigate }) {
                 key={s.id}
                 href={`#${s.id}`}
                 onClick={(e) => handleTabClick(e, s.id)}
-                className={`px-5 py-4 text-sm sm:text-base font-display tracking-wide whitespace-nowrap border-b-2 transition-all duration-200 shrink-0 ${
+                className={`py-3.5 px-3 text-sm font-display tracking-wide uppercase transition-colors shrink-0 border-b-2 ${
                   activeService === s.id
                     ? 'border-gold text-navy font-bold'
                     : 'border-transparent text-dim font-medium hover:text-navy hover:border-gold/40'
@@ -274,18 +266,15 @@ export default function Services({ onNavigate }) {
         <section
           key={svc.id}
           id={svc.id}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline' : 'bg-linen py-20 lg:py-28 border-b border-hairline'}
+          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
-            {/* Eyebrow Label positioned above the two columns */}
-            <SectionTag className="mb-3">{svc.label}</SectionTag>
-
             {/* Grid: Image and Content pair together with matching top & bottom edges */}
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image Column: Expands from fullTitle top down to capabilities cards bottom */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-[380px]">
+              {/* Image Column: Expands from top of SectionTag down to bottom of action buttons */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-0">
                 <img
                   src={svc.image}
                   alt={svc.alt}
@@ -295,65 +284,65 @@ export default function Services({ onNavigate }) {
                 <div className="absolute inset-0 bg-navy/8" />
               </div>
 
-              {/* Content Column: Starts with fullTitle and ends at bottom of capabilities cards */}
+              {/* Content Column: Starts at SectionTag (heading label) and ends at bottom line of buttons */}
               <div className="lg:[direction:ltr] flex flex-col justify-between">
                 <div>
-                  <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-5 leading-tight">
+                  <SectionTag className="mb-3">{svc.label}</SectionTag>
+                  <h2 className="text-navy text-2.5xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
                     {svc.fullTitle}
                   </h2>
-                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-6">
                     {svc.overview}
                   </p>
                 </div>
 
-                {/* Capabilities & Key Benefits cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold shrink-0" />
-                      Capabilities
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {svc.capabilities.map((cap) => (
-                        <li key={cap} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
-                          <span>{cap}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div>
+                  {/* Capabilities & Key Benefits cards — exactly 4 concise points each */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-px bg-gold shrink-0" />
+                        Capabilities
+                      </h3>
+                      <ul className="space-y-2">
+                        {svc.capabilities.map((cap) => (
+                          <li key={cap} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                            <span>{cap}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-px bg-gold shrink-0" />
+                        Key Benefits
+                      </h3>
+                      <ul className="space-y-2">
+                        {svc.benefits.map((b) => (
+                          <li key={b} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <div className="p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                    <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3.5 flex items-center gap-2">
-                      <span className="w-4 h-px bg-gold shrink-0" />
-                      Key Benefits
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {svc.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2.5 text-dim text-sm sm:text-[15px] font-body leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Buttons Row: Flush inside Content Column so image height extends to button bottom line */}
+                  <div className="flex flex-wrap gap-3">
+                    <QuoteButton onClick={() => onNavigate('quote')} />
+                    <button
+                      onClick={() => onNavigate('contact')}
+                      className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                    >
+                      Speak to Our Team
+                    </button>
                   </div>
                 </div>
               </div>
 
-            </div>
-
-            {/* Buttons Row: Placed below the baseline, perfectly aligned flush with the content side */}
-            <div className={`mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
-              <div className="hidden lg:block" />
-              <div className="lg:[direction:ltr] flex flex-wrap gap-3">
-                <QuoteButton onClick={() => onNavigate('quote')} />
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
-                >
-                  Speak to Our Team
-                </button>
-              </div>
             </div>
 
           </div>
