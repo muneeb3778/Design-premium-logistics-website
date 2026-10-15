@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 import CtaSection from '../components/CtaSection'
+import solutionsHeroImg from '../assets/client/solutions_hero.jpg'
+import transportationImg from '../assets/client/transportation.jpg'
+import importsFreightImg from '../assets/client/imports_freight.jpg'
 
 function HeroLabel({ children }) {
   return (
@@ -55,20 +58,20 @@ const serviceList = [
     id: 'transport',
     label: 'Transportation',
     fullTitle: 'Transportation & Inland Logistics',
-    image: 'https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=900&h=600&fit=crop&auto=format',
-    alt: 'Logistics truck on bridge representing inland transportation',
-    overview: 'Our transportation and inland logistics service supports the movement of goods between ports, warehouses, facilities and final destinations across the UK with reliability and schedule adherence.',
+    image: transportationImg,
+    alt: 'Moz Midlands transport fleet and delivery operations',
+    overview: 'Moz Midlands offers transport solutions for businesses requiring the movement of goods between suppliers, warehouses, customers and commercial locations. Whether you need a planned delivery or an urgent transport arrangement, our practical collection and delivery solutions help you manage logistics requirements with greater confidence.',
     capabilities: [
-      'Port and terminal collections',
-      'Warehouse-to-warehouse transfers',
-      'Multi-stop and consolidated routes',
-      'Scheduled and ad-hoc movements',
+      'Same-day and urgent delivery arrangements',
+      'Business-to-business transport',
+      'Local, regional and nationwide delivery',
+      'Recurring collections & scheduled transport',
     ],
     benefits: [
-      'Reliable, schedule-focused delivery',
-      'Direct communication throughout',
-      'Flexible routing and load options',
-      'Integrated warehousing & distribution',
+      'Moving your business forward around the clock',
+      'Professional handling reflecting your brand reputation',
+      'Responsive communication and proactive coordination',
+      'Arrangements tailored to your cargo and deadlines',
     ],
   },
   {
@@ -93,22 +96,22 @@ const serviceList = [
   },
   {
     id: 'imports',
-    label: 'Imports',
-    fullTitle: 'Imports & Freight',
-    image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=900&h=600&fit=crop&auto=format',
-    alt: 'Cargo vessel representing import and freight operations',
-    overview: 'We coordinate import and freight requirements across relevant routes and partners, supporting cargo movement from origin through to UK ports and onward destinations.',
+    label: 'Imports & Freight',
+    fullTitle: 'Imports & Freight Management',
+    image: importsFreightImg,
+    alt: 'Import cargo handling and freight transport',
+    overview: 'Moving imported goods requires careful coordination, reliable transport and attention to details that matter. Moz Midlands supports businesses with transport arrangements for air and sea freight-related consignments, helping goods move seamlessly from collection points to their next destination.',
     capabilities: [
-      'Import freight coordination',
-      'Port and terminal liaison',
-      'Container and bulk cargo support',
-      'Partner carrier coordination',
+      'Air and sea freight transport support',
+      'Import cargo collection and delivery',
+      'Container loading and de-vanning support',
+      'Time-sensitive and next-day delivery options',
     ],
     benefits: [
-      'Coordinated end-to-end import management',
-      'Experienced freight operations team',
-      'Flexible cargo handling support',
-      'Connected with UK inland logistics',
+      'Connecting your cargo smoothly to its destination',
+      'Commercial cargo handling coordination',
+      'Direct transport planning from port to facility',
+      'Customer-focused delivery representing your business',
     ],
   },
   {
@@ -204,8 +207,8 @@ export default function Services({ onNavigate }) {
         style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=1920&h=1080&fit=crop&auto=format"
-          alt="Aerial view of container port representing our services"
+          src={solutionsHeroImg}
+          alt="Moz Midlands coordinated logistics solutions and depot operations"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
@@ -219,12 +222,12 @@ export default function Services({ onNavigate }) {
           <div className="flex-1 flex flex-col justify-center">
             <div className="max-w-[1320px] mx-auto px-5 lg:px-10 w-full">
               <div className="max-w-full sm:max-w-[82%] lg:max-w-[65%] xl:max-w-[60%]">
-                <HeroLabel>Services &amp; Solutions</HeroLabel>
+                <HeroLabel>Our Solutions &amp; Services</HeroLabel>
                 <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-bold font-display leading-[1.2] mb-4">
-                  Our Services &amp; Solutions
+                  Coordinated Logistics. Reliable Delivery.
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
-                  Movement, storage and distribution, connected.
+                  From time-sensitive transport to warehousing and distribution, Moz Midlands provides practical logistics solutions designed around modern businesses.
                 </p>
               </div>
             </div>

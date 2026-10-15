@@ -1,6 +1,7 @@
 // src/pages/Quote.jsx
 import { useState, useRef, useEffect } from 'react'
 import CtaSection from '../components/CtaSection'
+import transportationImg from '../assets/client/transportation.jpg'
 
 const serviceOptions = [
   'Transportation & Inland Logistics',
@@ -221,8 +222,8 @@ export default function Quote({ onNavigate }) {
         style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=1920&h=1080&fit=crop&auto=format"
-          alt="Logistics fleet prepared for transportation quote"
+          src={transportationImg}
+          alt="Moz Midlands logistics transport prepared for cargo delivery"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
@@ -241,7 +242,7 @@ export default function Quote({ onNavigate }) {
                   Tell Us About Your Requirements
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
-                  Tailored logistics solutions built around your exact specifications.
+                  Tell us about your cargo, collection location, destination and delivery requirements.
                 </p>
               </div>
             </div>

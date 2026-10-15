@@ -41,7 +41,7 @@ export default function Footer({ onNavigate }) {
                 </svg>
               </div>
               <div>
-                <span className="block text-base font-semibold text-white font-display tracking-wide">[COMPANY NAME]</span>
+                <span className="block text-base font-semibold text-white font-display tracking-wide">Moz Midlands</span>
                 <span className="block text-xs text-white/45 tracking-[0.14em] uppercase font-body">Logistics &amp; Trading</span>
               </div>
             </button>
@@ -171,7 +171,7 @@ export default function Footer({ onNavigate }) {
         {/* Bottom bar */}
         <div className="border-t border-white/8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/35 font-body order-2 sm:order-1">
-            © {new Date().getFullYear()} [COMPANY NAME] Ltd. All rights reserved. Company Reg: [REGISTRATION NUMBER]
+            © {new Date().getFullYear()} Moz Midlands Ltd. All rights reserved. Company Reg: [REGISTRATION NUMBER]
           </p>
           <div className="flex flex-wrap items-center gap-4 order-1 sm:order-2">
             {['Privacy Policy', 'Cookie Policy', 'Terms & Conditions', 'Accessibility'].map((link) => (

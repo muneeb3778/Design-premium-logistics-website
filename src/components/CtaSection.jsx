@@ -41,16 +41,16 @@ export default function CtaSection({ onNavigate }) {
       <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
         <div className="flex justify-center">
           <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
-            Get in Touch
+            Let's Move Your Business Forward
           </span>
         </div>
 
         <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl font-bold font-display leading-tight mb-4 max-w-2xl mx-auto">
-          Have a Transportation, Warehousing or Urgent Delivery Requirement?
+          Need a Transport or Logistics Solution?
         </h2>
 
         <p className="text-white/65 text-base font-body leading-relaxed mb-9 max-w-xl mx-auto">
-          Tell us what you need to move, store or distribute and our team will review your requirements and respond promptly.
+          From urgent deliveries to coordinated logistics solutions, our team is ready to discuss your requirements and help you find a suitable way forward. Tell us about your cargo, collection location, destination and delivery requirements.
         </p>
 
         <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3.5">

@@ -2,47 +2,55 @@
 import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
 import CtaSection from '../components/CtaSection'
+import solutionsHeroImg from '../assets/client/solutions_hero.jpg'
+import transportationImg from '../assets/client/transportation.jpg'
+import importsFreightImg from '../assets/client/imports_freight.jpg'
+import healthcareImg from '../assets/client/healthcare.jpg'
+import artsFilmImg from '../assets/client/arts_film_studios.jpg'
+import publicSectorImg from '../assets/client/public_sector.jpg'
+import defenceImg from '../assets/client/defence.jpg'
+import industrialImg from '../assets/client/industrial.jpg'
 
 /*
   Hero slideshow data
 */
 const heroSlides = [
   {
-    tag: 'Global Operations',
-    headline: 'Moving Goods. Supporting Supply Chains.',
-    subtext: 'Transportation, warehousing and import logistics — connected.',
-    image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=1920&h=1080&fit=crop&auto=format',
-    alt: 'Aerial view of a large cargo vessel at sea',
+    tag: 'Moz Midlands Logistics',
+    headline: 'Coordinated Logistics. Reliable Delivery.',
+    subtext: 'From time-sensitive transport to warehousing and distribution, Moz Midlands provides practical logistics solutions designed around modern businesses.',
+    image: solutionsHeroImg,
+    alt: 'Moz Midlands logistics depot and vehicle fleet',
   },
   {
     tag: 'Transportation',
-    headline: 'Reliable Transportation Across the UK.',
-    subtext: 'Dependable goods movement, nationwide.',
-    image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=1080&fit=crop&auto=format',
-    alt: 'Fleet of logistics trucks prepared for transportation',
+    headline: 'Moving Your Business Forward, Around the Clock.',
+    subtext: 'When your business depends on a delivery, every minute matters. Practical collection and delivery solutions across the UK.',
+    image: transportationImg,
+    alt: 'Moz Midlands dedicated transport solutions',
   },
   {
     tag: 'Warehousing',
     headline: 'Storage That Keeps Operations Moving.',
-    subtext: 'Flexible warehousing for supply chain continuity.',
+    subtext: 'Flexible warehousing and secure storage for supply chain continuity.',
     image: 'https://images.unsplash.com/photo-1766021736631-d2f15082aa59?w=1920&h=1080&fit=crop&auto=format',
     alt: 'Spacious modern industrial warehouse interior',
   },
   {
     tag: 'Imports & Freight',
-    headline: 'Seamless Import Logistics, Simplified.',
-    subtext: 'Coordinated freight handling, port to delivery.',
-    image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=1920&h=1080&fit=crop&auto=format',
-    alt: 'International shipyard with cranes and vessels at port',
+    headline: 'Connecting Your Cargo to Its Destination.',
+    subtext: 'Air and sea freight transport support, container loading and devanning from port to delivery.',
+    image: importsFreightImg,
+    alt: 'Air and sea freight cargo operations and container loading',
   },
 ]
 
 const services = [
   {
     title: 'Transportation',
-    desc: 'Movement between ports, warehouses, facilities and destinations across the UK supply chain.',
-    image: 'https://images.unsplash.com/photo-1551471698-c7787ff6b7ca?w=800&h=600&fit=crop&auto=format',
-    alt: 'Logistics truck at speed on a bridge',
+    desc: 'Moving your business forward with planned, urgent and same-day collection and delivery solutions across the UK.',
+    image: transportationImg,
+    alt: 'Logistics transport vehicle preparing for delivery',
   },
   {
     title: 'Critical & Last-Minute Deliveries',
@@ -51,10 +59,10 @@ const services = [
     alt: 'Dedicated priority courier vehicle on rapid delivery route',
   },
   {
-    title: 'Imports',
-    desc: 'Import and freight coordination across relevant routes and partners for your cargo requirements.',
-    image: 'https://images.unsplash.com/photo-1724364552281-dbed323c4633?w=800&h=600&fit=crop&auto=format&q=65',
-    alt: 'Cargo vessel underway at sea',
+    title: 'Imports & Freight',
+    desc: 'Air & sea freight coordination, container loading & de-vanning, and import cargo collection to final destinations.',
+    image: importsFreightImg,
+    alt: 'Import cargo handling and freight transport',
   },
   {
     title: 'Warehousing',
@@ -71,43 +79,43 @@ const services = [
 ]
 
 const valueProps = [
-  { title: 'Reliable Operations', desc: 'Clear processes designed to support dependable movement across every stage of the supply chain.' },
-  { title: 'Responsive Communication', desc: 'Direct, timely communication from initial enquiry through to operational execution and delivery.' },
-  { title: 'Flexible Solutions', desc: 'Services adapted to your transportation, storage and distribution requirements — not a fixed template.' },
-  { title: 'Connected Supply Chain', desc: 'One connected view across transport, warehousing and delivery, reducing complexity and risk.' },
+  { title: 'Reliable Coordination', desc: 'We bring together transport, handling and storage support to keep your operations running smoothly.' },
+  { title: 'Clear Communication', desc: 'Direct, timely communication and careful coordination from initial booking to delivery.' },
+  { title: 'Tailored Solutions', desc: 'Practical collection and delivery solutions structured around your cargo and business schedule.' },
+  { title: 'Dedicated Commitment', desc: 'Your goods. Your deadlines. Our commitment — delivering a professional customer experience.' },
   { title: 'Accountable Service', desc: 'Clear ownership and named contacts from enquiry through to completion, with measurable commitments.' },
 ]
 
 const industries = [
   {
     label: 'Healthcare',
-    desc: 'Reliable logistics, transportation, storage and distribution support for healthcare supply chains.',
-    image: 'https://images.unsplash.com/photo-1628372095387-017d1099fc19?w=800&h=560&fit=crop&auto=format',
-    alt: 'Healthcare facility and supply chain support',
+    desc: 'Supporting the movement of healthcare goods, approved medical supplies, NHS facilities and pharma deliveries.',
+    image: healthcareImg,
+    alt: 'Healthcare and medical goods logistics',
   },
   {
     label: 'Arts & Film Studios',
-    desc: 'Dedicated transport and high-care handling for production sets, studio soundstages, props and media assets.',
-    image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=800&h=560&fit=crop&auto=format',
-    alt: 'Film studio production stage and lighting equipment',
+    desc: 'Logistics for creative productions, soundstages, film equipment, materials, props and demanding shoot schedules.',
+    image: artsFilmImg,
+    alt: 'Film studio and creative production equipment transport',
   },
   {
     label: 'Public Sector',
-    desc: 'Structured, accountable logistics support for public-sector procurement and distribution requirements.',
-    image: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&h=560&fit=crop&auto=format&q=65',
-    alt: 'Organised cargo logistics for public sector operations',
+    desc: 'Dependable transport solutions supporting public sector supply chains, facilities, and essential services.',
+    image: publicSectorImg,
+    alt: 'Public sector supply chain support',
   },
   {
     label: 'Defence-Related',
-    desc: 'Transportation and logistics support where operational discipline, reliability and accountability matter.',
-    image: 'https://images.unsplash.com/photo-1763887487478-dba734cd204c?w=800&h=560&fit=crop&auto=format&q=65',
-    alt: 'Industrial port logistics and transportation operations',
+    desc: 'Professional transport and disciplined logistics support for approved commercial and defence supply chains.',
+    image: defenceImg,
+    alt: 'Defence-related and engineering logistics support',
   },
   {
     label: 'Commercial & Industrial',
-    desc: 'Flexible logistics and supply-chain support for commercial businesses and industrial operations.',
-    image: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&h=560&fit=crop&auto=format',
-    alt: 'Aerial view of commercial cargo and logistics operations',
+    desc: 'Transport solutions for industrial components, engineering machinery, site deliveries and commercial cargo.',
+    image: industrialImg,
+    alt: 'Industrial and commercial transport solutions',
   },
 ]
 
@@ -530,7 +538,7 @@ export default function Home({ onNavigate }) {
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Coordinated Supply Chain Capabilities</h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
-              Connected capabilities designed to support the movement, urgent transport, storage and distribution of goods across the supply chain.
+              From time-sensitive transport to warehousing and distribution, Moz Midlands provides practical logistics solutions designed around the needs of modern businesses.
             </p>
           </div>
 
@@ -583,18 +591,18 @@ export default function Home({ onNavigate }) {
               Why Choose Us
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">
-              Your Shipping &amp; Logistics Needs, Connected
+              Moving Your Business Forward
             </h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
-              We combine operational knowledge with direct service delivery — connecting transportation, warehousing and distribution into a coherent, responsive solution.
+              Every business has different logistics requirements. Whether you need an urgent delivery, support with imported goods, secure storage or an organised distribution solution, Moz Midlands is here to help you move goods efficiently and with confidence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
             <div className="relative rounded-sm overflow-hidden bg-linen min-h-[360px] sm:min-h-[440px] lg:min-h-full">
               <img
-                src="https://images.unsplash.com/photo-1772305336606-989a457ffbae?w=900&h=700&fit=crop&auto=format"
-                alt="Premium logistics warehouse with polished concrete floor"
+                src={solutionsHeroImg}
+                alt="Moz Midlands operations and transport fleet"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />

@@ -74,7 +74,7 @@ export default function Nav({ currentPage, onNavigate }) {
               <span className={`block text-[14px] sm:text-[15px] font-bold tracking-wide font-display transition-colors ${
                 transparent ? 'text-white' : 'text-navy'
               }`}>
-                [COMPANY NAME]
+                MOZ MIDLANDS
               </span>
               <span className={`block text-[10px] tracking-[0.16em] uppercase font-body mt-0.5 transition-colors ${
                 transparent ? 'text-white/60' : 'text-dim'

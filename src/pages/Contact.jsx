@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { waLink } from '../constants'
 import CtaSection from '../components/CtaSection'
+import solutionsHeroImg from '../assets/client/solutions_hero.jpg'
 
 function HeroLabel({ children }) {
   return (
@@ -122,8 +123,8 @@ export default function Contact({ onNavigate }) {
         style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1782948603191-065fb15e2e8e?w=1920&h=1080&fit=crop&auto=format"
-          alt="Warehouse representing our operations and contact"
+          src={solutionsHeroImg}
+          alt="Moz Midlands logistics headquarters and transport contact"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
@@ -142,7 +143,7 @@ export default function Contact({ onNavigate }) {
                   Get in Touch With Our Team
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
-                  Let's discuss your logistics requirements today.
+                  Tell us about your cargo, collection location, destination and delivery requirements.
                 </p>
               </div>
             </div>

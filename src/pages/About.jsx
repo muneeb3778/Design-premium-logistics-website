@@ -1,6 +1,8 @@
 // src/pages/About.jsx
 import { waLink } from '../constants'
 import CtaSection from '../components/CtaSection'
+import solutionsHeroImg from '../assets/client/solutions_hero.jpg'
+import transportationImg from '../assets/client/transportation.jpg'
 
 function HeroLabel({ children }) {
   return (
@@ -92,8 +94,8 @@ export default function About({ onNavigate }) {
         style={{ height: '74vh', minHeight: 580, maxHeight: 800 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&h=1080&fit=crop&auto=format"
-          alt="Logistics fleet and transportation operations"
+          src={transportationImg}
+          alt="Moz Midlands logistics fleet and transportation operations"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
@@ -112,7 +114,7 @@ export default function About({ onNavigate }) {
                   A Reliable Partner in Logistics
                 </h1>
                 <p className="text-white/90 text-base sm:text-lg font-body leading-relaxed max-w-2xl">
-                  Transportation, warehousing and distribution — connected.
+                  From time-sensitive transport to warehousing and distribution, Moz Midlands provides practical logistics solutions designed around modern businesses.
                 </p>
               </div>
             </div>
@@ -140,21 +142,21 @@ export default function About({ onNavigate }) {
               </h2>
               <div className="space-y-4 text-dim font-body text-base lg:text-lg leading-relaxed">
                 <p>
-                  [COMPANY NAME] was established to address a clear need in the UK logistics market — a provider that could genuinely connect transportation, warehousing, imports and distribution within a single, operationally competent offering.
+                  Moz Midlands was established to address a clear need in the UK logistics market — a provider that could genuinely connect transportation, warehousing, imports and distribution within a single, operationally competent offering.
                 </p>
                 <p>
-                  We work with organisations whose supply-chain requirements demand reliability, responsiveness and accountability at every stage. Our business is structured around direct service delivery, clear communication and operational execution.
+                  Every business has different logistics requirements. Whether you need an urgent delivery, support with imported goods, secure storage or an organised distribution solution, Moz Midlands is here to help you move goods efficiently and with confidence.
                 </p>
                 <p>
-                  Whatever the scale of your requirement, our team is directly accessible from initial enquiry through to final delivery — with no unnecessary layers in between.
+                  We bring together transport, handling and logistics support to help businesses keep their operations running smoothly. Our approach is built around clear communication, careful coordination and a commitment to delivering a professional customer experience from collection to final destination.
                 </p>
               </div>
             </div>
 
             <div className="relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline" style={{ aspectRatio: '4/3' }}>
               <img
-                src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=800&h=600&fit=crop&auto=format"
-                alt="Aerial view of port and container logistics operations"
+                src={solutionsHeroImg}
+                alt="Moz Midlands operations and transport logistics"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
