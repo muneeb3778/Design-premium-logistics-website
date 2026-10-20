@@ -667,7 +667,7 @@ export default function Home({ onNavigate }) {
               <button
                 key={ind.label}
                 onClick={() => onNavigate('industries')}
-                className="group relative overflow-hidden rounded-md text-left shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] shadow-[0_4px_20px_rgba(12,37,69,0.08)] hover:shadow-[0_14px_32px_rgba(12,37,69,0.2)] hover:-translate-y-1 transition-all duration-300 border border-slate-200/50"
+                className="group relative overflow-hidden rounded-md text-left shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] shadow-[0_4px_20px_rgba(12,37,69,0.08)] hover:shadow-[0_14px_32px_rgba(12,37,69,0.2)] hover:-translate-y-1 transition-all duration-300 border border-slate-100"
                 style={{ aspectRatio: '16/10' }}
               >
                 <img
@@ -676,16 +676,22 @@ export default function Home({ onNavigate }) {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/50 to-navy/15 group-hover:via-navy/60 transition-colors duration-300" />
+                {/* Multi-stage atmospheric gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/45 to-navy/15 group-hover:via-navy/55 transition-colors duration-300" />
+
+                {/* Top-right action arrow badge */}
                 <div className="absolute top-4 right-4">
                   <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/25 group-hover:bg-gold group-hover:border-gold group-hover:text-navy text-white flex items-center justify-center transition-all duration-300 shadow-sm group-hover:scale-110">
                     <ArrowIcon />
                   </div>
                 </div>
+
+                {/* Bottom title block with accent bar */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
                   <div className="w-7 h-[2.5px] bg-gold rounded-full mb-2.5 group-hover:w-11 transition-all duration-300" />
-                  <span className="block text-[#dfbd51] text-sm sm:text-base font-bold tracking-[0.14em] uppercase font-display mb-1.5">{ind.label}</span>
-                  <p className="text-white text-[15px] sm:text-base font-body leading-relaxed line-clamp-2">{ind.desc}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold font-display text-white group-hover:text-gold transition-colors duration-300 leading-snug">
+                    {ind.label}
+                  </h3>
                 </div>
               </button>
             ))}

@@ -298,7 +298,7 @@ export default function Contact({ onNavigate }) {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className={labelClass} htmlFor="contact-name">Full Name <span className="text-gold">*</span></label>
@@ -339,10 +339,11 @@ export default function Contact({ onNavigate }) {
                       />
                     </div>
                     <div>
-                      <label className={labelClass} htmlFor="contact-phone">Phone</label>
+                      <label className={labelClass} htmlFor="contact-phone">Phone <span className="text-gold">*</span></label>
                       <input
                         id="contact-phone"
                         type="tel"
+                        required
                         placeholder="Your phone number"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}

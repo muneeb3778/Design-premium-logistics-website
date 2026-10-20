@@ -283,17 +283,17 @@ export default function Industries({ onNavigate }) {
 
                 <div>
                   {/* Key Considerations & Relevant Services cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
                     {/* Considerations Card */}
-                    <div className="p-4 sm:p-5 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-sm sm:text-base font-bold font-display mb-2.5 flex items-center gap-2">
-                        <span className="w-3.5 h-[2px] bg-[#dfbd51] shrink-0" />
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
                         Key Considerations
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {ind.considerations.map((c) => (
-                          <li key={c} className="flex items-start gap-2.5 text-dim text-[14px] sm:text-[15px] font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <li key={c} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{c}</span>
                           </li>
                         ))}
@@ -301,15 +301,15 @@ export default function Industries({ onNavigate }) {
                     </div>
 
                     {/* Services Card */}
-                    <div className="p-4 sm:p-5 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-sm sm:text-base font-bold font-display mb-2.5 flex items-center gap-2">
-                        <span className="w-3.5 h-[2px] bg-[#dfbd51] shrink-0" />
+                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
                         Relevant Services
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {ind.services.map((s) => (
-                          <li key={s} className="flex items-start gap-2.5 text-dim text-[14px] sm:text-[15px] font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <li key={s} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{s}</span>
                           </li>
                         ))}

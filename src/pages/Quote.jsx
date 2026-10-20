@@ -190,6 +190,16 @@ export default function Quote({ onNavigate }) {
     }))
   }
 
+  const handleContinue = () => {
+    if (step === 0) {
+      if (!form.fullName.trim() || !form.email.trim() || !form.phone.trim()) {
+        alert('Please fill in all mandatory fields: Full Name, Business Email, and Phone.')
+        return
+      }
+    }
+    setStep(step + 1)
+  }
+
   const handleFinalSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
@@ -339,8 +349,8 @@ export default function Quote({ onNavigate }) {
                     <input id="q-name" type="text" required placeholder="Your full name" value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass} htmlFor="q-company">Company / Organisation *</label>
-                    <input id="q-company" type="text" required placeholder="Organisation name" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-company">Company / Organisation</label>
+                    <input id="q-company" type="text" placeholder="Organisation name" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className={inputClass} />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -349,8 +359,8 @@ export default function Quote({ onNavigate }) {
                     <input id="q-email" type="email" required placeholder="you@company.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass} htmlFor="q-phone">Phone</label>
-                    <input id="q-phone" type="tel" placeholder="Your phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
+                    <label className={labelClass} htmlFor="q-phone">Phone *</label>
+                    <input id="q-phone" type="tel" required placeholder="Your phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />
                   </div>
                 </div>
                 <div>
@@ -602,7 +612,7 @@ export default function Quote({ onNavigate }) {
 
             {step < steps.length - 1 ? (
               <button
-                onClick={() => setStep(step + 1)}
+                onClick={handleContinue}
                 className="flex items-center gap-2 px-7 py-3 bg-navy text-white text-sm font-semibold font-display rounded-sm hover:bg-navy-mid transition-colors"
               >
                 Continue
