@@ -1,6 +1,7 @@
 // src/components/Nav.jsx
 import { useState, useEffect } from 'react'
 import { waLink } from '../constants'
+import Logo from './Logo'
 
 const navLinks = [
   { id: 'home', label: 'Home' },
@@ -56,32 +57,10 @@ export default function Nav({ currentPage, onNavigate }) {
           {/* Logo */}
           <button
             onClick={() => onNavigate('home')}
-            className="flex items-center gap-3 shrink-0 group"
+            className="flex items-center shrink-0 group py-1"
             aria-label="Go to homepage"
           >
-            <div className={`w-9 h-9 flex items-center justify-center rounded-sm transition-colors ${
-              transparent ? 'bg-white/15' : 'bg-navy'
-            }`}>
-              <svg viewBox="0 0 20 20" className="w-5 h-5" fill="none" aria-hidden="true">
-                <circle cx="10" cy="10" r="8.5" stroke="white" strokeWidth="1.2" />
-                <path d="M10 2L11.8 9L10 11L8.2 9Z" fill="white" opacity="0.95" />
-                <path d="M10 18L8.2 11L10 9L11.8 11Z" fill="white" opacity="0.4" />
-                <path d="M2 10L9 8.2L11 10L9 11.8Z" fill="white" opacity="0.4" />
-                <path d="M18 10L11 11.8L9 10L11 8.2Z" fill="white" opacity="0.95" />
-              </svg>
-            </div>
-            <div className="text-left leading-none">
-              <span className={`block text-[14px] sm:text-[15px] font-bold tracking-wide font-display transition-colors ${
-                transparent ? 'text-white' : 'text-navy'
-              }`}>
-                MOZ MIDLANDS
-              </span>
-              <span className={`block text-[10px] tracking-[0.16em] uppercase font-body mt-0.5 transition-colors ${
-                transparent ? 'text-white/60' : 'text-dim'
-              }`}>
-                Logistics &amp; Trading
-              </span>
-            </div>
+            <Logo light={transparent} />
           </button>
 
           {/* Desktop nav links */}

@@ -1,41 +1,102 @@
-# figma-make-app
+# Moz Midlands — Premium Logistics Web Application
 
-React + Vite + Tailwind CSS project running inside Figma Make.
+React 19 + Vite + Tailwind CSS v4 logistics web platform built for **Moz Midlands**, providing UK and international transportation, imports, warehousing, and distribution solutions.
 
-## Development Server
+---
 
-A Vite development server is **already running** on `$PORT` (default 8443). You don't need to start it manually.
+## 1. Development & Environment
 
-- Preview URL: The user can access the running app through the preview panel
-- Hot reload: Changes to source files are reflected immediately
+- **Dev Server**: Vite server runs automatically on `$PORT` (default `8443`). No manual server start is required.
+- **Hot Reload**: Source edits in `src/` hot reload immediately in the live preview.
+- **Production Build**: Verified with `npm run build` (`vite build`).
 
-## Project Structure
+---
 
-This is the canonical project structure. Start with task-relevant files below. Only follow imports or inspect other files when required, when a documented path is missing, or when the repository contradicts this guide.
+## 2. Complete Folder & File Structure
 
-- `src/main.tsx` - React entrypoint; imports `src/index.css` and mounts `src/App.tsx` into the `#root` element
-- `src/App.tsx` - Primary application component and the usual starting point for UI work
-- `src/index.css` - Global CSS entrypoint and Tailwind CSS v4 import
-- `index.html` - Vite HTML shell containing the `#root` element and loading `src/main.tsx`
-- `package.json` - Project dependencies and the Vite build, development, preview, and formatting scripts
-- `vite.config.ts` - Vite configuration with React, Tailwind CSS v4, and Figma Make plugins plus the `@` alias for `src`
-- `.mise.toml` - Toolchain versions for Node.js and pnpm
+```text
+Design premium logistics website/
+├── .figma/
+│   └── make/                  # Figma Make internal deployment & route configurations
+├── .mise.toml                 # Toolchain versions (Node.js & package manager)
+├── AGENTS.md                  # Project architecture, guidelines, and reference guide
+├── index.html                 # Vite HTML entry shell mounting #root
+├── package.json               # Dependencies, build tooling, and project metadata
+├── vite.config.js             # Vite configuration with React & Tailwind CSS v4 plugins
+└── src/
+    ├── main.jsx               # React entrypoint mounting <App /> into #root
+    ├── App.jsx                # Root router component managing currentPage state & scroll
+    ├── index.css              # Global Tailwind CSS v4 stylesheet, brand tokens & typography
+    ├── constants.js           # Central constants (e.g. waLink WhatsApp click-to-chat URL)
+    │
+    ├── assets/                # Visual media, logos, and photography
+    │   ├── logo.png           # Official primary brand logo (dark text + navy accent on transparent)
+    │   ├── logo-white.png     # Inverted brand logo (white text + gold accent for dark themes)
+    │   └── client/            # Official client photography for sectors & services
+    │       ├── transportation.jpg       # Inland transport, freight & fleet hero
+    │       ├── solutions_hero.jpg       # Warehousing, logistics hub & operations
+    │       ├── healthcare.jpg          # NHS & medical supply chain logistics
+    │       ├── arts_film_studios.jpg   # Studio, production & equipment logistics
+    │       ├── public_sector.jpg       # Civic & institutional supply chains
+    │       ├── defence.jpg             # High-security commercial & defence logistics
+    │       ├── industrial.jpg          # Heavy engineering, palletised cargo & machinery
+    │       └── imports_freight.jpg     # Port & air freight cargo handling
+    │
+    ├── components/            # Reusable UI layout and interface components
+    │   ├── Logo.jsx           # Adaptive brand logo component (light/dark modes)
+    │   ├── Nav.jsx            # Fixed header navigation with scroll spy & transparency
+    │   ├── Footer.jsx         # Multi-column site footer with glowing `#eed484` links
+    │   └── CtaSection.jsx     # Reusable final CTA section (Quote, Contact & WhatsApp)
+    │
+    └── pages/                 # Full-page view components
+        ├── Home.jsx           # Landing page with hero slideshow, services cards, sectors, clients & FAQ
+        ├── About.jsx          # Our Story, What We Do, Our Approach (parallel grid) & Markets
+        ├── Services.jsx       # Interactive services explorer with sticky scroll spy tabs
+        ├── Industries.jsx     # Sectors breakdown with scroll-margin offset sticky tabs
+        ├── Contact.jsx        # Direct enquiry form, phone, email, and live office details
+        └── Quote.jsx          # Multi-step logistics quote request with time window selectors
+```
 
-## Dependencies
+---
 
-- Runtime: React 19 and React DOM 19
-- Styling: Tailwind CSS v4 with the `@tailwindcss/vite` plugin
-- Build tooling: Vite 8, TypeScript 5.7, and `@vitejs/plugin-react`
-- Formatting: oxfmt
+## 3. Architecture & Routing
 
-## Styling
+The application uses an efficient state-based SPA router managed in [`src/App.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/App.jsx):
 
-This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin configured in `vite.config.ts`. `src/index.css` imports Tailwind with `@import 'tailwindcss';`. Use Tailwind utility classes directly in JSX and put global CSS or Tailwind v4 theme customization in `src/index.css`. This scaffold does not need a Tailwind config file or PostCSS config.
+| Page ID | Component | Role & Content |
+| :--- | :--- | :--- |
+| `home` | [`Home.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Home.jsx) | Hero slideshow, elevated solution cards, why choose us, sector previews, verified testimonial, enterprise partner ticker, and interactive FAQ. |
+| `about` | [`About.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/About.jsx) | Corporate narrative, connected supply chain services, vertically parallel **Our Approach** pillars & core values, and markets served. |
+| `services` | [`Services.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Services.jsx) | Deep dive into Transportation, Critical Deliveries, Imports, Warehousing, and Distribution with synchronized sticky tab navigation. |
+| `industries` | [`Industries.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Industries.jsx) | Specialized supply-chain solutions: Healthcare, Arts & Film Studios, Public Sector, Defence-Related, and Commercial & Industrial with calibrated sticky offsets. |
+| `contact` | [`Contact.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Contact.jsx) | Contact information, telephone/email/WhatsApp direct lines, and interactive general enquiry form. |
+| `quote` | [`Quote.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Quote.jsx) | 5-step interactive quote builder with cargo dimensions, date pickers, and pickup/dropoff time window selectors. |
 
-`src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
+---
 
-## Code quality
+## 4. Design System & Brand Tokens
 
-- Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
-- Ensure JSX tags are closed and braces are balanced.
-- Export components as default exports.
+The visual style is governed by **Tailwind CSS v4** via [`src/index.css`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/index.css):
+
+| Token | Hex Value | Usage |
+| :--- | :--- | :--- |
+| **Navy Primary** (`--color-navy`) | `#0c2545` | Hero sections, headers, footer background, primary buttons |
+| **Navy Deep** (`--color-navy-dark`) | `#07182c` | Dark contrast layers, borders, deep shading |
+| **Gold Accent** (`--color-gold`) | `#dfbd51` | Eyebrow tags, section labels, active tabs, underline bars |
+| **Gold Luminous** (`#eed484`) | `#eed484` | Primary "Request a Quote" buttons, footer hover glow |
+| **Linen Neutral** (`--color-linen`) | `#f9f8f6` | Alternating section backgrounds, card containers |
+| **Hairline Border** (`--color-hairline`) | `#e5e2dc` | Subtle card dividers, borders, input outlines |
+
+### Typography
+- **Headings & Display**: `Instrument Sans`, sans-serif (font-display)
+- **Body & Forms**: `Source Sans 3`, sans-serif (font-body)
+
+---
+
+## 5. Agent & Code Quality Rules
+
+1. **Apostrophe Safety**: Always use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings to prevent Vite build failures.
+2. **Line Endings**: Normalize all project files to Unix/LF (`\n`) line endings.
+3. **Component Exports**: Always export React components as `default export`.
+4. **Clickable Links**: In chat responses, always provide clickable Markdown links formatted with the `file:///` URI scheme for changed files and symbols.
+5. **Sticky Header Offsets**: Fixed top navigation is `72px` and sticky sub-navigation tabs are `~50px`. All in-page scroll anchors must include a minimum `146px` offset (`scroll-mt-[146px]` and `window.scrollTo` delta) to ensure section headers and tags remain completely visible below the sticky bars.

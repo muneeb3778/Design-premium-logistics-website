@@ -24,7 +24,7 @@ function QuoteButton({ onClick, size = 'md', className = '' }) {
   )
 }
 
-export default function CtaSection({ onNavigate }) {
+export default function CtaSection({ onNavigate, hideContactBtn = false }) {
   return (
     <section className="relative overflow-hidden bg-navy py-20 lg:py-24">
       <img
@@ -40,7 +40,7 @@ export default function CtaSection({ onNavigate }) {
 
       <div className="max-w-[1320px] mx-auto px-5 lg:px-10 relative text-center">
         <div className="flex justify-center">
-          <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
+          <span className="block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase mb-3">
             Let's Move Your Business Forward
           </span>
         </div>
@@ -60,12 +60,14 @@ export default function CtaSection({ onNavigate }) {
             className="w-full sm:w-56 py-3.5 px-6"
           />
 
-          <button
-            onClick={() => onNavigate('contact')}
-            className="w-full sm:w-56 py-3.5 px-6 inline-flex items-center justify-center border border-white/28 bg-white/10 text-white text-sm font-bold font-display rounded-sm hover:bg-white/20 transition-colors shadow-sm"
-          >
-            Speak to Our Team
-          </button>
+          {!hideContactBtn && (
+            <button
+              onClick={() => onNavigate('contact')}
+              className="w-full sm:w-56 py-3.5 px-6 inline-flex items-center justify-center border border-white/28 bg-white/10 text-white text-sm font-bold font-display rounded-sm hover:bg-white/20 transition-colors shadow-sm"
+            >
+              Speak to Our Team
+            </button>
+          )}
 
           <a
             href={waLink}

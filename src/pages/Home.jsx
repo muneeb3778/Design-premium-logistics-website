@@ -533,8 +533,8 @@ export default function Home({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           <div className="max-w-2xl mb-14">
-            <span className="block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase mb-3">
-              our Solutions &amp; Services
+            <span className="block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase mb-3">
+              Our Solutions &amp; Services
             </span>
             <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-4">Coordinated Supply Chain Capabilities</h2>
             <p className="text-dim text-base lg:text-lg font-body leading-relaxed">
@@ -542,29 +542,36 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap justify-center gap-6">
             {services.map((svc) => (
               <button
                 key={svc.title}
                 onClick={() => onNavigate('services')}
-                className="group relative overflow-hidden rounded-sm text-left shrink-0 w-full sm:w-[calc(50%-10px)] lg:w-[calc((100%-40px)/3)]"
+                className="group relative overflow-hidden rounded-md text-left shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] shadow-[0_4px_20px_rgba(12,37,69,0.08)] hover:shadow-[0_14px_32px_rgba(12,37,69,0.2)] hover:-translate-y-1 transition-all duration-300 border border-slate-100"
                 style={{ aspectRatio: '16/10' }}
               >
                 <img
                   src={svc.image}
                   alt={svc.alt}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
+                {/* Multi-stage atmospheric gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/45 to-navy/15 group-hover:via-navy/55 transition-colors duration-300" />
+
+                {/* Top-right action arrow badge */}
                 <div className="absolute top-4 right-4">
-                  <div className="w-8 h-8 bg-white/15 group-hover:bg-gold/85 rounded-full flex items-center justify-center transition-colors duration-200 text-white">
+                  <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/25 group-hover:bg-gold group-hover:border-gold group-hover:text-navy text-white flex items-center justify-center transition-all duration-300 shadow-sm group-hover:scale-110">
                     <ArrowIcon />
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-1.5">{svc.title}</span>
-                  <p className="text-white/85 text-xs sm:text-sm font-body leading-relaxed line-clamp-2">{svc.desc}</p>
+
+                {/* Bottom title block with accent bar */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+                  <div className="w-7 h-[2.5px] bg-gold rounded-full mb-2.5 group-hover:w-11 transition-all duration-300" />
+                  <h3 className="text-lg sm:text-xl font-semibold font-display text-white group-hover:text-gold transition-colors duration-300 leading-snug">
+                    {svc.title}
+                  </h3>
                 </div>
               </button>
             ))}
@@ -619,8 +626,8 @@ export default function Home({ onNavigate }) {
                   <div key={vp.title} className="flex gap-4 group">
                     <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
                     <div>
-                      <h3 className="text-navy text-base font-semibold font-display mb-1">{vp.title}</h3>
-                      <p className="text-dim text-sm font-body leading-relaxed">{vp.desc}</p>
+                      <h3 className="text-navy text-lg font-bold font-display mb-1.5">{vp.title}</h3>
+                      <p className="text-dim text-base font-body leading-relaxed">{vp.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -655,29 +662,30 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap justify-center gap-6">
             {industries.map((ind) => (
               <button
                 key={ind.label}
                 onClick={() => onNavigate('industries')}
-                className="group relative overflow-hidden rounded-sm text-left shrink-0 w-full sm:w-[calc(50%-10px)] lg:w-[calc((100%-40px)/3)]"
+                className="group relative overflow-hidden rounded-md text-left shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc((100%-48px)/3)] shadow-[0_4px_20px_rgba(12,37,69,0.08)] hover:shadow-[0_14px_32px_rgba(12,37,69,0.2)] hover:-translate-y-1 transition-all duration-300 border border-slate-200/50"
                 style={{ aspectRatio: '16/10' }}
               >
                 <img
                   src={ind.image}
                   alt={ind.alt}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/50 to-navy/15 group-hover:via-navy/60 transition-colors duration-300" />
                 <div className="absolute top-4 right-4">
-                  <div className="w-8 h-8 bg-white/15 group-hover:bg-gold/85 rounded-full flex items-center justify-center transition-colors duration-200 text-white">
+                  <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/25 group-hover:bg-gold group-hover:border-gold group-hover:text-navy text-white flex items-center justify-center transition-all duration-300 shadow-sm group-hover:scale-110">
                     <ArrowIcon />
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                  <span className="inline-block text-gold text-xs sm:text-sm font-semibold tracking-[0.13em] uppercase font-display mb-1.5">{ind.label}</span>
-                  <p className="text-white/85 text-xs sm:text-sm font-body leading-relaxed line-clamp-2">{ind.desc}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+                  <div className="w-7 h-[2.5px] bg-gold rounded-full mb-2.5 group-hover:w-11 transition-all duration-300" />
+                  <span className="block text-[#dfbd51] text-sm sm:text-base font-bold tracking-[0.14em] uppercase font-display mb-1.5">{ind.label}</span>
+                  <p className="text-white text-[15px] sm:text-base font-body leading-relaxed line-clamp-2">{ind.desc}</p>
                 </div>
               </button>
             ))}

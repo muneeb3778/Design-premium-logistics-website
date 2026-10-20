@@ -14,7 +14,7 @@ function HeroLabel({ children }) {
 
 function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -387,7 +387,7 @@ export default function Contact({ onNavigate }) {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────────────── */}
-      <CtaSection onNavigate={onNavigate} />
+      <CtaSection onNavigate={onNavigate} hideContactBtn={true} />
 
     </div>
   )

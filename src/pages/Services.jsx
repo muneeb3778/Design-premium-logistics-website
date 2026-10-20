@@ -16,7 +16,7 @@ function HeroLabel({ children }) {
 
 function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -192,9 +192,11 @@ export default function Services({ onNavigate }) {
     if (targetElement) {
       const stickyBar = e.currentTarget.closest('.sticky')
       const stickyHeight = stickyBar ? stickyBar.offsetHeight : 50
-      const totalHeaderOffset = 10 + stickyHeight // 10px main navbar + sticky tab bar height
+      const mainNavHeight = 72 // Height of fixed top navbar
+      const breathingSpace = 24 // Padding below sticky bar so complete section title and tag are visible
+      const totalHeaderOffset = mainNavHeight + stickyHeight + breathingSpace
       const y = targetElement.getBoundingClientRect().top + window.pageYOffset - totalHeaderOffset
-      window.scrollTo({ top: y, behavior: 'smooth' })
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' })
     }
   }
 
@@ -270,7 +272,7 @@ export default function Services({ onNavigate }) {
         <section
           key={svc.id}
           id={svc.id}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]'}
+          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[146px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[146px]'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
@@ -304,14 +306,14 @@ export default function Services({ onNavigate }) {
                   {/* Capabilities & Key Benefits cards — exactly 4 concise points each */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
                     <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-px bg-gold shrink-0" />
+                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
                         Capabilities
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {svc.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <li key={cap} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{cap}</span>
                           </li>
                         ))}
@@ -319,14 +321,14 @@ export default function Services({ onNavigate }) {
                     </div>
 
                     <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-px bg-gold shrink-0" />
+                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
                         Key Benefits
                       </h3>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {svc.benefits.map((b) => (
-                          <li key={b} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <li key={b} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{b}</span>
                           </li>
                         ))}

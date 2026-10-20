@@ -14,7 +14,7 @@ function HeroLabel({ children }) {
 
 function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -134,30 +134,32 @@ export default function About({ onNavigate }) {
       {/* ── OUR STORY ───────────────────────────────────────────────── */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <SectionTag>Our Story</SectionTag>
-              <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
-                Built Around the Practical Requirements of Supply Chains
-              </h2>
-              <div className="space-y-4 text-dim font-body text-base lg:text-lg leading-relaxed">
-                <p>
-                  Moz Midlands was established to address a clear need in the UK logistics market — a provider that could genuinely connect transportation, warehousing, imports and distribution within a single, operationally competent offering.
-                </p>
-                <p>
-                  Every business has different logistics requirements. Whether you need an urgent delivery, support with imported goods, secure storage or an organised distribution solution, Moz Midlands is here to help you move goods efficiently and with confidence.
-                </p>
-                <p>
-                  We bring together transport, handling and logistics support to help businesses keep their operations running smoothly. Our approach is built around clear communication, careful coordination and a commitment to delivering a professional customer experience from collection to final destination.
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+            <div className="flex flex-col justify-between">
+              <div>
+                <SectionTag>Our Story</SectionTag>
+                <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-6 leading-tight">
+                  Built Around the Practical Requirements of Supply Chains
+                </h2>
+                <div className="space-y-4 text-dim font-body text-base lg:text-lg leading-relaxed">
+                  <p>
+                    Moz Midlands was established to address a clear need in the UK logistics market — a provider that could genuinely connect transportation, warehousing, imports and distribution within a single, operationally competent offering.
+                  </p>
+                  <p>
+                    Every business has different logistics requirements. Whether you need an urgent delivery, support with imported goods, secure storage or an organised distribution solution, Moz Midlands is here to help you move goods efficiently and with confidence.
+                  </p>
+                  <p>
+                    We bring together transport, handling and logistics support to help businesses keep their operations running smoothly. Our approach is built around clear communication, careful coordination and a commitment to delivering a professional customer experience from collection to final destination.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline" style={{ aspectRatio: '4/3' }}>
+            <div className="relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[440px] lg:h-full min-h-0">
               <img
                 src={solutionsHeroImg}
                 alt="Moz Midlands operations and transport logistics"
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-navy/10" />
@@ -183,8 +185,8 @@ export default function About({ onNavigate }) {
             {coreServices.map((svc) => (
               <div key={svc.title} className="p-6 bg-white border border-hairline rounded-sm hover:border-navy/20 transition-all duration-300 group shadow-sm">
                 <div className="w-8 h-[2px] bg-gold mb-4 group-hover:w-12 transition-all duration-300" />
-                <h3 className="text-navy text-lg font-semibold font-display mb-2">{svc.title}</h3>
-                <p className="text-dim text-sm font-body leading-relaxed">{svc.desc}</p>
+                <h3 className="text-navy text-lg sm:text-xl font-bold font-display mb-2.5">{svc.title}</h3>
+                <p className="text-dim text-[15px] sm:text-base font-body leading-relaxed">{svc.desc}</p>
               </div>
             ))}
           </div>
@@ -205,22 +207,20 @@ export default function About({ onNavigate }) {
       <section className="bg-white py-20 lg:py-28 border-t border-hairline">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
-          {/* Top-Left Section Header */}
-          <div className="max-w-3xl mb-12 lg:mb-16">
-            <SectionTag>Our Approach</SectionTag>
-            <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display leading-tight">
-              How We Work
-            </h2>
-          </div>
-
           {/* Parallel 2-Column Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
             
-            {/* Left Column: Intro Description + 4 Core Values */}
-            <div>
-              <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
-                We approach every customer requirement with a clear focus on operational delivery, responsiveness and accountability.
-              </p>
+            {/* Left Column: Heading + Intro + 4 Core Values */}
+            <div className="flex flex-col justify-between">
+              <div>
+                <SectionTag>Our Approach</SectionTag>
+                <h2 className="text-navy text-3xl lg:text-4xl font-bold font-display mb-5 leading-tight">
+                  How We Work
+                </h2>
+                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-8">
+                  We approach every customer requirement with a clear focus on operational delivery, responsiveness and accountability.
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {values.map((v) => (
@@ -229,21 +229,21 @@ export default function About({ onNavigate }) {
                     className="p-5 bg-linen rounded-sm border border-hairline hover:border-navy/20 transition-all duration-200"
                   >
                     <div className="w-6 h-[2px] bg-gold mb-3" />
-                    <h4 className="text-navy text-base font-semibold font-display mb-1.5">{v.label}</h4>
-                    <p className="text-dim text-sm font-body leading-relaxed">{v.desc}</p>
+                    <h4 className="text-navy text-base sm:text-lg font-bold font-display mb-1.5">{v.label}</h4>
+                    <p className="text-dim text-[15px] sm:text-base font-body leading-relaxed">{v.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Column: 4 Approach Pillars */}
-            <div className="space-y-6 lg:space-y-7">
+            {/* Right Column: 4 Approach Pillars distributed parallel from top to bottom */}
+            <div className="flex flex-col justify-between py-1 lg:py-2 space-y-6 lg:space-y-0">
               {approach.map((item) => (
                 <div key={item.title} className="flex gap-4 group">
                   <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
                   <div>
-                    <h3 className="text-navy text-base font-semibold font-display mb-1.5">{item.title}</h3>
-                    <p className="text-dim text-sm font-body leading-relaxed">{item.desc}</p>
+                    <h3 className="text-navy text-lg font-bold font-display mb-1.5">{item.title}</h3>
+                    <p className="text-dim text-base sm:text-[17px] font-body leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -265,7 +265,7 @@ export default function About({ onNavigate }) {
             ].map((stat) => (
               <div key={stat.label} className="text-center p-6 border border-white/10 rounded-sm hover:border-gold/30 transition-colors">
                 <div className="text-4xl lg:text-5xl font-bold font-display text-gold mb-2">{stat.value}</div>
-                <div className="text-white/75 text-sm font-semibold font-display">{stat.label}</div>
+                <div className="text-white/80 text-sm sm:text-base font-semibold font-display">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -18,7 +18,7 @@ function HeroLabel({ children }) {
 
 function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -62,15 +62,13 @@ const industries = [
     headline: 'Supporting the Movement of Healthcare Goods',
     image: healthcareImg,
     alt: 'Supporting the movement of healthcare and medical goods',
-    context: 'Healthcare organisations rely on dependable logistics to help keep essential goods moving. We can support suitable healthcare-related transport requirements through carefully coordinated delivery solutions, subject to the nature of the goods and applicable handling requirements. We understand that healthcare deliveries may require attention to timing, packaging, documentation and delivery instructions.',
+    context: 'Healthcare organisations rely on dependable, temperature-conscious logistics to keep essential medical goods moving between NHS locations, suppliers and facilities.',
     considerations: [
-      'Transport of approved medical supplies',
-      'Healthcare equipment, medicines & live deliveries 24x7',
+      'Approved medical supplies & live 24/7 delivery',
       'Scheduled deliveries between NHS locations',
-      'Time-sensitive healthcare consignments',
-      'Distribution support for Pharma suppliers',
+      'Distribution support for pharmaceutical suppliers',
     ],
-    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
+    services: ['Critical Deliveries', 'Medical Transport', 'Scheduled Distribution'],
   },
   {
     id: 'arts-film-studios',
@@ -78,16 +76,13 @@ const industries = [
     headline: 'Logistics for Creative Productions',
     image: artsFilmImg,
     alt: 'Logistics for film, TV and creative productions',
-    context: 'Behind every successful production is a team of people, equipment and logistics working together. At Moz Midlands we focus on supporting transport requirements for creative businesses, film studios and production teams that need equipment, materials and commercial goods moved between locations and studios. We understand that production schedules can be demanding, and that equipment may need to arrive at the right place at the right time.',
+    context: 'High-care equipment, materials and studio logistics for film productions, studios and creative teams operating to demanding call sheets.',
     considerations: [
-      'Film and studio equipment transport',
-      'Production materials and props',
-      'Flight cases and packaged equipment',
-      'Transport between studios and production locations',
-      'Scheduled and time-sensitive deliveries',
-      'Business-to-business collection and delivery',
+      'Direct soundstage & shoot location deliveries',
+      'High-care handling for cameras, lights & props',
+      'Rapid turnaround around production call sheets',
     ],
-    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
+    services: ['Dedicated Studio Courier', 'Production Transport', 'Equipment Storage'],
   },
   {
     id: 'public-sector',
@@ -95,16 +90,13 @@ const industries = [
     headline: 'Supporting Public Sector Supply Chains',
     image: publicSectorImg,
     alt: 'Supporting public sector and civic supply chains',
-    context: 'Public sector organisations depend on practical and dependable logistics to keep services and operations running. We can provide suitable transport solutions for public sector and commercial organisations requiring the movement of goods between facilities, suppliers and delivery locations. We aim to support customers with a professional service, clear delivery arrangements and responsive communication.',
+    context: 'Dependable transport solutions for public sector organisations, coordinating goods and supplies between facilities with documented operations.',
     considerations: [
-      'Commercial goods collection and delivery',
-      'Supplies and equipment transport',
-      'Scheduled delivery arrangements',
-      'Transport between public sector facilities',
-      'Distribution support',
-      'Time-sensitive deliveries, where available',
+      'Supplies & equipment transport between facilities',
+      'Scheduled procurement delivery arrangements',
+      'Accountable service with clear communication',
     ],
-    services: ['Transportation', 'Warehousing', 'Distribution'],
+    services: ['Scheduled Routes', 'Inland Transport', 'Distribution Support'],
   },
   {
     id: 'defence-related',
@@ -112,16 +104,13 @@ const industries = [
     headline: 'Professional Transport for Defence-Related Requirements',
     image: defenceImg,
     alt: 'Professional transport for defence-related requirements',
-    context: 'Defence-related supply chains demand careful planning, dependable transport and attention to operational requirements. Moz Midlands can discuss suitable logistics and transport support for approved commercial and defence-sector requirements, subject to the goods, destination and relevant regulations. Our focus is on providing a professional service for authorised consignments, with clear communication and transport arrangements tailored to the requirements of each customer.',
+    context: 'Disciplined logistics and transport support for approved commercial and defence-sector requirements, ensuring operational reliability and strict compliance.',
     considerations: [
       'Approved commercial equipment transport',
-      'Industrial and engineering goods',
-      'Defence supply chain transport support',
-      'Scheduled commercial deliveries',
-      'Secure handling arrangements, where available',
-      'Collection and delivery coordination',
+      'Defence supply chain & engineering goods',
+      'Secure handling & scheduled deliveries',
     ],
-    services: ['Critical Deliveries', 'Transportation', 'Warehousing', 'Distribution'],
+    services: ['Dedicated Transport', 'Secure Freight', 'Scheduled Logistics'],
   },
   {
     id: 'commercial-industrial',
@@ -129,16 +118,13 @@ const industries = [
     headline: 'Transport Solutions for Industry',
     image: industrialImg,
     alt: 'Transport solutions for industrial and commercial operations',
-    context: 'Industrial businesses depend on the smooth movement of materials, equipment and components. Moz Midlands helps businesses coordinate the movement of commercial goods between suppliers, warehouses, production facilities and customers. We understand that industrial deliveries can vary in size, weight, timing and handling requirements. Our team can discuss your cargo and the transport arrangements needed.',
+    context: 'Flexible logistics and transport for industrial components, engineering machinery and commercial cargo moving between suppliers, warehouses and sites.',
     considerations: [
-      'Industrial components transport',
-      'Machinery and equipment delivery, where suitable',
-      'Engineering goods and commercial cargo',
-      'Supplier-to-site deliveries',
-      'Palletised goods transport',
-      'Scheduled and urgent transport arrangements',
+      'Industrial machinery & components delivery',
+      'Supplier-to-site & palletised transport',
+      'Scheduled and urgent freight arrangements',
     ],
-    services: ['Transportation', 'Imports', 'Warehousing', 'Distribution'],
+    services: ['Heavy & Palletised Transport', 'Freight Coordination', 'Distribution'],
   },
 ]
 
@@ -178,9 +164,11 @@ export default function Industries({ onNavigate }) {
     if (targetElement) {
       const stickyBar = e.currentTarget.closest('.sticky')
       const stickyHeight = stickyBar ? stickyBar.offsetHeight : 50
-      const totalHeaderOffset = -20 + stickyHeight // -20px main navbar + sticky tab bar height
+      const mainNavHeight = 72 // Height of fixed top navbar
+      const breathingSpace = 24 // Padding below sticky bar so complete section title and tag are visible
+      const totalHeaderOffset = mainNavHeight + stickyHeight + breathingSpace
       const y = targetElement.getBoundingClientRect().top + window.pageYOffset - totalHeaderOffset
-      window.scrollTo({ top: y, behavior: 'smooth' })
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' })
     }
   }
 
@@ -256,15 +244,15 @@ export default function Industries({ onNavigate }) {
         <section
           key={ind.id}
           id={ind.id}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[122px]'}
+          className={idx % 2 === 0 ? 'bg-white py-10 lg:py-14 border-b border-hairline scroll-mt-[146px]' : 'bg-linen py-10 lg:py-14 border-b border-hairline scroll-mt-[146px]'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
             {/* Grid: Image and Content pair together with matching top & bottom edges */}
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image Column: Expands from top of SectionTag down to bottom of action button */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-0">
+              {/* Image Column: Expands cleanly without stretching too long */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[320px] sm:h-[380px] lg:h-full lg:max-h-[460px] min-h-0">
                 <img
                   src={ind.image}
                   alt={ind.alt}
@@ -272,38 +260,40 @@ export default function Industries({ onNavigate }) {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-navy/8" />
-                <div className="absolute bottom-5 left-5">
-                  <span className="inline-block bg-navy/95 text-gold-light text-xs sm:text-sm font-bold tracking-[0.12em] uppercase font-display px-4 py-2 rounded-sm backdrop-blur-sm border border-white/10 shadow-md">
+                <div className="absolute bottom-4 left-4">
+                  <span className="inline-block bg-navy/95 text-[#dfbd51] text-xs sm:text-sm font-bold tracking-[0.14em] uppercase font-display px-3.5 py-1.5 rounded-sm backdrop-blur-sm border border-white/10 shadow-md">
                     {ind.label}
                   </span>
                 </div>
               </div>
 
-              {/* Content Column: Starts at SectionTag (heading label) and ends at bottom line of buttons */}
+              {/* Content Column */}
               <div className="lg:[direction:ltr] flex flex-col justify-between">
                 <div>
-                  <SectionTag className="mb-3">{ind.label}</SectionTag>
-                  <h2 className="text-navy text-2.5xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
+                  <span className="block text-[#dfbd51] text-xs sm:text-sm font-bold font-display tracking-[0.14em] uppercase mb-2">
+                    {ind.label}
+                  </span>
+                  <h2 className="text-navy text-2xl sm:text-3xl font-bold font-display mb-3 leading-tight">
                     {ind.headline}
                   </h2>
-                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-6">
+                  <p className="text-dim text-base font-body leading-relaxed mb-5">
                     {ind.context}
                   </p>
                 </div>
 
                 <div>
                   {/* Key Considerations & Relevant Services cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-5">
                     {/* Considerations Card */}
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-px bg-gold shrink-0" />
+                    <div className="p-4 sm:p-5 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-sm sm:text-base font-bold font-display mb-2.5 flex items-center gap-2">
+                        <span className="w-3.5 h-[2px] bg-[#dfbd51] shrink-0" />
                         Key Considerations
                       </h3>
                       <ul className="space-y-2">
                         {ind.considerations.map((c) => (
-                          <li key={c} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <li key={c} className="flex items-start gap-2.5 text-dim text-[14px] sm:text-[15px] font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{c}</span>
                           </li>
                         ))}
@@ -311,15 +301,15 @@ export default function Industries({ onNavigate }) {
                     </div>
 
                     {/* Services Card */}
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-base sm:text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-px bg-gold shrink-0" />
+                    <div className="p-4 sm:p-5 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                      <h3 className="text-navy text-sm sm:text-base font-bold font-display mb-2.5 flex items-center gap-2">
+                        <span className="w-3.5 h-[2px] bg-[#dfbd51] shrink-0" />
                         Relevant Services
                       </h3>
                       <ul className="space-y-2">
                         {ind.services.map((s) => (
-                          <li key={s} className="flex items-start gap-2.5 text-dim text-sm font-body leading-snug">
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-1.5" />
+                          <li key={s} className="flex items-start gap-2.5 text-dim text-[14px] sm:text-[15px] font-body leading-snug">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
                             <span>{s}</span>
                           </li>
                         ))}
@@ -327,11 +317,11 @@ export default function Industries({ onNavigate }) {
                     </div>
                   </div>
 
-                  {/* Action Button Row: Inside Content Column so image height extends to button bottom line */}
+                  {/* Action Button Row */}
                   <div className="flex flex-wrap gap-3">
                     <button
                       onClick={() => onNavigate('services')}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
+                      className="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
                     >
                       Explore Services &amp; Solutions
                       <ArrowIcon />

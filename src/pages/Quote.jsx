@@ -11,6 +11,16 @@ const serviceOptions = [
   'Other / Multiple Services',
 ]
 
+const timeRangeOptions = [
+  'Flexible / Any time (08:00 - 18:00)',
+  'Morning (08:00 - 12:00)',
+  'Early Afternoon (12:00 - 14:00)',
+  'Afternoon (12:00 - 17:00)',
+  'Evening (17:00 - 20:00)',
+  'Specific Time / Urgent ASAP',
+  'Out of Hours / Overnight',
+]
+
 const steps = ['Contact Details', 'Requirement', 'Pickup', 'Dropoff', 'Additional Info']
 
 function HeroLabel({ children }) {
@@ -23,7 +33,7 @@ function HeroLabel({ children }) {
 
 function SectionTag({ children, className = 'mb-3' }) {
   return (
-    <span className={`block text-gold text-sm sm:text-base font-bold font-display tracking-[0.12em] uppercase ${className}`}>
+    <span className={`block text-[#dfbd51] text-sm sm:text-base font-bold font-display tracking-[0.14em] uppercase ${className}`}>
       {children}
     </span>
   )
@@ -154,6 +164,7 @@ export default function Quote({ onNavigate }) {
     weight: '',
     dimensions: '',
     pickupDate: '',
+    pickupTimeRange: '',
     specialRequirements: '',
     // Dropoff fields
     dropoffDoorNo: '',
@@ -162,6 +173,7 @@ export default function Quote({ onNavigate }) {
     dropoffPostcode: '',
     dropoffCountry: 'United Kingdom',
     dropoffDate: '',
+    dropoffTimeRange: '',
     additionalInfo: '',
     hearAboutUs: '',
   })
@@ -427,9 +439,25 @@ export default function Quote({ onNavigate }) {
                     <input id="q-dims" type="text" placeholder="L × W × H" value={form.dimensions} onChange={(e) => setForm({ ...form, dimensions: e.target.value })} className={inputClass} />
                   </div>
                 </div>
-                <div>
-                  <label className={labelClass} htmlFor="q-pickup-date">Pick Up Date</label>
-                  <input id="q-pickup-date" type="date" value={form.pickupDate} onChange={(e) => setForm({ ...form, pickupDate: e.target.value })} className={inputClass} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-pickup-date">Pick Up Date</label>
+                    <input id="q-pickup-date" type="date" value={form.pickupDate} onChange={(e) => setForm({ ...form, pickupDate: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-pickup-timerange">Pick Up Time Window</label>
+                    <select
+                      id="q-pickup-timerange"
+                      value={form.pickupTimeRange}
+                      onChange={(e) => setForm({ ...form, pickupTimeRange: e.target.value })}
+                      className={`${inputClass} bg-white cursor-pointer`}
+                    >
+                      <option value="">Select time window...</option>
+                      {timeRangeOptions.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
                 <div>
                   <label className={labelClass} htmlFor="q-special">Special Requirements</label>
@@ -468,9 +496,25 @@ export default function Quote({ onNavigate }) {
                     <input id="q-dropoff-country" type="text" placeholder="e.g. United Kingdom" value={form.dropoffCountry} onChange={(e) => setForm({ ...form, dropoffCountry: e.target.value })} className={inputClass} />
                   </div>
                 </div>
-                <div>
-                  <label className={labelClass} htmlFor="q-dropoff-date">Drop Off Date</label>
-                  <input id="q-dropoff-date" type="date" value={form.dropoffDate} onChange={(e) => setForm({ ...form, dropoffDate: e.target.value })} className={inputClass} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-date">Drop Off Date</label>
+                    <input id="q-dropoff-date" type="date" value={form.dropoffDate} onChange={(e) => setForm({ ...form, dropoffDate: e.target.value })} className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass} htmlFor="q-dropoff-timerange">Drop Off Time Window</label>
+                    <select
+                      id="q-dropoff-timerange"
+                      value={form.dropoffTimeRange}
+                      onChange={(e) => setForm({ ...form, dropoffTimeRange: e.target.value })}
+                      className={`${inputClass} bg-white cursor-pointer`}
+                    >
+                      <option value="">Select time window...</option>
+                      {timeRangeOptions.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -503,7 +547,13 @@ export default function Quote({ onNavigate }) {
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Email:</span><span className="text-navy">{form.email || '—'}</span></div>
                     <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Services:</span><span className="text-navy">{form.services.length > 0 ? form.services.join(', ') : '—'}</span></div>
                     {form.pickupCity && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Pickup:</span><span className="text-navy">{`${form.pickupDoorNo ? form.pickupDoorNo + ', ' : ''}${form.pickupStreet ? form.pickupStreet + ', ' : ''}${form.pickupCity}`}</span></div>}
+                    {(form.pickupDate || form.pickupTimeRange) && (
+                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Pickup Timing:</span><span className="text-navy">{[form.pickupDate, form.pickupTimeRange].filter(Boolean).join(' • ')}</span></div>
+                    )}
                     {form.dropoffCity && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Dropoff:</span><span className="text-navy">{`${form.dropoffDoorNo ? form.dropoffDoorNo + ', ' : ''}${form.dropoffStreet ? form.dropoffStreet + ', ' : ''}${form.dropoffCity}`}</span></div>}
+                    {(form.dropoffDate || form.dropoffTimeRange) && (
+                      <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Dropoff Timing:</span><span className="text-navy">{[form.dropoffDate, form.dropoffTimeRange].filter(Boolean).join(' • ')}</span></div>
+                    )}
                     {form.goodsDescription && <div className="flex gap-3"><span className="text-dim w-28 shrink-0">Goods:</span><span className="text-navy">{form.goodsDescription}</span></div>}
                   </div>
                 </div>
