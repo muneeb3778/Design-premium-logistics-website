@@ -341,9 +341,9 @@ export default function Services({ onNavigate }) {
                     <QuoteButton onClick={() => onNavigate('quote')} />
                     <button
                       onClick={() => onNavigate('contact')}
-                      className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-medium font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                      className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-bold font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
                     >
-                      Speak to Our Team
+                      Reach out to Us
                     </button>
                   </div>
                 </div>
