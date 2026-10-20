@@ -48,6 +48,9 @@ Design premium logistics website/
     │   ├── Footer.jsx         # Multi-column site footer with glowing `#eed484` links
     │   └── CtaSection.jsx     # Reusable final CTA section (Quote, Contact & WhatsApp)
     │
+    ├── services/              # API and webhook integration services
+    │   └── submitForm.js      # Form submission dispatcher sending enquiries & quotes to n8n webhook
+    │
     └── pages/                 # Full-page view components
         ├── Home.jsx           # Landing page with hero slideshow, services cards, sectors, clients & FAQ
         ├── About.jsx          # Our Story, What We Do, Our Approach (parallel grid) & Markets

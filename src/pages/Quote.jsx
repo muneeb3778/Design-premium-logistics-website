@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import CtaSection from '../components/CtaSection'
 import transportationImg from '../assets/client/transportation.jpg'
+import { submitForm } from '../services/submitForm'
 
 const serviceOptions = [
   'Transportation & Inland Logistics',
@@ -145,6 +146,7 @@ function ResizableTextarea({ id, value, onChange, placeholder, rows = 4, minHeig
 export default function Quote({ onNavigate }) {
   const [step, setStep] = useState(0)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const [form, setForm] = useState({
     fullName: '',
@@ -188,10 +190,20 @@ export default function Quote({ onNavigate }) {
     }))
   }
 
-  const handleFinalSubmit = (e) => {
+  const handleFinalSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setSubmitting(true)
+    try {
+      await submitForm('quote', form)
+      setSubmitted(true)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      console.log('Quote request submitted successfully')
+    } catch (error) {
+      console.error('Error submitting quote request:', error)
+      alert('Unable to submit your quote request. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -601,9 +613,10 @@ export default function Quote({ onNavigate }) {
             ) : (
               <button
                 onClick={handleFinalSubmit}
-                className="px-8 py-3 bg-gold text-navy text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors shadow-md"
+                disabled={submitting}
+                className="px-8 py-3 bg-gold text-navy text-sm font-bold font-display rounded-sm hover:bg-gold-light transition-colors shadow-md disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
               >
-                Submit Quote Request
+                {submitting ? 'Submitting...' : 'Submit Quote Request'}
               </button>
             )}
           </div>

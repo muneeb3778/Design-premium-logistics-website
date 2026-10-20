@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { waLink } from '../constants'
 import CtaSection from '../components/CtaSection'
 import solutionsHeroImg from '../assets/client/solutions_hero.jpg'
+import { submitForm } from '../services/submitForm'
 
 function HeroLabel({ children }) {
   return (
@@ -97,6 +98,7 @@ function CustomSelect({ id, value, onChange, options, placeholder }) {
 
 export default function Contact({ onNavigate }) {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -106,9 +108,19 @@ export default function Contact({ onNavigate }) {
     message: '',
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    try {
+      await submitForm('enquiry', form)
+      setSubmitted(true)
+      console.log('Enquiry submitted successfully')
+    } catch (error) {
+      console.error('Error submitting enquiry:', error)
+      alert('Unable to submit your enquiry. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputClass = "w-full px-4 py-3 border border-hairline rounded-sm text-sm font-body text-navy placeholder:text-dim/50 bg-white shadow-[0_2px_8px_rgba(12,37,69,0.06)] focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy/20 focus:shadow-[0_4px_14px_rgba(12,37,69,0.12)] transition-all"
@@ -371,12 +383,13 @@ export default function Contact({ onNavigate }) {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg"
+                    disabled={submitting}
+                    className="w-full py-3.5 text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg disabled:opacity-60 cursor-pointer disabled:cursor-not-allowed"
                     style={{ backgroundColor: '#eed484' }}
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
                   >
-                    Send Enquiry
+                    {submitting ? 'Sending...' : 'Send Enquiry'}
                   </button>
                 </form>
               )}

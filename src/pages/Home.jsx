@@ -748,8 +748,8 @@ export default function Home({ onNavigate }) {
               Accreditations &amp; Credentials
             </p>
             <div className="flex flex-wrap justify-center gap-3.5">
-              {['[VERIFIED CERTIFICATION]', '[VERIFIED CERTIFICATION]', '[VERIFIED MEMBERSHIP]', '[VERIFIED ACCREDITATION]'].map((cert) => (
-                <div key={cert} className="px-6 py-3 border border-hairline rounded-sm text-dim text-sm sm:text-base font-medium font-body hover:border-navy/30 hover:text-navy transition-colors">
+              {['[VERIFIED CERTIFICATION]', '[VERIFIED CERTIFICATION]', '[VERIFIED MEMBERSHIP]', '[VERIFIED ACCREDITATION]'].map((cert, index) => (
+                <div key={`${cert}-${index}`} className="px-6 py-3 border border-hairline rounded-sm text-dim text-sm sm:text-base font-medium font-body hover:border-navy/30 hover:text-navy transition-colors">
                   {cert}
                 </div>
               ))}
