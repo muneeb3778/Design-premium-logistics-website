@@ -30,7 +30,7 @@ Design premium logistics website/
     ├── constants.js           # Central constants (e.g. waLink WhatsApp click-to-chat URL)
     │
     ├── assets/                # Visual media, logos, and photography
-    │   ├── logo.png           # Official primary brand logo (dark text + navy accent on transparent)
+    │   ├── logo.png           # Official primary brand logo (dark text + gold accent on transparent)
     │   ├── logo-white.png     # Inverted brand logo (white text + gold accent for dark themes)
     │   └── client/            # Official client photography for sectors & services
     │       ├── transportation.jpg       # Inland transport, freight & fleet hero

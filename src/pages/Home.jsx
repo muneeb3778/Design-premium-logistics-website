@@ -605,8 +605,9 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
-            <div className="relative rounded-sm overflow-hidden bg-linen min-h-[360px] sm:min-h-[440px] lg:min-h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-14">
+            {/* Left Column: Image whose height exactly matches the valueProps list */}
+            <div className="relative rounded-sm overflow-hidden bg-linen min-h-[360px] sm:min-h-[440px] lg:min-h-0 h-full">
               <img
                 src={solutionsHeroImg}
                 alt="Moz Midlands operations and transport fleet"
@@ -620,29 +621,31 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between">
-              <div className="space-y-6 lg:space-y-7">
-                {valueProps.map((vp) => (
-                  <div key={vp.title} className="flex gap-4 group">
-                    <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
-                    <div>
-                      <h3 className="text-navy text-lg font-bold font-display mb-1.5">{vp.title}</h3>
-                      <p className="text-dim text-base font-body leading-relaxed">{vp.desc}</p>
-                    </div>
+            {/* Right Column: Value Props list (from Reliable Coordination to Accountable Service) */}
+            <div className="space-y-6 lg:space-y-7 mt-8 lg:mt-0">
+              {valueProps.map((vp) => (
+                <div key={vp.title} className="flex gap-4 group">
+                  <div className="w-[3px] bg-gold/70 group-hover:bg-gold shrink-0 mt-1 rounded-full transition-colors duration-200" />
+                  <div>
+                    <h3 className="text-navy text-lg font-bold font-display mb-1.5">{vp.title}</h3>
+                    <p className="text-dim text-base font-body leading-relaxed">{vp.desc}</p>
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap gap-3">
-                <button
-                  onClick={() => onNavigate('about')}
-                  className="px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
-                >
-                  About Our Company
-                </button>
-              </div>
+                </div>
+              ))}
             </div>
 
+            {/* Row 2: Empty cell on left */}
+            <div className="hidden lg:block" aria-hidden="true" />
+
+            {/* Row 2: Divider line and button placed directly below the Value Props */}
+            <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap gap-3">
+              <button
+                onClick={() => onNavigate('about')}
+                className="px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
+              >
+                About Our Company
+              </button>
+            </div>
           </div>
         </div>
       </section>
