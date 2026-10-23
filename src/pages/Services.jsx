@@ -38,12 +38,11 @@ function WhatsAppIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-function QuoteButton({ onClick, size = 'md', className = '' }) {
-  const padding = size === 'lg' ? 'px-8 py-3.5' : 'px-7 py-3.5'
+function QuoteButton({ onClick, className = '' }) {
   return (
     <button
       onClick={onClick}
-      className={`${padding} text-navy text-sm font-bold font-display rounded-sm transition-all shadow-md hover:shadow-lg ${className}`}
+      className={`w-40 xl:w-44 py-2.5 px-4 flex items-center justify-center text-sm sm:text-[15px] font-bold font-display rounded-sm transition-all whitespace-nowrap text-navy shadow-md hover:shadow-lg border border-transparent ${className}`}
       style={{ backgroundColor: '#eed484' }}
       onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#dfbd51' }}
       onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#eed484' }}
@@ -349,7 +348,7 @@ export default function Services({ onNavigate }) {
                 <QuoteButton onClick={() => onNavigate('quote')} />
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-bold font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                  className="w-40 xl:w-44 py-2.5 px-4 flex items-center justify-center text-sm sm:text-[15px] font-bold font-display rounded-sm transition-all whitespace-nowrap bg-white border border-hairline text-navy hover:bg-linen shadow-xs"
                 >
                   Reach out to Us
                 </button>
