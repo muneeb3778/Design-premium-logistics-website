@@ -272,7 +272,7 @@ export default function Services({ onNavigate }) {
         <section
           key={svc.id}
           id={svc.id}
-          className={idx % 2 === 0 ? 'bg-white py-20 lg:py-28 border-b border-hairline scroll-mt-[146px]' : 'bg-linen py-20 lg:py-28 border-b border-hairline scroll-mt-[146px]'}
+          className={idx % 2 === 0 ? 'bg-white py-10 lg:py-14 border-b border-hairline scroll-mt-[146px]' : 'bg-linen py-10 lg:py-14 border-b border-hairline scroll-mt-[146px]'}
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
