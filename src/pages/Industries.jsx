@@ -248,11 +248,21 @@ export default function Industries({ onNavigate }) {
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
-            {/* Grid: Image and Content pair together with matching top & bottom edges */}
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            {/* Grid: 3-row layout on desktop ensuring the image vertically bounds strictly from the Headline to the bottom of the Cards */}
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-12 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image Column: Expands cleanly without stretching too long */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[320px] sm:h-[380px] lg:h-full lg:max-h-[460px] min-h-0">
+              {/* Row 1 Left: Spacer for Desktop */}
+              <div className="hidden lg:block" aria-hidden="true" />
+
+              {/* Row 1 Right: Category Label */}
+              <div className="lg:[direction:ltr] mb-2.5">
+                <span className="block text-[#dfbd51] text-xs sm:text-sm font-bold font-display tracking-[0.14em] uppercase">
+                  {ind.label}
+                </span>
+              </div>
+
+              {/* Row 2 Left: Image (height strictly matches from Headline to bottom of Cards) */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-navy/5 shadow-sm border border-hairline w-full h-[320px] sm:h-[380px] lg:h-full min-h-0 order-first lg:order-none mb-6 lg:mb-0">
                 <img
                   src={ind.image}
                   alt={ind.alt}
@@ -267,67 +277,63 @@ export default function Industries({ onNavigate }) {
                 </div>
               </div>
 
-              {/* Content Column */}
-              <div className="lg:[direction:ltr] flex flex-col justify-between">
-                <div>
-                  <span className="block text-[#dfbd51] text-xs sm:text-sm font-bold font-display tracking-[0.14em] uppercase mb-2">
-                    {ind.label}
-                  </span>
-                  <h2 className="text-navy text-2xl sm:text-3xl font-bold font-display mb-3 leading-tight">
-                    {ind.headline}
-                  </h2>
-                  <p className="text-dim text-base font-body leading-relaxed mb-5">
-                    {ind.context}
-                  </p>
-                </div>
+              {/* Row 2 Right: Headline, Context, and Considerations/Services Cards */}
+              <div className="lg:[direction:ltr]">
+                <h2 className="text-navy text-2xl sm:text-3xl font-bold font-display mb-3 leading-tight">
+                  {ind.headline}
+                </h2>
+                <p className="text-dim text-base font-body leading-relaxed mb-5">
+                  {ind.context}
+                </p>
 
-                <div>
-                  {/* Key Considerations & Relevant Services cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
-                    {/* Considerations Card */}
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
-                        Key Considerations
-                      </h3>
-                      <ul className="space-y-2.5">
-                        {ind.considerations.map((c) => (
-                          <li key={c} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
-                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
-                            <span>{c}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Services Card */}
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
-                        Relevant Services
-                      </h3>
-                      <ul className="space-y-2.5">
-                        {ind.services.map((s) => (
-                          <li key={s} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
-                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
-                            <span>{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                {/* Key Considerations & Relevant Services cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  {/* Considerations Card */}
+                  <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
+                      Key Considerations
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {ind.considerations.map((c) => (
+                        <li key={c} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                          <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <span>{c}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Action Button Row */}
-                  <div className="flex flex-wrap gap-3">
-                    <button
-                      onClick={() => onNavigate('services')}
-                      className="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
-                    >
-                      Explore Services &amp; Solutions
-                      <ArrowIcon />
-                    </button>
+                  {/* Services Card */}
+                  <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
+                      Relevant Services
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {ind.services.map((s) => (
+                        <li key={s} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                          <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
+              </div>
+
+              {/* Row 3 Left: Spacer for Desktop */}
+              <div className="hidden lg:block" aria-hidden="true" />
+
+              {/* Row 3 Right: Action Button Row */}
+              <div className="lg:[direction:ltr] mt-6 flex flex-wrap gap-3">
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
+                >
+                  Explore Services &amp; Solutions
+                  <ArrowIcon />
+                </button>
               </div>
 
             </div>

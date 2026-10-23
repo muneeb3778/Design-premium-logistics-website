@@ -276,11 +276,19 @@ export default function Services({ onNavigate }) {
         >
           <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
             
-            {/* Grid: Image and Content pair together with matching top & bottom edges */}
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+            {/* Grid: 3-row layout on desktop ensuring the image vertically bounds strictly from fullTitle to the bottom of the Capabilities/Benefits Cards */}
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-14 ${idx % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
 
-              {/* Image Column: Expands from top of SectionTag down to bottom of action buttons */}
-              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-0">
+              {/* Row 1 Left: Spacer for Desktop */}
+              <div className="hidden lg:block" aria-hidden="true" />
+
+              {/* Row 1 Right: Service Label Tag */}
+              <div className="lg:[direction:ltr]">
+                <SectionTag className="mb-3">{svc.label}</SectionTag>
+              </div>
+
+              {/* Row 2 Left: Image (height strictly matches from fullTitle to bottom of Cards) */}
+              <div className="lg:[direction:ltr] relative rounded-sm overflow-hidden bg-linen shadow-sm border border-hairline w-full h-[360px] sm:h-[420px] lg:h-full min-h-0 order-first lg:order-none mb-6 lg:mb-0">
                 <img
                   src={svc.image}
                   alt={svc.alt}
@@ -290,63 +298,61 @@ export default function Services({ onNavigate }) {
                 <div className="absolute inset-0 bg-navy/8" />
               </div>
 
-              {/* Content Column: Starts at SectionTag (heading label) and ends at bottom line of buttons */}
-              <div className="lg:[direction:ltr] flex flex-col justify-between">
-                <div>
-                  <SectionTag className="mb-3">{svc.label}</SectionTag>
-                  <h2 className="text-navy text-2.5xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
-                    {svc.fullTitle}
-                  </h2>
-                  <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-6">
-                    {svc.overview}
-                  </p>
-                </div>
+              {/* Row 2 Right: Full Title, Overview, and Capabilities/Key Benefits Cards */}
+              <div className="lg:[direction:ltr]">
+                <h2 className="text-navy text-2.5xl sm:text-3xl lg:text-4xl font-bold font-display mb-4 leading-tight">
+                  {svc.fullTitle}
+                </h2>
+                <p className="text-dim text-base lg:text-lg font-body leading-relaxed mb-6">
+                  {svc.overview}
+                </p>
 
-                <div>
-                  {/* Capabilities & Key Benefits cards — exactly 4 concise points each */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
-                        Capabilities
-                      </h3>
-                      <ul className="space-y-2.5">
-                        {svc.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
-                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
-                            <span>{cap}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
-                      <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
-                        <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
-                        Key Benefits
-                      </h3>
-                      <ul className="space-y-2.5">
-                        {svc.benefits.map((b) => (
-                          <li key={b} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
-                            <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                {/* Capabilities & Key Benefits cards — exactly 4 concise points each */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
+                      Capabilities
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {svc.capabilities.map((cap) => (
+                        <li key={cap} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                          <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Buttons Row: Flush inside Content Column so image height extends to button bottom line */}
-                  <div className="flex flex-wrap gap-3">
-                    <QuoteButton onClick={() => onNavigate('quote')} />
-                    <button
-                      onClick={() => onNavigate('contact')}
-                      className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-bold font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
-                    >
-                      Reach out to Us
-                    </button>
+                  <div className="p-5 sm:p-6 bg-white rounded-sm border border-hairline hover:border-navy/20 transition-colors shadow-xs">
+                    <h3 className="text-navy text-lg font-bold font-display mb-3 flex items-center gap-2">
+                      <span className="w-4 h-[2px] bg-[#dfbd51] shrink-0" />
+                      Key Benefits
+                    </h3>
+                    <ul className="space-y-2.5">
+                      {svc.benefits.map((b) => (
+                        <li key={b} className="flex items-start gap-2.5 text-dim text-[15px] sm:text-base font-body leading-normal">
+                          <span className="w-2 h-2 rounded-full bg-[#dfbd51] shrink-0 mt-1.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
+              </div>
+
+              {/* Row 3 Left: Spacer for Desktop */}
+              <div className="hidden lg:block" aria-hidden="true" />
+
+              {/* Row 3 Right: Action Buttons Row */}
+              <div className="lg:[direction:ltr] mt-6 flex flex-wrap gap-3">
+                <QuoteButton onClick={() => onNavigate('quote')} />
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="px-6 py-3 bg-white border border-hairline text-navy text-sm font-bold font-body rounded-sm hover:bg-linen transition-colors shadow-xs"
+                >
+                  Reach out to Us
+                </button>
               </div>
 
             </div>
