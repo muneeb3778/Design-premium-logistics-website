@@ -329,7 +329,7 @@ export default function Industries({ onNavigate }) {
               <div className="lg:[direction:ltr] mt-6 flex flex-wrap gap-3">
                 <button
                   onClick={() => onNavigate('services')}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy text-navy text-sm  font-bold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200 shadow-sm"
                 >
                   Explore Services &amp; Solutions
                   <ArrowIcon />
