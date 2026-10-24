@@ -10,6 +10,21 @@ import artsFilmImg from '../assets/client/arts_film_studios.jpg'
 import publicSectorImg from '../assets/client/public_sector.jpg'
 import defenceImg from '../assets/client/defence.jpg'
 import industrialImg from '../assets/client/industrial.jpg'
+import logoWhite from '../assets/logo-white.png'
+import f1Logo from '../assets/partners/f1.svg'
+import alpineLogo from '../assets/partners/alpine.svg'
+import modLogo from '../assets/partners/mod.svg'
+import ukaeaLogo from '../assets/partners/ukaea.svg'
+import nhsLogo from '../assets/partners/nhs.svg'
+import boeingLogo from '../assets/partners/boeing.svg'
+import heathrowLogo from '../assets/partners/heathrow.svg'
+import gatwickLogo from '../assets/partners/gatwick.svg'
+import hsbcLogo from '../assets/partners/hsbc.svg'
+import fedexLogo from '../assets/partners/fedex.svg'
+import warnerbrosLogo from '../assets/partners/warnerbros.svg'
+import kodakLogo from '../assets/partners/kodak.svg'
+import companieshouseLogo from '../assets/partners/companieshouse.svg'
+import mitieLogo from '../assets/partners/mitie.svg'
 
 /*
   Hero slideshow data
@@ -120,227 +135,33 @@ const industries = [
 ]
 
 /*
-  Clients & Enterprise Partners Data
+  Clients & Enterprise Partners Data (Official Brand Logos Collage)
 */
-const clients = [
-  {
-    id: 'f1',
-    name: 'Formula 1®',
-    sector: 'Motorsport Logistics',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <span className="text-4xl sm:text-[42px] font-black italic tracking-tighter text-[#E10600] leading-none">F1</span>
-        <div className="border-l-2 border-slate-300 pl-3 text-left">
-          <span className="block text-base sm:text-lg font-black tracking-wider text-navy uppercase leading-none">FORMULA 1</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Global Racing</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'alpine',
-    name: 'Alpine UK',
-    sector: 'Motorsport Division',
-    renderLogo: () => (
-      <div className="flex items-center gap-3.5">
-        <div className="w-12 h-12 rounded-full bg-[#00428C] flex items-center justify-center text-white font-black text-xl italic shadow-xs shrink-0">
-          A
-        </div>
-        <div className="text-left">
-          <span className="block text-xl sm:text-2xl font-black tracking-[0.16em] text-navy uppercase leading-none">ALPINE</span>
-          <span className="block text-xs text-[#0090FF] font-bold tracking-wider uppercase mt-1">Motorsport UK</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'mod',
-    name: 'MOD UK',
-    sector: 'Ministry of Defence',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-10 h-10 fill-navy shrink-0" aria-hidden="true">
-          <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3-4.8-2.5-4.8 2.5.9-5.3-3.8-3.7 5.3-.8L12 2z" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black tracking-wider text-navy uppercase leading-tight">MINISTRY OF DEFENCE</span>
-          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-0.5">United Kingdom</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'atomic',
-    name: 'Atomic Energy UK',
-    sector: 'Energy & Research',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-10 h-10 stroke-navy fill-none stroke-2 shrink-0" aria-hidden="true">
-          <circle cx="12" cy="12" r="3.5" fill="#dfbd51" stroke="none" />
-          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(30 12 12)" />
-          <ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(-30 12 12)" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black tracking-tight text-navy uppercase leading-tight">UK ATOMIC ENERGY</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">Research &amp; Power</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'nhs',
-    name: 'NHS',
-    sector: 'National Health Trust',
-    renderLogo: () => (
-      <div className="flex items-center gap-3.5">
-        <div className="bg-[#005EB8] px-3.5 py-1.5 rounded-sm shadow-xs shrink-0">
-          <span className="text-2xl sm:text-3xl font-black italic tracking-tight text-white leading-none">NHS</span>
-        </div>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black text-navy leading-tight">National Health Trust</span>
-          <span className="block text-xs text-dim tracking-wide uppercase font-semibold mt-0.5">Medical Logistics</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'boeing',
-    name: 'Boeing',
-    sector: 'Aerospace & Defence',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-10 h-10 fill-[#0039A6] shrink-0" aria-hidden="true">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-2xl sm:text-[26px] font-black tracking-widest text-[#0039A6] uppercase leading-none font-sans">BOEING</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Aerospace Logistics</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'airports',
-    name: 'Heathrow & Gatwick',
-    sector: 'Airport Operations',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
-          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">GATWICK &amp; HEATHROW</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">UK Airport Hubs</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'hsbc',
-    name: 'HSBC',
-    sector: 'Banking & Financial',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <div className="relative w-8 h-8 shrink-0">
-          <div className="absolute inset-0 bg-[#DB0011]" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-        </div>
-        <div className="text-left">
-          <span className="block text-2xl sm:text-3xl font-black tracking-wider text-navy leading-none">HSBC</span>
-          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-1">Global Banking</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'fedex',
-    name: 'FedEx',
-    sector: 'Global Logistics',
-    renderLogo: () => (
-      <div className="text-left">
-        <div className="flex items-baseline text-3xl sm:text-[34px] font-black leading-none tracking-tight">
-          <span className="text-[#4D148C]">Fed</span>
-          <span className="text-[#FF6600]">Ex</span>
-        </div>
-        <span className="block text-xs text-dim tracking-widest uppercase font-semibold mt-1">Express Freight</span>
-      </div>
-    ),
-  },
-  {
-    id: 'studios',
-    name: 'Warner Bros & Shinfield',
-    sector: 'Film & Media Studios',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-11 bg-[#003B7B] rounded-b-lg flex items-center justify-center text-white text-sm font-black tracking-tighter shrink-0 shadow-xs">
-          WB
-        </div>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">WARNER BROS.</span>
-          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-0.5">Shinfield Studios</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'kodak',
-    name: 'Kodak Studios',
-    sector: 'Media & Production',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-[#E31837] flex items-center justify-center rounded-sm text-[#FFC72C] font-black text-xl shrink-0 shadow-xs">
-          K
-        </div>
-        <div className="text-left">
-          <span className="block text-xl sm:text-2xl font-black tracking-wider text-[#E31837] leading-none uppercase">Kodak</span>
-          <span className="block text-xs text-dim tracking-wider uppercase font-medium mt-1">Studios Logistics</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'datacentres',
-    name: 'Data Centres UK',
-    sector: 'Critical Infrastructure',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
-          <path d="M4 1h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zM6 5h2V3H6v2zm0 8h2v-2H6v2zm0 8h2v-2H6v2z" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">DATA CENTRES</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">Critical Infrastructure</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'companieshouse',
-    name: 'Companies House UK',
-    sector: 'Government Agency',
-    renderLogo: () => (
-      <div className="flex items-center gap-3">
-        <svg viewBox="0 0 24 24" className="w-9 h-9 fill-navy shrink-0" aria-hidden="true">
-          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" />
-        </svg>
-        <div className="text-left">
-          <span className="block text-sm sm:text-base font-black text-navy uppercase leading-tight">COMPANIES HOUSE</span>
-          <span className="block text-xs text-dim tracking-widest uppercase font-medium mt-0.5">UK Executive Agency</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'mitie',
-    name: 'Mitie UK',
-    sector: 'Facilities & Security',
-    renderLogo: () => (
-      <div className="flex items-center gap-2.5">
-        <span className="text-3xl sm:text-4xl font-black tracking-tight text-navy lowercase font-sans leading-none">mitie</span>
-        <div className="w-3 h-3 rounded-full bg-[#E40046] mb-2.5 shrink-0" />
-        <span className="block text-xs text-dim tracking-widest uppercase font-medium ml-1">UK Facilities</span>
-      </div>
-    ),
-  },
+const collageItems = [
+  // Row 1 (5 logos across)
+  { id: 'f1', name: 'Formula 1®', sector: 'Motorsport Logistics', logo: f1Logo, h: 'h-7 sm:h-8' },
+  { id: 'boeing', name: 'Boeing', sector: 'Aerospace & Defence', logo: boeingLogo, h: 'h-6 sm:h-7' },
+  { id: 'hsbc', name: 'HSBC', sector: 'Financial Services', logo: hsbcLogo, h: 'h-6 sm:h-7' },
+  { id: 'fedex', name: 'FedEx Express', sector: 'Global Freight', logo: fedexLogo, h: 'h-7 sm:h-8' },
+  { id: 'heathrow', name: 'Heathrow Airport', sector: 'Aviation Cargo Hub', logo: heathrowLogo, h: 'h-6 sm:h-7' },
+
+  // Row 2 Left (2 logos)
+  { id: 'nhs', name: 'NHS Trust', sector: 'Healthcare Logistics', logo: nhsLogo, h: 'h-7 sm:h-8' },
+  { id: 'mod', name: 'Ministry of Defence', sector: 'UK Defence Logistics', logo: modLogo, h: 'h-8 sm:h-9' },
+
+  // Row 2 Center: Moz Midlands Focal Brand Badge
+  { type: 'center' },
+
+  // Row 2 Right (2 logos)
+  { id: 'alpine', name: 'Alpine UK', sector: 'Motorsport Division', logo: alpineLogo, h: 'h-8 sm:h-9' },
+  { id: 'ukaea', name: 'Atomic Energy UK', sector: 'Nuclear & Research', logo: ukaeaLogo, h: 'h-9 sm:h-10' },
+
+  // Row 3 (5 logos across)
+  { id: 'gatwick', name: 'Gatwick Airport', sector: 'Airport Cargo Hub', logo: gatwickLogo, h: 'h-6 sm:h-7' },
+  { id: 'warnerbros', name: 'Warner Bros. Studios', sector: 'Film & Media Studios', logo: warnerbrosLogo, h: 'h-8 sm:h-9' },
+  { id: 'kodak', name: 'Kodak Studios', sector: 'Studio Logistics', logo: kodakLogo, h: 'h-8 sm:h-9' },
+  { id: 'companieshouse', name: 'Companies House', sector: 'UK Executive Agency', logo: companieshouseLogo, h: 'h-7 sm:h-8' },
+  { id: 'mitie', name: 'Mitie UK', sector: 'Facilities & Security', logo: mitieLogo, h: 'h-6 sm:h-7' },
 ]
 
 const faqs = [
@@ -418,34 +239,6 @@ export default function Home({ onNavigate }) {
     const timer = setInterval(() => {
       setSlide((s) => (s + 1) % heroSlides.length)
     }, 5000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Clients carousel state & continuous cycle
-  const [clientIndex, setClientIndex] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(4)
-
-  useEffect(() => {
-    const updateVisible = () => {
-      if (window.innerWidth < 640) {
-        setVisibleCount(1.3)
-      } else if (window.innerWidth < 768) {
-        setVisibleCount(2.2)
-      } else if (window.innerWidth < 1024) {
-        setVisibleCount(3.2)
-      } else {
-        setVisibleCount(4.5)
-      }
-    }
-    updateVisible()
-    window.addEventListener('resize', updateVisible)
-    return () => window.removeEventListener('resize', updateVisible)
-  }, [])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setClientIndex((prev) => (prev + 1) % clients.length)
-    }, 3000)
     return () => clearInterval(timer)
   }, [])
 
@@ -779,11 +572,11 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── OUR CLIENTS & ENTERPRISE PARTNERS ─────────────────────────── */}
-      <section className="bg-slate-50/70 py-16 lg:py-20 border-t border-hairline overflow-hidden">
+      {/* ── OUR CLIENTS & ENTERPRISE PARTNERS COLLAGE CARD ─────────────── */}
+      <section className="bg-slate-50/70 py-16 lg:py-24 border-t border-hairline overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
-          <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12">
             <span className="block text-gold text-xs sm:text-sm font-bold font-display tracking-[0.18em] uppercase mb-2">
               TRUSTED BY
             </span>
@@ -791,35 +584,63 @@ export default function Home({ onNavigate }) {
               Our Clients &amp; Partners
             </h2>
             <p className="text-dim text-sm sm:text-base font-body leading-relaxed">
-              Organisations that trust us to support their critical supply chains, aerospace movements, and enterprise operations.
+              Organisations that trust Moz Midlands to support their critical supply chains, aerospace movements, and enterprise operations.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="hidden sm:block pointer-events-none absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50/90 to-transparent z-10" />
-            <div className="hidden sm:block pointer-events-none absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50/90 to-transparent z-10" />
-
-            <div className="overflow-hidden py-2">
-              <div
-                className="flex transition-transform duration-700 ease-in-out"
-                style={{
-                  transform: `translateX(-${(clientIndex * 100) / visibleCount}%)`,
-                }}
-              >
-                {[...clients, ...clients].map((client, idx) => (
+          {/* Unified Collage Card (Inspired by premier racing partner logo wall) */}
+          <div className="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl shadow-[0_12px_40px_rgba(12,37,69,0.06)] p-5 sm:p-8 lg:p-10 max-w-[1240px] mx-auto">
+            
+            {/* 15-cell grid: 5 columns on desktop, 3 columns on tablet, 2 columns on mobile */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-4.5 items-stretch">
+              {collageItems.map((item) => (
+                item.type === 'center' ? (
                   <div
-                    key={`${client.id}-${idx}`}
-                    className="shrink-0 px-2 sm:px-2.5"
-                    style={{ width: `${100 / visibleCount}%` }}
+                    key="center-badge"
+                    className="col-span-2 sm:col-span-1 lg:col-span-1 flex flex-col items-center justify-center text-center p-4 rounded-xl bg-gradient-to-br from-[#0c2545] via-[#081b33] to-[#040f1d] border border-gold/50 shadow-lg group select-none min-h-[96px] sm:min-h-[104px] relative overflow-hidden"
                   >
-                    <div className="h-[96px] sm:h-[102px] bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 flex items-center justify-center text-center shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:border-gold hover:shadow-md transition-all duration-300 group select-none">
-                      <div className="transition-transform duration-300 group-hover:scale-105 flex items-center justify-center w-full">
-                        {client.renderLogo()}
-                      </div>
-                    </div>
+                    <div className="absolute inset-0 bg-radial from-gold/10 via-transparent to-transparent pointer-events-none" />
+                    <img
+                      src={logoWhite}
+                      alt="Moz Midlands"
+                      className="h-6 sm:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="w-8 h-[1.5px] bg-gold my-2 rounded-full" />
+                    <span className="text-[10px] sm:text-[11px] text-gold font-bold font-display tracking-[0.16em] uppercase">
+                      Partner Network
+                    </span>
                   </div>
-                ))}
-              </div>
+                ) : (
+                  <div
+                    key={item.id}
+                    className="h-[96px] sm:h-[104px] bg-white border border-slate-200/80 hover:border-gold/60 rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 group"
+                    title={`${item.name} · ${item.sector}`}
+                  >
+                    <div className="flex-1 flex items-center justify-center w-full">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className={`${item.h} w-auto max-w-[85%] object-contain transition-transform duration-300 group-hover:scale-105`}
+                        loading="lazy"
+                      />
+                    </div>
+                    <span className="text-[10px] text-dim/70 font-body font-medium mt-1 truncate max-w-full">
+                      {item.sector}
+                    </span>
+                  </div>
+                )
+              ))}
+            </div>
+
+            {/* Bottom Trust Micro-bar */}
+            <div className="mt-6 sm:mt-8 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-dim">
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="font-semibold text-navy">High-Security &amp; Time-Critical Clearances</span> across Defence, Aviation &amp; Healthcare
+              </span>
+              <span className="font-medium text-dim/80">
+                UK &amp; International Supply Chain Coordination
+              </span>
             </div>
 
           </div>

@@ -32,6 +32,21 @@ Design premium logistics website/
     ├── assets/                # Visual media, logos, and photography
     │   ├── logo.png           # Official primary brand logo (dark text + gold accent on transparent)
     │   ├── logo-white.png     # Inverted brand logo (white text + gold accent for dark themes)
+    │   ├── partners/          # Official vector brand SVG logos for enterprise client partners
+    │   │   ├── f1.svg         # Formula 1® official vector
+    │   │   ├── alpine.svg     # Alpine UK Motorsport official vector
+    │   │   ├── mod.svg        # UK Ministry of Defence official heraldic vector
+    │   │   ├── ukaea.svg      # UK Atomic Energy Authority official vector
+    │   │   ├── nhs.svg        # National Health Service official vector
+    │   │   ├── boeing.svg     # The Boeing Company official vector
+    │   │   ├── heathrow.svg   # London Heathrow Airport official vector
+    │   │   ├── gatwick.svg    # London Gatwick Airport official vector
+    │   │   ├── hsbc.svg       # HSBC official vector
+    │   │   ├── fedex.svg      # FedEx Corporation official vector
+    │   │   ├── warnerbros.svg # Warner Bros. official vector
+    │   │   ├── kodak.svg      # Eastman Kodak Company official vector
+    │   │   ├── companieshouse.svg # Companies House official vector
+    │   │   └── mitie.svg      # Mitie Group official vector
     │   └── client/            # Official client photography for sectors & services
     │       ├── transportation.jpg       # Inland transport, freight & fleet hero
     │       ├── solutions_hero.jpg       # Warehousing, logistics hub & operations
@@ -68,7 +83,7 @@ The application uses an efficient state-based SPA router managed in [`src/App.js
 
 | Page ID | Component | Role & Content |
 | :--- | :--- | :--- |
-| `home` | [`Home.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Home.jsx) | Hero slideshow, elevated solution cards, why choose us, sector previews, verified testimonial, enterprise partner ticker, and interactive FAQ. |
+| `home` | [`Home.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Home.jsx) | Hero slideshow, elevated solution cards, why choose us, sector previews, verified testimonial, premier partner collage card with official SVGs, and interactive FAQ. |
 | `about` | [`About.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/About.jsx) | Corporate narrative, connected supply chain services, vertically parallel **Our Approach** pillars & core values, and markets served. |
 | `services` | [`Services.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Services.jsx) | Deep dive into Transportation, Critical Deliveries, Imports, Warehousing, and Distribution with synchronized sticky tab navigation. |
 | `industries` | [`Industries.jsx`](file:///c:/Users/Lenovo/Desktop/Design%20premium%20logistics%20website/src/pages/Industries.jsx) | Specialized supply-chain solutions: Healthcare, Arts & Film Studios, Public Sector, Defence-Related, and Commercial & Industrial with calibrated sticky offsets. |
