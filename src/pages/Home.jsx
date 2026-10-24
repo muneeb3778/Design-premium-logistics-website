@@ -11,20 +11,7 @@ import publicSectorImg from '../assets/client/public_sector.jpg'
 import defenceImg from '../assets/client/defence.jpg'
 import industrialImg from '../assets/client/industrial.jpg'
 import logoWhite from '../assets/logo-white.png'
-import f1Logo from '../assets/partners/f1.svg'
-import alpineLogo from '../assets/partners/alpine.svg'
-import modLogo from '../assets/partners/mod.svg'
-import ukaeaLogo from '../assets/partners/ukaea.svg'
-import nhsLogo from '../assets/partners/nhs.svg'
-import boeingLogo from '../assets/partners/boeing.svg'
-import heathrowLogo from '../assets/partners/heathrow.svg'
-import gatwickLogo from '../assets/partners/gatwick.svg'
-import hsbcLogo from '../assets/partners/hsbc.svg'
-import fedexLogo from '../assets/partners/fedex.svg'
-import warnerbrosLogo from '../assets/partners/warnerbros.svg'
-import kodakLogo from '../assets/partners/kodak.svg'
-import companieshouseLogo from '../assets/partners/companieshouse.svg'
-import mitieLogo from '../assets/partners/mitie.svg'
+import clientPartnersCollage from '../assets/client_partners_collage.png'
 
 /*
   Hero slideshow data
@@ -132,36 +119,6 @@ const industries = [
     image: industrialImg,
     alt: 'Industrial and commercial transport solutions',
   },
-]
-
-/*
-  Clients & Enterprise Partners Data (Official Brand Logos Collage)
-*/
-const collageItems = [
-  // Row 1 (5 logos across)
-  { id: 'f1', name: 'Formula 1®', sector: 'Motorsport Logistics', logo: f1Logo, h: 'h-7 sm:h-8' },
-  { id: 'boeing', name: 'Boeing', sector: 'Aerospace & Defence', logo: boeingLogo, h: 'h-6 sm:h-7' },
-  { id: 'hsbc', name: 'HSBC', sector: 'Financial Services', logo: hsbcLogo, h: 'h-6 sm:h-7' },
-  { id: 'fedex', name: 'FedEx Express', sector: 'Global Freight', logo: fedexLogo, h: 'h-7 sm:h-8' },
-  { id: 'heathrow', name: 'Heathrow Airport', sector: 'Aviation Cargo Hub', logo: heathrowLogo, h: 'h-6 sm:h-7' },
-
-  // Row 2 Left (2 logos)
-  { id: 'nhs', name: 'NHS Trust', sector: 'Healthcare Logistics', logo: nhsLogo, h: 'h-7 sm:h-8' },
-  { id: 'mod', name: 'Ministry of Defence', sector: 'UK Defence Logistics', logo: modLogo, h: 'h-8 sm:h-9' },
-
-  // Row 2 Center: Moz Midlands Focal Brand Badge
-  { type: 'center' },
-
-  // Row 2 Right (2 logos)
-  { id: 'alpine', name: 'Alpine UK', sector: 'Motorsport Division', logo: alpineLogo, h: 'h-8 sm:h-9' },
-  { id: 'ukaea', name: 'Atomic Energy UK', sector: 'Nuclear & Research', logo: ukaeaLogo, h: 'h-9 sm:h-10' },
-
-  // Row 3 (5 logos across)
-  { id: 'gatwick', name: 'Gatwick Airport', sector: 'Airport Cargo Hub', logo: gatwickLogo, h: 'h-6 sm:h-7' },
-  { id: 'warnerbros', name: 'Warner Bros. Studios', sector: 'Film & Media Studios', logo: warnerbrosLogo, h: 'h-8 sm:h-9' },
-  { id: 'kodak', name: 'Kodak Studios', sector: 'Studio Logistics', logo: kodakLogo, h: 'h-8 sm:h-9' },
-  { id: 'companieshouse', name: 'Companies House', sector: 'UK Executive Agency', logo: companieshouseLogo, h: 'h-7 sm:h-8' },
-  { id: 'mitie', name: 'Mitie UK', sector: 'Facilities & Security', logo: mitieLogo, h: 'h-6 sm:h-7' },
 ]
 
 const faqs = [
@@ -434,7 +391,7 @@ export default function Home({ onNavigate }) {
             <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap gap-3">
               <button
                 onClick={() => onNavigate('about')}
-                className="px-6 py-3 border-2 border-navy text-navy text-sm font-semibold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
+                className="px-6 py-3 border-2 border-navy text-navy text-sm font-bold font-display rounded-sm hover:bg-navy hover:text-white transition-all duration-200"
               >
                 About Our Company
               </button>
@@ -572,8 +529,8 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* ── OUR CLIENTS & ENTERPRISE PARTNERS COLLAGE CARD ─────────────── */}
-      <section className="bg-slate-50/70 py-16 lg:py-24 border-t border-hairline overflow-hidden">
+      {/* ── OUR CLIENTS & ENTERPRISE PARTNERS COLLAGE ─────────────────── */}
+      <section className="bg-white py-16 lg:py-24 border-t border-hairline overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-5 lg:px-10">
           
           <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12">
@@ -588,52 +545,19 @@ export default function Home({ onNavigate }) {
             </p>
           </div>
 
-          {/* Unified Collage Card (Inspired by premier racing partner logo wall) */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl shadow-[0_12px_40px_rgba(12,37,69,0.06)] p-5 sm:p-8 lg:p-10 max-w-[1240px] mx-auto">
-            
-            {/* 15-cell grid: 5 columns on desktop, 3 columns on tablet, 2 columns on mobile */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-4.5 items-stretch">
-              {collageItems.map((item) => (
-                item.type === 'center' ? (
-                  <div
-                    key="center-badge"
-                    className="col-span-2 sm:col-span-1 lg:col-span-1 flex flex-col items-center justify-center text-center p-4 rounded-xl bg-gradient-to-br from-[#0c2545] via-[#081b33] to-[#040f1d] border border-gold/50 shadow-lg group select-none min-h-[96px] sm:min-h-[104px] relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-radial from-gold/10 via-transparent to-transparent pointer-events-none" />
-                    <img
-                      src={logoWhite}
-                      alt="Moz Midlands"
-                      className="h-6 sm:h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="w-8 h-[1.5px] bg-gold my-2 rounded-full" />
-                    <span className="text-[10px] sm:text-[11px] text-gold font-bold font-display tracking-[0.16em] uppercase">
-                      Partner Network
-                    </span>
-                  </div>
-                ) : (
-                  <div
-                    key={item.id}
-                    className="h-[96px] sm:h-[104px] bg-white border border-slate-200/80 hover:border-gold/60 rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center text-center shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 group"
-                    title={`${item.name} · ${item.sector}`}
-                  >
-                    <div className="flex-1 flex items-center justify-center w-full">
-                      <img
-                        src={item.logo}
-                        alt={item.name}
-                        className={`${item.h} w-auto max-w-[85%] object-contain transition-transform duration-300 group-hover:scale-105`}
-                        loading="lazy"
-                      />
-                    </div>
-                    <span className="text-[10px] text-dim/70 font-body font-medium mt-1 truncate max-w-full">
-                      {item.sector}
-                    </span>
-                  </div>
-                )
-              ))}
+          {/* Unified Dynamic Collage Poster */}
+          <div className="max-w-[1140px] mx-auto">
+            <div className="flex items-center justify-center">
+              <img
+                src={clientPartnersCollage}
+                alt="Moz Midlands Enterprise Partners &amp; Clients Collage: Formula 1, Alpine Motorsport, UK Ministry of Defence, Atomic Energy Authority, NHS, Boeing, Gatwick, Heathrow, HSBC, FedEx, Warner Bros, Kodak, Shinfield Studios, Data Centres UK, Companies House, Mitie"
+                className="w-full h-auto max-h-[660px] object-contain select-none"
+                loading="lazy"
+              />
             </div>
 
             {/* Bottom Trust Micro-bar */}
-            <div className="mt-6 sm:mt-8 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-dim">
+            <div className="mt-8 pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-3 text-xs text-dim">
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span className="font-semibold text-navy">High-Security &amp; Time-Critical Clearances</span> across Defence, Aviation &amp; Healthcare
@@ -642,7 +566,6 @@ export default function Home({ onNavigate }) {
                 UK &amp; International Supply Chain Coordination
               </span>
             </div>
-
           </div>
 
         </div>
